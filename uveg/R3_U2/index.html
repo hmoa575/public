@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Club de Fans Pokémon - Formulario de Registro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="titulo">
+            <h1>Club de Fans Pokémon</h1>
+        </div>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Historia</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+
+    <div class="contenedor">
+        <!-- Lado izquierdo: Imagen -->
+        <aside class="izquierdo">
+            <div class="areaImagen">
+                <a href="https://es.wikipedia.org/wiki/Pokémon" target="_blank" rel="noopener noreferrer" title="Click hacia Wikipedia">
+                <img src="images/2026-04-21 16_28_19-Greenshot.jpg" alt="Pokemones" title="Link hacia Wikipedia">
+                </a>
+            </div>
+        </aside>
+
+        <!-- Lado derecho: Formulario -->
+        <aside class="derecho">
+            <div class="areaDerecha">
+                <main class="containerForm">
+                    <div class="form-card">
+                        <div class="pokemon-logo">
+                            <i class="fas fa-pokeball"></i>
+                            <h1>FORMULARIO</h1>
+                            <h2><strong>Registro de la persona Usuaria</strong></h2>
+                        </div>
+<!--Campos de texto para: Nombre, Apellido, Correo Electrónico y Contraseña. -->
+                        <form id="formularioRegistro" action="#" method="post">
+                            <!--Nombre-->
+                            <div class="grupoInput">
+                                <label for="nombre"><i class="fas fa-user"></i> Nombre</label>
+                                <input type="text" id="nombre" name="nombre" placeholder="Ash" required>
+                            </div>
+
+                            <!--Apellido-->
+                            <div class="grupoInput">
+                                <label for="apellido"><i class="fas fa-user"></i> Apellido(s)</label>
+                                <input type="text" id="apellido" name="apellido" placeholder="Ketchum" required>
+                            </div>
+
+                            <!--Correo electrnico -->
+                            <div class="grupoInput">
+                                <label for="email"><i class="fas fa-envelope"></i> Correo electrónico</label>
+                                <input type="email" id="email" name="email" placeholder="usuario@pokemon.com" required>
+                            </div>
+
+                            <!--Alias-->
+                            <div class="grupoInput">
+                                <label for="username"><i class="fas fa-id-badge"></i> Tu Alias</label>
+                                <input type="text" id="username" name="username" placeholder="PokeCazador001" required>
+                            </div>
+
+                            <!--Contrasena-->
+                            <div class="grupoInput">
+                                <label for="contrasena"><i class="fas fa-lock"></i> Contraseña</label>
+                                <input type="password" id="contrasena" name="contrasena" placeholder="****" required>
+                            </div>
+
+                            <!--Confirmar contrasena -->
+                            <div class="grupoInput">
+                                <label for="confirmaContrasena"><i class="fas fa-check-circle"></i> Confirma Contraseña</label>
+                                <input type="password" id="confirmaContrasena" name="confirmaContrasena" placeholder="*********" required>
+                            </div>
+
+                            <!--Birthdate-->
+                            <div class="grupoInput">
+                                <label for="dateBirth"><i class="fas fa-calendar-alt"></i> Fecha de Nacimiento</label>
+                                <input type="date" id="dateBirth" name="dateBirth">
+                            </div>
+
+<!--Tipo de entrenador Pokemon: Lider de Gimnasio, Alto Mando, Campeon de Liga, As de Batalla, Maestro Pokemon, Entrenador Legendario-->
+<!--input type="radio"-->
+                            <div class="grupoInput radio-group">
+                                <label><i class="fas fa-crown"></i> Tipo de entrenador:</label>
+                                <div class="radio-container">
+                                    <label class="radio-item"><input type="radio" name="tipoEntrenador" value="Lider de Gimnasio"> Líder de Gimnasio</label>
+                                    <label class="radio-item"><input type="radio" name="tipoEntrenador" value="Alto Mando"> Alto Mando</label>
+                                    <label class="radio-item"><input type="radio" name="tipoEntrenador" value="Campeon de Liga"> Campeón de Liga</label>
+                                    <label class="radio-item"><input type="radio" name="tipoEntrenador" value="As de Batalla"> As de Batalla</label>
+                                    <label class="radio-item"><input type="radio" name="tipoEntrenador" value="Maestro Pokemon"> Maestro Pokémon</label>
+                                    <label class="radio-item"><input type="radio" name="tipoEntrenador" value="Entrenador Legendario"> Entrenador Legendario</label>
+                                </div>
+                            </div>
+
+<!--● Un conjunto de opciones (checkboxes) que indiquen sus intereses (ejemplo: "Tecnología", "Arte",
+"Deporte"). -->
+                            <div class="grupoInput">
+                                <label class="label-checkbox-group"><i class="fas fa-check-double"></i> Intereses Pokémon:</label>
+                                <div class="checkboxes-container">
+                                    <label class="checkbox-item"><input type="checkbox" name="intereses" value="legendario"><span>Legendario</span></label>
+                                    <label class="checkbox-item"><input type="checkbox" name="intereses" value="mitico"><span>Mítico</span></label>
+                                    <label class="checkbox-item"><input type="checkbox" name="intereses" value="iniciales"><span>Iniciales</span></label>
+                                    <label class="checkbox-item"><input type="checkbox" name="intereses" value="regionales"><span>Regionales</span></label>
+                                    <label class="checkbox-item"><input type="checkbox" name="intereses" value="ultraentes"><span>Ultra-Entes</span></label>
+                                </div>
+                            </div>
+
+<!--
+● Un área de texto (textarea) para que las personas usuarias puedan introducir una breve descripción
+sobre sí mismas. -->
+                            <div class="grupoInput">
+                                <label for="motivo"><i class="fas fa-comment-dots"></i> ¿Por qué quieres unirte al club?</label>
+                                <textarea id="motivo" name="motivo" rows="4" placeholder="Ejemplo: Quiero conocer a otros entrenadores, intercambiar estrategias y participar en eventos exclusivos..."></textarea>
+                                <small class="helper-text">Cuéntanos tu pasión por Pokémon (mínimo 10 caracteres)</small>
+                            </div>
+
+                           <!--Sube la imagen de tu avatar Pokemon Favorito-->
+                            <div class="grupoInput avatarFile">
+                                <label for="avatar"><i class="fas fa-image"></i> Sube la imagen de tu avatar:</label>
+                                <input type="file" id="avatar" name="avatar" accept="image/*">
+                            </div>
+
+<!--
+● Un botón de envío (submit) con el texto "Registrarse".
+● Usa la etiqueta label para cada campo del formulario para identificar su propósito.
+-->
+                            <button type="submit" class="btn-registro">
+                                <i class="fas fa-pokeball"></i> Crear cuenta y unirse al club
+                            </button>
+
+                            <p class="login-note">
+                                ¿Ya tienes una cuenta? <a href="#" id="fakeLogin">Inicia sesión aquí</a>
+                            </p>
+                        </form>
+
+                        <div id="mensajeExito" class="mensaje-exito" style="display: none;">
+                            <i class="fas fa-trophy"></i> ¡Cuenta creada con éxito! Ahora puedes iniciar sesión.
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p class="footerText">COPYRIGHT © Club de Fans Pokémon</p>
+    </footer>

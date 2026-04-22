@@ -1,0 +1,327 @@
+                /*=====RESET Y BASE=====*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*========================*/
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    background: linear-gradient(145deg, #f5f7fc 0%, #e9eef5 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: linear-gradient(95deg, #e33535, #c92a2a);
+    padding: 1.2rem 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.titulo h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #ffcb05;
+    text-shadow: 2px 2px 0 #2c6e9e;
+    letter-spacing: 1px;
+}
+
+nav {
+    text-align: center;
+    margin-top: 0.8rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    color: #ffcb05;
+    text-decoration: underline;
+}
+
+.contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    flex: 1;
+}
+
+/*Lado izquierdo - imagen **
+*/
+.izquierdo {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    justify-content: center;
+}
+
+.areaImagen {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 48px;
+    padding: 1rem;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.areaImagen img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    border-radius: 32px;
+    display: block;
+    margin: 0 auto;
+    border: 3px solid #ffcb05;
+}
+
+/*Efecto hover en la imagen*/
+.areaImagen:hover{transform: translateY(-5px);}
+
+
+    /*++++++++++ Area del Formulario +++++++++++*/
+
+/*Lado derecho - formulario */
+.derecho {
+    flex: 1.5;
+    min-width: 320px;
+}
+
+
+/*Tarjeta del formulario tipo "Card" */
+.form-card {
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(10px);
+    border-radius: 48px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 215, 0, 0.3);
+    padding: 2rem;
+    transition: transform 0.2s;
+}
+
+.form-card:hover {
+    transform: translateY(-5px);
+}
+
+.pokemon-logo {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+
+.pokemon-logo h1 {
+    font-size: 1.8rem;
+    margin: 0.5rem 0 0.2rem;
+    color: #e33535;
+}
+
+.pokemon-logo h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #2c3e66;
+}
+
+/*Grupos de entrada (cada campo) */
+.grupoInput {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.grupoInput label {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #1e2a47;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.grupoInput label i {
+    color: #e33535;
+    width: 20px;
+}
+
+.grupoInput input,
+.grupoInput select,
+.grupoInput textarea {
+    padding: 0.8rem 1rem;
+    border-radius: 60px;
+    border: 1.5px solid #e2e8f0;
+    background: white;
+    font-family: 'Inter', monospace;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.grupoInput textarea {
+    border-radius: 24px;
+    resize: vertical;
+}
+
+.grupoInput input:focus,
+.grupoInput select:focus,
+.grupoInput textarea:focus {
+    border-color: #ffcb05;
+    box-shadow: 0 0 0 3px rgba(255, 203, 5, 0.3);
+}
+
+.helper-text {
+    font-size: 0.7rem;
+    color: #5a6e8a;
+    margin-top: 5px;
+    margin-left: 8px;
+}
+
+/*Radio botones para los tipo de entrenador) */
+.radio-group {
+    margin-bottom: 1.2rem;
+}
+
+.radio-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 0.8rem;
+    border-radius: 32px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.radio-item input {
+    width: 16px;
+    height: 16px;
+    accent-color: #e33535;
+    margin: 0;
+}
+
+/*Checkboxes (intereses) */
+.label-checkbox-group {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkboxes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 0.8rem 1rem;
+    border-radius: 48px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.checkbox-item input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #e33535;
+}
+
+/*upload Archivo (avatar) */
+.avatarFile input {
+    padding: 0.6rem;
+    border-radius: 60px;
+    background: white;
+}
+
+/*Boton de registro*/
+.btn-registro {
+    width: 100%;
+    background: linear-gradient(95deg, #e33535, #c92a2a);
+    color: white;
+    border: none;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 60px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.25s;
+    margin-top: 1rem;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 5px 12px rgba(227, 53, 53, 0.3);
+}
+
+.btn-registro:hover {
+    background: linear-gradient(95deg, #c92a2a, #a51f1f);
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*Nota de inicio de sesio*/
+.login-note {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: #2c3e50;
+}
+
+.login-note a {
+    color: #e33535;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px dashed #e33535;
+}
+
+.login-note a:hover {
+    color: #ffcb05;
+    border-bottom-color: #ffcb05;
+}
+
+/*éxito */
+.mensaje-exito {
+    margin-top: 1.5rem;
+    background: #2e7d32;
+    color: white;
+    padding: 0.8rem;
+    border-radius: 60px;
+    text-align: center;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    animation: fadeInUp 0.4s ease;
+}
+
+footer {
+    background: linear-gradient(95deg, #e33535, #c92a2a);
+    padding: 1rem;
+    text-align: center;
+    color: white;
+    margin-top: 2rem;
+}
+
