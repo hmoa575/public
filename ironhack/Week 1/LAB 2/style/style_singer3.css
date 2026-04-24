@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background-color: blanchedalmond;
+    color: #333;
+    padding: 20px;
+}
+
+h1{
+    text-align: center;
+}
+
+p{
+    text-align: justify;
+    
+}
+
+.menuNavegacion{
+    text-align: left;
+    font-size: large;
+}
+
+.menuNavegacion ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menuNavegacion li{
+    margin: 0;
+}
+.menuNavegacion a{
+    display: inline-block;
+    padding: 0.75rem 1.8rem;
+    background: linear-gradient(135deg,#1e2a5e, #2c3e66);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.125rem;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    letter-spacing: 0.3px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+/* Efecto hover */
+.menuNavegacion a:hover{
+    transform: translateY(-4px);
+    background: linear-gradient(135deg, #ff6b6b, #c44569);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+    color:  #fff;
+
+}
+/* Efecto de clic*/
+.menuNavegacion a:active {
+    transform: translateY(2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.05s;
+}
+
+/* foco visible */
+.menuNavegacion a:focus-visible{
+    outline: 3px solid #ffb347;
+    outline-offset: 3px;
+    border-radius: 50px;
+}
+.imagen{
+    padding-right: 20px;
+    float: left;
+}

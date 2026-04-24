@@ -1,0 +1,17 @@
+LAB | Presentacion Web Cantantes Lab
+Instructions
+Vamos a combinar tus conocimientos de HTML y CSS con tus cantantes favoritos!
+
+Crea al menos tres páginas con tus cantantes (o músicos) preferidos, que incluyan al menos un título, un párrafo y una foto.
+
+El diseño de cada página no tiene que ser igual en este caso, prueba a experimentar con el formateo de texto con cada cantante.
+
+Aprovecha para repasar todo lo visto hasta ahora, y si te animas, investiga sobre nuevas posibilidades gráficas.
+
+********
+Sobre la web de cantantes:
+- probar displays (inline-block)
+- ancho de los elementos (en px o %)
+- asigna en HTML una clase a uno o más elementos. Asigna otra clase a otro elemento, y cambia su estilo desde CSS
+
+si no quieres tocar lo que ya has realizado, prueba a ñadir una pagina extra para hacer estas pruebas
