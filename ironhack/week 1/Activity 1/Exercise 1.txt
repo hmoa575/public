@@ -1,1 +1,15 @@
+LAB | Paginas Enlazadas Lab
 
+Instructiones
+Debes crear una web en HTML con al menos tres páginas enlazadas entre sí. 
+Ejemplo: Home / Productos / Contacto. 
+
+Debes incluir un menú en cada página que permita navegar por toda esa web. 
+
+¿Cómo lo resuelves?
+
+(desde todas las páginas puedes ir a todas las 3 páginas)
+
+Puedes incluir comentarios en el código.
+
+EXTRA: incluir imágenes con enlaces. ¡Imaginación al poder!
