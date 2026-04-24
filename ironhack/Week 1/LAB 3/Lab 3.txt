@@ -1,0 +1,10 @@
+LAB | Formatear Texto E Imagenes Web Cantantes Lab
+
+Instructions
+Estiliza tu web de artistas formateando los textos y añadiendo imágenes de fondo.
+
+Verifica qué opciones son mejores tanto para la imagen como para los elementos que pueda
+haber encima (logo, título de la página, otra imagen, un texto, etc). 
+Puedes incluir un div dentro de otro div.
+
+Tómate tu tiempo, no se trata de hacerlo rápido, sino de aprender en base a la experimentación.

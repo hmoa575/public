@@ -1,0 +1,353 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at 20% 30%, #fff7f0, #ffede3);
+  background-attachment: fixed;
+  color: #2c2b28;
+  line-height: 1.5;
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 2rem auto;
+  padding: 0 1.8rem;
+}
+
+.menuNavegacion {
+  background: rgba(255, 245, 235, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 80px;
+  margin-bottom: 2.5rem;
+  padding: 0.6rem 1.2rem;
+  box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 215, 185, 0.7);
+  position: sticky;
+  top: 1rem;
+  z-index: 100;
+}
+
+.menuNavegacion ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+}
+
+.menuNavegacion a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.7rem 1.8rem;
+  background: rgba(40, 35, 30, 0.85);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.98rem;
+  border-radius: 50px;
+  transition: all 0.25s ease;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menuNavegacion a.active-page {
+  background: linear-gradient(135deg, #ffb347, #ff8c42);
+  box-shadow: 0 8px 18px rgba(255, 140, 66, 0.35);
+  color: #2d1f0c;
+}
+
+.menuNavegacion a:hover:not(.active-page) {
+  background: #5c4b3a;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  background: rgba(255, 250, 245, 0.95);
+  border-radius: 2.5rem;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ffefe3;
+  align-items: center;
+}
+
+.hero-text {
+  flex: 2;
+}
+
+.hero-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(125deg, #e17b3a, #c5541b);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.badge-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffefe2;
+  padding: 0.25rem 1.2rem;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #bd713b;
+  margin-bottom: 1rem;
+}
+
+.intro-paragraph {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #3a2e26;
+  text-align: justify;
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 2rem;
+  box-shadow: 0 20px 30px -8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+  border: 3px solid white;
+}
+
+.hero-image img:hover {
+  transform: scale(1.02);
+}
+
+.music-card {
+  background: rgba(255, 250, 245, 0.94);
+  backdrop-filter: blur(2px);
+  border-radius: 2rem;
+  padding: 1.6rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ffe5d5;
+  transition: all 0.2s;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 6px solid #ff9f5b;
+  padding-left: 1rem;
+  color: #6e4129;
+}
+
+.section-title i {
+  color: #e28042;
+  font-size: 1.7rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 1.2rem;
+}
+
+.stylish-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+  border-radius: 1.2rem;
+  overflow: hidden;
+}
+
+.stylish-table thead tr {
+  background: linear-gradient(95deg, #f39c6d, #e57e44);
+  color: #2d1e12;
+  font-weight: 700;
+}
+
+.stylish-table th {
+  padding: 1rem 1.2rem;
+  text-align: left;
+}
+
+.stylish-table td {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #ffe0cf;
+  color: #3d2b1f;
+  font-weight: 500;
+}
+
+.stylish-table tbody tr {
+  background-color: #fffcf9;
+  transition: all 0.2s;
+}
+
+.stylish-table tbody tr:hover {
+  background: #fff3ea;
+  box-shadow: inset 0 0 0 1px #f5cfb5;
+}
+
+.stylish-table td strong {
+  color: #c95f27;
+  font-weight: 700;
+}
+
+.badge-debut, .badge-album {
+  background: #ffd9c4;
+  padding: 2px 8px;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-left: 8px;
+  color: #9c4d23;
+}
+
+.cert-badge {
+  background: #fbe4d4;
+  padding: 2px 9px;
+  border-radius: 40px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-left: 6px;
+  color: #b55a2a;
+}
+
+.legacy-note {
+  margin-top: 1.2rem;
+  padding: 0.7rem 0.9rem;
+  background: #fff1e8;
+  border-radius: 1.2rem;
+  font-style: italic;
+  color: #b55f33;
+  text-align: center;
+  font-weight: 500;
+}
+
+.tables-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.tables-grid .music-card {
+  flex: 1;
+  min-width: 280px;
+}
+
+.stats-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.stats-flex div {
+  background: #fff3ea;
+  padding: 0.8rem 1.2rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #754f33;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stats-flex i {
+  font-size: 1.3rem;
+  color: #e27c40;
+}
+
+.fun-fact {
+  background: #ffefe3;
+  border-radius: 1.5rem;
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+  font-weight: 500;
+  color: #7c583b;
+}
+
+.music-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1.5rem 0.5rem;
+  border-top: 1px solid rgba(200, 150, 110, 0.3);
+  font-size: 0.85rem;
+  color: #9b6e4e;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: #bb784e;
+  margin: 0 0.8rem;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.social-links a:hover {
+  color: #f58d48;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 850px) {
+  .container {
+    padding: 0 1.2rem;
+  }
+  .hero-text h1 {
+    font-size: 2.4rem;
+  }
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  .intro-paragraph {
+    text-align: left;
+  }
+  .section-title {
+    font-size: 1.6rem;
+  }
+  .menuNavegacion a {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .stats-flex div {
+    width: 100%;
+    justify-content: center;
+  }
+  .music-card {
+    padding: 1.2rem;
+  }
+  .stylish-table th, .stylish-table td {
+    padding: 0.7rem;
+  }
+}
