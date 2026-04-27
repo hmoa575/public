@@ -1,0 +1,80 @@
+Flexbox Basico Lección
+
+Resumen de la Lección ✏️
+El sistema Flex-Box nos permite maquetar la posición y flujo de nuestros elementos en la página.
+Aquí están las instrucciones principales.
+
+Objetivos de aprendizaje 📓
+Al final de esta lección, podrás:
+
+Comprender los conceptos principales de Flex-Box: dirección de flujo (filas o columnas);
+Posicionamiento de elementos en horizontal y vertical;
+flex-wrap (salto o no hacia siguiente fila)
+
+La lección 
+La información de esta lección está disponible en la presentación que se encuentra a continuación.:
+
+LAB | Web Sobre Mi Con Flex Lab
+
+Resumen de la Lección ✏️
+Es habitual en CSS el formato de presentación de tarjeta (card), 
+un grupo de elementos que combinan texto e imagen con un estilo en común (clase CSS). 
+También es preciso conocer algunos efectos de mouse over () que destacan sobre qué elemento estamos pasando.
+Objetivos de aprendizaje 📓
+Al final de esta lección, podrás:
+
+Comprender qué es una card y cómo se estructura tanto en anidamientos HTML como en flex CSS
+Emplear el efecto de pasar por encima (hover) en CSS
+Entender las animaciones simples con transformación y transición
+
+flexboxfroggy.com
+
+1- Hacer las pruebas de flex de las ranitas hasta el nivel 13
+
+2- PAGINA ‘SOBRE MI’
+
+Crea una página sobre ti mism@, usando flexbox, como ejemplo:
+
+Header: foto y titulo o/y slogan de la pagina (tu nombre o no)
+Pequeño parrafo sobre ti (vale añadir extra texto Lorem Ipsum)
+DIV 1: Imágenes de tus hobbies (no vale informatica): los tres principales. 
+Probar también align-items (alineación vertical)
+DIV2: los otros en otro div. En los otros no hace falta imágenes, con un texto es suficiente:
+ maquetas de trenes, musica jazz, patinar, etc, … solo un texto centrado en un div, o bien imagenes
+si te da tiempo. Poner al menos 5 divs en este grupo y probar el flex-wrap, justify-content, etc
+ A partir de ahí puedes hacer todas las pruebas de flex que quieras :-)
+
+ #example1 {
+  /* box-sizing: content-box;  por defecto y puede modificar el tamaño del div */ 
+  width: 300px;
+  height: 100px;
+  padding: 30px;  
+  border: 10px solid blue;
+}
+
+#example2 {
+  box-sizing: border-box; /* fijar las dimensiones del div */
+  width: 300px;
+  height: 100px;
+  padding: 30px;  
+  border: 10px solid blue;
+
+  /* tres instrucciones con el selector universal */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+3- Publicar con GITHUB PAGES!
+Selecciona cualquiera de tus proyectos anteriores y prueba a publicarlo en internet con GiHub Pages. Recuerda:
+Repositorio > Settings> Pages> Source: deploy from a branch> branch: main y root  + save y esperar a que haga el build y nos dé el enlace. Eso es todo. Verifica que puedes visualizarla en tu PC y en tu móvil
+
+DevOps
+DEPLOY:  desplegar la aplicación (publicarla para el usuario final). En español se usa también el anglicismo "deployar" (lo que es obviamente incorrecto. Malditos yanquis!)
+
+
+esta pagina esta buena y es muy visual para aprender que hacen los comandos de git: https://learngitbranching.js.org/
+
+
+

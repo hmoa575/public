@@ -1,0 +1,34 @@
+LAB | Maquetacion Con Listas Lab
+Instructions
+1- LISTAS CANTANTES
+
+Crear una lista (ordenada o desordenada) en algún lugar de la pagina inicial con el indice de artistas de la web.
+
+Los elementos de la lista pueden estar o no subrayados.
+
+Puede haber una lista dentro de otra.
+
+Luego, en cada página añadir otra lista para cada cantante, que incluya, por ejemplo, sus álbumes.
+
+Ejemplo de lista en un autor:
+
+Lista con álbumes de estudio y otra lista con álbumes de conciertos
+
+En cada lista podria ir un listado de las canciones (no hace falta hacer esto demasiado específico)
+
+También podría ser un listado de ciudades visitadas en el tour, o de grammys ganados, o cualquier otra lista.
+
+Puedes probar a poner los elementos de la lista en horizontal con CSS display: flex
+
+Ten en cuenta sobre qué elementos estás actuando en el CSS, y cuáles están dentro de otros en las listas!
+
+2- Pagina ROBOT JUGUETE IA
+
+Crea una página de promoción de un robot de juguete con IA conversacional (hay algunos ejemplos en internet) Es una sola página. Que contenga:
+
+Un menú horizontal (flex) que contenga enlaces (pueden ser #) creado como lista y li
+Una o más fotos del producto
+listado de caracteristicas (usar listas)
+Probar a usar una o más tipografias Google Font
+Botón de 'comprar' aparte del menú, que vaya a la página original del robot. En el botón puedes aplicar estilos como: color de fondo y de texto, borde, border-radius, sombras, hover
+Recuerda usar los divs y los displays (block, inline-block y flex) para organizar la página
