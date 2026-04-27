@@ -41,4 +41,21 @@ Otras denominaciones de <div>
 
 <footer> </footer> Usadas para definir el pie de página. 
 
+PRACTICA:
+
+PAGINA DE NOTICIAS
+
+Crea una web de una sola página con noticias en diferentes secciones: Nacional, Internacional, Cultura, Deportes,...
+
+Crea un menú que permita ir a las diferentes secciones. Estas secciones pueden estar todas en la misma pagina.
+
+Crea un estilo (clase) para los artículos, y en general para cada elemento que se repita.
+
+Usa las propiedades de texto en los párrafos para darle más variedad de estilo y legibilidad: interlineado, número de columnas, primera línea, interletraje, etc.
+
+Por último, crea divs con imágenes de fondo. Por ejemplo, en el header, puede haber una imagen de fondo, y encima puede estar el título de la página (y más cosas, logo etc).
+
+Sigue en la medida de lo posible la estructura típica (header, nav, section, article, aside, footer) y utiliza los divs semánticos aprendidos con anterioridad.
+
+
 

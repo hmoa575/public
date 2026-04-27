@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página de Noticias - Una sola página</title>
+  <link rel="stylesheet" href="noticias.css" />
+</head>
+
+<body>
+  <header class="siteHeader" id="top">
+    <div class="headerOverlay">
+      <div class="headerInner">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">N</div>
+          <div class="brandText">
+            <h1 class="siteTitle">Noticias Hoy</h1>
+            <p class="siteTagline">Nacional • Internacional • Cultura • Deportes</p>
+          </div>
+        </div>
+        <div class="headerMeta">
+          <p><strong>Edición:</strong> <time datetime="2026-04-27">2026-04-27</time></p>
+          <p><strong>Ciudad:</strong> Tu ciudad</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="siteNav" aria-label="Menú principal">
+    <ul class="navList">
+      <li><a class="navLink" href="#nacional">Nacional</a></li>
+      <li><a class="navLink" href="#internacional">Internacional</a></li>
+      <li><a class="navLink" href="#cultura">Cultura</a></li>
+      <li><a class="navLink" href="#deportes">Deportes</a></li>
+      <li><a class="navLink" href="#opinion">Opinión</a></li>
+      <li><a class="navLink" href="#top">Arriba</a></li>
+    </ul>
+  </nav>
+
+  <main class="layout">
+    <aside class="sidebar" aria-label="Barra lateral">
+      <section class="widget">
+        <h2 class="widgetTitle">Última hora</h2>
+        <ul class="bulletList">
+          <li><a href="#nacional">Nueva medida de transporte entra en vigor</a></li>
+          <li><a href="#internacional">Reunión internacional por el clima</a></li>
+          <li><a href="#cultura">Festival de cine anuncia ganadores</a></li>
+          <li><a href="#deportes">Final con récord de asistencia</a></li>
+        </ul>
+      </section>
+
+      <section class="widget">
+        <h2 class="widgetTitle">Clima</h2>
+        <p class="muted">Soleado • 24°C • Viento moderado</p>
+      </section>
+
+      <section class="widget">
+        <h2 class="widgetTitle">Suscríbete</h2>
+        <form class="subscribeForm" action="#" method="post">
+          <label class="label" for="email">Correo</label>
+          <input class="input" id="email" name="email" type="email" placeholder="tu@email.com" required />
+          <button class="btn" type="submit">Recibir noticias</button>
+        </form>
+      </section>
+    </aside>
+
+    <div class="content">
+      <section class="newsSection" id="nacional">
+        <div class="sectionHeader bgBlock bgNacional">
+          <h2 class="sectionTitle">Nacional</h2>
+          <p class="sectionDesc">Política, economía y sociedad.</p>
+        </div>
+
+        <article class="articleCard">
+          <header class="articleHeader">
+            <h3 class="articleTitle">Nueva iniciativa para modernizar el transporte público</h3>
+            <p class="articleMeta">
+              <time datetime="2026-04-27">27 Abril 2026</time> • Redacción Nacional
+            </p>
+          </header>
+          <p class="articleText">
+            El gobierno presentó un plan de modernización que incluye la renovación de flotas, mejoras de accesibilidad y
+            sistemas de pago sin contacto. La propuesta busca reducir los tiempos de traslado y aumentar la seguridad en
+            corredores de alta demanda. Además, se anunció una mesa técnica con universidades para evaluar impacto y costos.
+          </p>
+          <p class="articleText">
+            Especialistas señalan que el éxito dependerá de la coordinación con gobiernos locales y la transparencia en la
+            ejecución. Se espera un piloto en dos ciudades durante el próximo trimestre.
+          </p>
+          <footer class="articleFooter">
+            <a class="articleLink" href="#">Leer más</a>
+          </footer>
+        </article>
+
+        <article class="articleCard">
+          <header class="articleHeader">
+            <h3 class="articleTitle">Educación: se amplían becas para carreras tecnológicas</h3>
+            <p class="articleMeta">
+              <time datetime="2026-04-27">27 Abril 2026</time> • Educación
+            </p>
+          </header>
+          <p class="articleText columns2">
+            El programa de becas se expande para incluir más cupos en ingeniería, ciencias de datos y ciberseguridad.
+            Las autoridades informaron que el objetivo es fortalecer capacidades digitales y cubrir demanda de talento en
+            sectores productivos. Las instituciones participantes deberán publicar reportes de avance y empleabilidad.
+          </p>
+          <footer class="articleFooter">
+            <a class="articleLink" href="#">Leer más</a>
+          </footer>
+        </article>
+      </section>
+
+      <section class="newsSection" id="internacional">
+        <div class="sectionHeader bgBlock bgInternacional">
+          <h2 class="sectionTitle">Internacional</h2>
+          <p class="sectionDesc">Eventos globales y análisis.</p>
+        </div>
+
+        <article class="articleCard">
+          <header class="articleHeader">
+            <h3 class="articleTitle">Acuerdo regional impulsa proyectos de energía limpia</h3>
+            <p class="articleMeta">
+              <time datetime="2026-04-27">27 Abril 2026</time> • Mundo
+            </p>
+          </header>
+          <p class="articleText">
+            Representantes de varios países firmaron un acuerdo para acelerar inversiones en energía eólica y solar,
+            incluyendo metas comunes y estándares de interconexión. El documento contempla financiamiento mixto y
+            mecanismos de evaluación ambiental.
+          </p>
+          <p class="articleText">
+            Observadores destacan que el compromiso será clave para disminuir emisiones y reducir dependencia de combustibles
+            fósiles. Los primeros proyectos se anunciarán en las próximas semanas.
+          </p>
+          <footer class="articleFooter">
+            <a class="articleLink" href="#">Leer más</a>
+          </footer>
+        </article>
+
+        <article class="articleCard">
+          <header class="articleHeader">
+            <h3 class="articleTitle">Tecnología y regulación: debate sobre IA responsable</h3>
+            <p class="articleMeta">
+              <time datetime="2026-04-27">27 Abril 2026</time> • Tecnología
+            </p>
+          </header>
+          <p class="articleText columns2">
+            Expertos y legisladores discuten marcos para garantizar transparencia, seguridad y protección de datos.
+            Las propuestas incluyen auditorías independientes, etiquetado de contenido generado y requisitos de evaluación
+            de riesgos para aplicaciones de alto impacto.
+          </p>
+          <footer class="articleFooter">
+            <a class="articleLink" href="#">Leer más</a>
+          </footer>
+        </article>
+      </section>
+
+      <section class="newsSection" id="cultura">
+        <div class="sectionHeader bgBlock bgCultura">
+          <h2 class="sectionTitle">Cultura</h2>
+          <p class="sectionDesc">Arte, libros, cine y tendencias.</p>
+        </div>
+
+        <article class="articleCard">
+          <header class="articleHeader">
+            <h3 class="articleTitle">Festival de cine premia historias sobre ciencia y futuro</h3>
+            <p class="articleMeta">
+              <time datetime="2026-04-27">27 Abril 2026</time> • Cultura
+            </p>
+          </header>
+          <p class="articleText">
+            La edición de este año reconoció producciones centradas en exploración espacial, ética tecnológica y memoria.
+            Las salas registraron alta asistencia y se anunciaron funciones gratuitas en centros comunitarios.
+          </p>
+          <footer class="articleFooter">
+            <a class="articleLink" href="#">Leer más</a>
+          </footer>
+        </article>
+
+        <article class="articleCard">
+          <header class="articleHeader">
+            <h3 class="articleTitle">Literatura: una nueva colección rescata crónicas urbanas</h3>
+            <p class="articleMeta">
+              <time datetime="2026-04-27">27 Abril 2026</time> • Libros
+            </p>
+          </header>
+          <p class="articleText">
+            La colección reúne textos de distintas generaciones y propone un recorrido por barrios, oficios y relatos
+            cotidianos. La editorial anunció presentaciones en bibliotecas y clubes de lectura.
+          </p>
+          <footer class="articleFooter">
+            <a class="articleLink" href="#">Leer más</a>
+          </footer>
+        </article>
+      </section>
+
+      <section class="newsSection" id="deportes">
+        <div class="sectionHeader bgBlock bgDeportes">
+          <h2 class="sectionTitle">Deportes</h2>
+          <p class="sectionDesc">Resultados, historias y estadísticas.</p>
+        </div>
+
+        <article class="articleCard">
+          <header class="articleHeader">
+            <h3 class="articleTitle">Final histórica con récord de asistencia en el estadio</h3>
+            <p class="articleMeta">
+              <time datetime="2026-04-27">27 Abril 2026</time> • Deportes
+            </p>
+          </header>
+          <p class="articleText columns2">
+            El partido decisivo reunió a miles de aficionados y dejó una actuación destacada de la figura juvenil del
+            torneo. Analistas resaltan la estrategia defensiva y la eficacia en transiciones rápidas como claves del
+            resultado. La liga anunció mejoras en seguridad y accesibilidad para la próxima temporada.
+          </p>
+          <footer class="articleFooter">
+            <a class="articleLink" href="#">Leer más</a>
+          </footer>
+        </article>
+
+        <article class="articleCard">
+          <header class="articleHeader">
+            <h3 class="articleTitle">Ciencia del deporte: cómo entrenar mejor y evitar lesiones</h3>
+            <p class="articleMeta">
+              <time datetime="2026-04-27">27 Abril 2026</time> • Salud
+            </p>
+          </header>
+          <p class="articleText">
+            Preparadores físicos recomiendan periodizar cargas, priorizar movilidad y cuidar el descanso. También señalan
+            que la hidratación y la nutrición influyen directamente en rendimiento y recuperación. Un buen plan combina
+            fuerza, técnica y hábitos sostenibles.
+          </p>
+          <footer class="articleFooter">
+            <a class="articleLink" href="#">Leer más</a>
+          </footer>
+        </article>
+      </section>
+
+      <section class="newsSection" id="opinion">
+        <div class="sectionHeader bgBlock bgOpinion">
+          <h2 class="sectionTitle">Opinión</h2>
+          <p class="sectionDesc">Columnas y puntos de vista.</p>
+        </div>
+
+        <article class="articleCard">
+          <header class="articleHeader">
+            <h3 class="articleTitle">El reto de aprender a aprender en la era digital</h3>
+            <p class="articleMeta">
+              <time datetime="2026-04-27">27 Abril 2026</time> • Columna
+            </p>
+          </header>
+          <p class="articleText">
+            La información es abundante, pero la habilidad crítica está en filtrar, verificar y transformar conocimiento en
+            decisiones. En educación y trabajo, la autonomía y la curiosidad se vuelven competencias centrales. Aprender a
+            aprender es una ventaja que se construye con método y constancia.
+          </p>
+          <footer class="articleFooter">
+            <a class="articleLink" href="#">Leer más</a>
+          </footer>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer class="siteFooter">
+    <p class="footerText">© 2026 Noticias Hoy • Página educativa (ejemplo)</p>
+  </footer>
+</body>
+</html>
