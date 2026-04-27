@@ -32,6 +32,427 @@ parecido a la imagen de muestra.
 ¡Encuentra cómo añadir iconos en tu HTML!
 Ejemplo de inserción AUDIO y VIDEO en tu página:
 
+1) Añadir una tabla a tu web
+¿Qué es una tabla y cuándo usarla?
+
+Una tabla sirve para datos que tienen estructura “tipo Excel”:
+
+    Cada fila es un registro (por ejemplo, un cantante).
+    Cada columna es un atributo (por ejemplo, década, álbum, grammys).
+
+No se usan tablas para maquetar la página (eso se hace con div, flex, grid). Se usan para datos.
+Etiquetas principales de una tabla
+
+Una tabla bien hecha (semántica) suele tener:
+
+    <table>: el contenedor de toda la tabla
+    <caption>: título de la tabla (opcional pero recomendado)
+    <thead>: cabecera de la tabla
+    <tbody>: cuerpo de la tabla
+    <tr>: table row (fila)
+    <th>: table header cell (celda de cabecera)
+    <td>: table data cell (celda de datos)
+
+Cabecera de tabla (thead) y por qué es importante
+
+    thead y th ayudan a la accesibilidad y a que se entienda qué significa cada columna.
+    Los lectores de pantalla pueden decir “esta celda pertenece a la columna Grammys”.
+
+Celdas que ocupan más de una columna o más de una fila
+
+Aquí viene la parte de “una celda puede ocupar más de una columna”.
+colspan (ocupa varias columnas)
+
+Ejemplo: quieres una fila que diga “Resumen” ocupando 2 columnas:
+
+<tr>
+  <td colspan="2">Resumen</td>
+  <td>—</td>
+  <td>10</td>
+</tr>
+
+rowspan (ocupa varias filas)
+
+Ejemplo: un cantante con dos álbumes (dos filas) pero el nombre ocupa una sola celda vertical:
+
+<tr>
+  <td rowspan="2">Cantante X</td>
+  <td>2010s</td>
+  <td>Álbum 1</td>
+</tr>
+<tr>
+  <td>2020s</td>
+  <td>Álbum 2</td>
+</tr>
+
+<tr>
+  <td rowspan="2">Cantante X</td>
+  <td>2010s</td>
+  <td>Álbum 1</td>
+</tr>
+<tr>
+  <td>2020s</td>
+  <td>Álbum 2</td>
+</tr>
+
+2) Añadir multimedia en grupo (video + audio) en tu listado
+
+La instrucción dice: “En tu listado de cantantes, añade un enlace a un VIDEO y un enlace a un AUDIO, parecido a la imagen”.
+
+Esto se puede hacer de 2 maneras (y ambas son válidas). Lo importante es que quede agrupado por cantante.
+
+Opción A: Enlaces (links) a un video y a un audio
+
+Es la forma más simple: pones un enlace a YouTube (video) y un enlace a un MP3 (audio) o Spotify, etc.
+
+Ejemplo dentro de una tabla:
+
+<td>
+  <a href="https://www.youtube.com/watch?v=VIDEO_ID" target="_blank" rel="noopener noreferrer">
+    Ver video
+  </a>
+  |
+  <a href="audio/cancion.mp3" target="_blank">
+    Escuchar audio
+  </a>
+</td>
+
+Opción B: Multimedia embebida (reproductores en la web)
+
+Esto ya es más pro, porque el usuario reproduce ahí mismo.
+Video con <video>
+
+<video controls width="260">
+  <source src="videos/demo.mp4" type="video/mp4">
+  Tu navegador no soporta video HTML5.
+</video>
+
+<audio controls>
+  <source src="audio/demo.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio HTML5.
+</audio>
+
+Notas importantes:
+
+    controls muestra botones de play/pausa, volumen, etc.
+    Usa formatos comunes: mp4 para video y mp3 para audio.
+    La ruta audio/demo.mp3 depende de tu estructura de carpetas.
+
+“Multimedia en grupo”
+
+Significa: para cada cantante (o noticia), que se vea algo como:
+
+    Cantante A | década | álbum | [icono video] [icono audio]
+    Cantante B | década | álbum | [icono video] [icono audio]
+
+O sea, multimedia agrupada por registro.
+
+3) “¡Encuentra cómo añadir iconos en tu HTML!”
+
+Aquí lo que te están pidiendo es que no pongas solo texto (“Ver video”), sino que uses un icono para hacerlo visual.
+
+Tienes 3 formas comunes:
+Forma 1: Emojis (lo más rápido)
+
+Funciona sin librerías:
+
+<a href="https://youtube.com/..." target="_blank" rel="noopener noreferrer">🎬</a>
+<a href="audio/demo.mp3" target="_blank">🎵</a>
+
+Ventaja: simple. Desventaja: se ven distinto según sistema.
+Forma 2: Usar una librería de iconos (Font Awesome, Bootstrap Icons)
+
+Ejemplo con Font Awesome (muy usado). Se hace en 2 pasos:
+
+1) Agregar el link en <head>
+
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  2) Usar iconos en el HTML
+
+  <a href="https://youtube.com/..." target="_blank" rel="noopener noreferrer" class="iconLink" aria-label="Ver video">
+  <i class="fa-solid fa-video"></i>
+</a>
+
+<a href="audio/demo.mp3" class="iconLink" aria-label="Escuchar audio">
+  <i class="fa-solid fa-music"></i>
+</a>
+
+Y un CSS simple:
+
+.iconLink{
+  font-size: 20px;
+  margin-right: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.iconLink:hover{
+  color: #e11d48;
+}
+
+Copilot said: ### Objetivo del LAB (qué estás practicando) Este
+Objetivo del LAB (qué estás practicando)
+
+Este laboratorio te pide practicar dos ideas muy importantes en HTML (y un poco de CSS):
+
+    Tablas: cómo representar información organizada en filas y columnas (por ejemplo, “cantante → década → álbumes → premios”).
+    Multimedia en grupo: cómo poner, para cada cantante o noticia, enlaces (o reproductores) a video y audio dentro del mismo listado/tabla, y además usar iconos para que se vea más visual (por ejemplo un icono de “play” o “música”).
+
+1) Añadir una tabla a tu web
+¿Qué es una tabla y cuándo usarla?
+
+Una tabla sirve para datos que tienen estructura “tipo Excel”:
+
+    Cada fila es un registro (por ejemplo, un cantante).
+    Cada columna es un atributo (por ejemplo, década, álbum, grammys).
+
+No se usan tablas para maquetar la página (eso se hace con div, flex, grid). Se usan para datos.
+Etiquetas principales de una tabla
+
+Una tabla bien hecha (semántica) suele tener:
+
+    <table>: el contenedor de toda la tabla
+    <caption>: título de la tabla (opcional pero recomendado)
+    <thead>: cabecera de la tabla
+    <tbody>: cuerpo de la tabla
+    <tr>: table row (fila)
+    <th>: table header cell (celda de cabecera)
+    <td>: table data cell (celda de datos)
+
+Ejemplo muy completo:
+HTML
+
+<table>
+  <caption>Álbumes y premios por década</caption>
+
+  <thead>
+    <tr>
+      <th>Cantante</th>
+      <th>Década</th>
+      <th>Álbum destacado</th>
+      <th>Grammys</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>Ejemplo</td>
+      <td>2010s</td>
+      <td>Nombre del álbum</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+Cabecera de tabla (thead) y por qué es importante
+
+    thead y th ayudan a la accesibilidad y a que se entienda qué significa cada columna.
+    Los lectores de pantalla pueden decir “esta celda pertenece a la columna Grammys”.
+
+Celdas que ocupan más de una columna o más de una fila
+
+Aquí viene la parte de “una celda puede ocupar más de una columna”.
+colspan (ocupa varias columnas)
+
+Ejemplo: quieres una fila que diga “Resumen” ocupando 2 columnas:
+HTML
+
+<tr>
+  <td colspan="2">Resumen</td>
+  <td>—</td>
+  <td>10</td>
+</tr>
+
+rowspan (ocupa varias filas)
+
+Ejemplo: un cantante con dos álbumes (dos filas) pero el nombre ocupa una sola celda vertical:
+HTML
+
+<tr>
+  <td rowspan="2">Cantante X</td>
+  <td>2010s</td>
+  <td>Álbum 1</td>
+</tr>
+<tr>
+  <td>2020s</td>
+  <td>Álbum 2</td>
+</tr>
+
+CSS básico para que tu tabla se vea bien
+
+Sin CSS la tabla se ve “plana”. Esto la hace más legible:
+CSS
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td{
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th{
+  background: #f2f2f2;
+}
+
+2) Añadir multimedia en grupo (video + audio) en tu listado
+
+La instrucción dice: “En tu listado de cantantes, añade un enlace a un VIDEO y un enlace a un AUDIO, parecido a la imagen”.
+
+Esto se puede hacer de 2 maneras (y ambas son válidas). Lo importante es que quede agrupado por cantante.
+Opción A: Enlaces (links) a un video y a un audio
+
+Es la forma más simple: pones un enlace a YouTube (video) y un enlace a un MP3 (audio) o Spotify, etc.
+
+Ejemplo dentro de una tabla:
+HTML
+
+<td>
+  <a href="https://www.youtube.com/watch?v=VIDEO_ID" target="_blank" rel="noopener noreferrer">
+    Ver video
+  </a>
+  |
+  <a href="audio/cancion.mp3" target="_blank">
+    Escuchar audio
+  </a>
+</td>
+
+Opción B: Multimedia embebida (reproductores en la web)
+
+Esto ya es más pro, porque el usuario reproduce ahí mismo.
+Video con <video>
+HTML
+
+<video controls width="260">
+  <source src="videos/demo.mp4" type="video/mp4">
+  Tu navegador no soporta video HTML5.
+</video>
+
+Audio con <audio>
+HTML
+
+<audio controls>
+  <source src="audio/demo.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio HTML5.
+</audio>
+
+Notas importantes:
+
+    controls muestra botones de play/pausa, volumen, etc.
+    Usa formatos comunes: mp4 para video y mp3 para audio.
+    La ruta audio/demo.mp3 depende de tu estructura de carpetas.
+
+“Multimedia en grupo”
+
+Significa: para cada cantante (o noticia), que se vea algo como:
+
+    Cantante A | década | álbum | [icono video] [icono audio]
+    Cantante B | década | álbum | [icono video] [icono audio]
+
+O sea, multimedia agrupada por registro.
+3) “¡Encuentra cómo añadir iconos en tu HTML!”
+
+Aquí lo que te están pidiendo es que no pongas solo texto (“Ver video”), sino que uses un icono para hacerlo visual.
+
+Tienes 3 formas comunes:
+Forma 1: Emojis (lo más rápido)
+
+Funciona sin librerías:
+HTML
+
+<a href="https://youtube.com/..." target="_blank" rel="noopener noreferrer">🎬</a>
+<a href="audio/demo.mp3" target="_blank">🎵</a>
+
+Ventaja: simple. Desventaja: se ven distinto según sistema.
+Forma 2: Usar una librería de iconos (Font Awesome, Bootstrap Icons)
+
+Ejemplo con Font Awesome (muy usado). Se hace en 2 pasos:
+
+1) Agregar el link en <head>
+HTML
+
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+2) Usar iconos en el HTML
+HTML
+
+<a href="https://youtube.com/..." target="_blank" rel="noopener noreferrer" class="iconLink" aria-label="Ver video">
+  <i class="fa-solid fa-video"></i>
+</a>
+
+<a href="audio/demo.mp3" class="iconLink" aria-label="Escuchar audio">
+  <i class="fa-solid fa-music"></i>
+</a>
+
+Y un CSS simple:
+CSS
+
+.iconLink{
+  font-size: 20px;
+  margin-right: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.iconLink:hover{
+  color: #e11d48;
+}
+
+Forma 3: Usar imágenes como iconos (PNG/SVG)
+
+<a href="https://youtube.com/..." target="_blank" rel="noopener noreferrer">
+  <img src="icons/video.svg" alt="Video" width="20">
+</a>
+
+Un ejemplo completo (tabla + enlaces + iconos)
+
+Aquí tienes un ejemplo que cumple el lab con enlaces y emojis (sin librerías):
+
+<table>
+  <caption>Listado de cantantes (álbumes por década + multimedia)</caption>
+
+  <thead>
+    <tr>
+      <th>Cantante</th>
+      <th>Década</th>
+      <th>Álbum</th>
+      <th>Premios (Grammys)</th>
+      <th>Multimedia</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>Dua Lipa</td>
+      <td>2020s</td>
+      <td>Future Nostalgia</td>
+      <td>3</td>
+      <td>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" title="Ver video">🎬</a>
+        <a href="audio/demo.mp3" target="_blank" title="Escuchar audio">🎵</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Checklist para saber si lo hiciste bien
+
+    Tu tabla usa <table>, <thead>, <tbody>, <tr>, <th>, <td>.
+    Tienes una cabecera clara (columnas bien nombradas).
+    Usaste al menos un colspan o rowspan si te hacía sentido (opcional pero recomendado por el enunciado).
+    Por cada cantante/noticia hay un enlace a video y un enlace a audio (o reproductores).
+    Usaste iconos (emoji / Font Awesome / imágenes) para esos enlaces.
+    Tienes CSS para que se vea legible (bordes, padding, colores, hover).
+
+Si quieres, pégame tu HTML actual del listado (aunque sea 1–2 filas) y te lo ajusto para que cumpla exactamente el LAB con buen estilo y accesibilidad.
+
+
 
 
 

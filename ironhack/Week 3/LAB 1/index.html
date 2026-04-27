@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sobre mí | Pasatiempos Épicos y Flexbox</title>
+  <style>
+    /* ========== RESET UNIVERSAL + BOX-SIZING ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;   /* modelo caja moderno por defecto */
+    }
+
+    body {
+      font-family: system-ui, 'Segoe UI', 'Inter', 'Roboto', sans-serif;
+      background: linear-gradient(145deg, #f9f3e6 0%, #ffe6f0 100%);
+      color: #1e1a2f;
+      line-height: 1.45;
+      padding: 2rem 1.5rem;
+    }
+
+    /* contenedor principal */
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      background: rgba(255, 252, 245, 0.9);
+      backdrop-filter: blur(2px);
+      border-radius: 3rem;
+      padding: 2rem 2rem 2.5rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 220, 180, 0.6);
+    }
+
+    /* ========== HEADER (FOTO + TÍTULO) con FLEX ========== */
+    .header-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      background: #ffffffd9;
+      border-radius: 2rem;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .avatar {
+      flex-shrink: 0;
+    }
+    .avatar img {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #ffaa70;
+      box-shadow: 0 12px 18px -8px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
+    .avatar img:hover {
+      transform: scale(1.02);
+    }
+
+    .titulo-slogan {
+      flex: 1;
+      text-align: center;
+    }
+    .titulo-slogan h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #b43b6b, #df7c2e);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+      font-weight: 800;
+    }
+    .titulo-slogan .slogan {
+      font-size: 1.2rem;
+      background: #f1e5d4;
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 60px;
+      font-weight: 500;
+      color: #714a2e;
+      margin-top: 8px;
+    }
+
+    /* párrafo biográfico */
+    .bio {
+      background: #fffcf5;
+      border-radius: 2rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      border-left: 10px solid #ff8c5a;
+      font-size: 1.05rem;
+    }
+    .bio p {
+      margin-bottom: 0.5rem;
+    }
+
+    /* ========== DIV 1 : HOBBIES PRINCIPALES (con imágenes SVG y flex + align-items) ========== */
+    .hobbies-principales {
+      margin-bottom: 3rem;
+    }
+    .seccion-titulo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      padding-left: 0.5rem;
+      border-left: 6px solid #e67e22;
+      color: #48284a;
+    }
+
+    .flex-hobbies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: center;    /* 👈 PRUEBA DE ALIGN-ITEMS (vertical alignment dentro del contenedor) */
+      min-height: 380px;
+    }
+
+    /* cada tarjeta hobby */
+    .hobby-card {
+      background: white;
+      border-radius: 2rem;
+      padding: 1.3rem;
+      width: 260px;
+      text-align: center;
+      box-shadow: 0 15px 25px -12px rgba(0,0,0,0.2);
+      transition: all 0.25s;
+      border: 1px solid #ffd7b5;
+    }
+    .hobby-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 30px -12px rgba(0,0,0,0.25);
+      background: #fffaf2;
+    }
+    .hobby-card svg {
+      width: 100%;
+      max-height: 160px;
+      margin-bottom: 1rem;
+      border-radius: 20px;
+      background: radial-gradient(circle at 30% 20%, #fff3e0, #ffe0c4);
+      padding: 12px;
+    }
+    .hobby-card h3 {
+      margin-top: 0.5rem;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #c25b2e;
+    }
+    .hobby-card p {
+      font-size: 0.9rem;
+      color: #5f4c3b;
+      margin-top: 6px;
+    }
+
+    /* ========== DIV 2 : OTROS HOBBIES (flex-wrap + justify-content) ========== */
+    .otros-hobbies {
+      margin-top: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .flex-otros {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: space-evenly;   /* prueba de justify-content */
+      background: #fef6e8;
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+    }
+    .mini-hobby {
+      background: #ffffffdb;
+      backdrop-filter: blur(4px);
+      padding: 1rem 1.8rem;
+      border-radius: 100px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+      border: 1px solid #ffca9a;
+      min-width: 130px;
+    }
+    .mini-hobby:hover {
+      background: #ffefdb;
+      transform: scale(1.02);
+      border-color: #f39c12;
+      color: #a04020;
+    }
+
+    /* ========== DEMOSTRACIÓN BOX-SIZING (ejemplo #example1 / #example2) ========== */
+    .box-demo-section {
+      margin-top: 2.5rem;
+      background: #f1ede7;
+      border-radius: 2rem;
+      padding: 1.5rem;
+    }
+    .box-demo-section h3 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #7a3e2c;
+    }
+    .demo-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+    /* estilos específicos para los ejemplos */
+    #example1 {
+      box-sizing: content-box;   /* diferente al reset universal */
+      width: 300px;
+      height: 100px;
+      padding: 30px;
+      border: 10px solid #e67e22;
+      background: #fff1e0;
+      margin: 0.5rem 0;
+      /* texto */
+      font-weight: bold;
+      text-align: center;
+      line-height: 1.2;
+    }
+    #example2 {
+      box-sizing: border-box;    /* mantiene el tamaño total 300x100 */
+      width: 300px;
+      height: 100px;
+      padding: 30px;
+      border: 10px solid #2c7da0;
+      background: #e1f0fa;
+      text-align: center;
+      font-weight: bold;
+    }
+    .box-note {
+      background: #e9dbcf;
+      border-radius: 1rem;
+      padding: 10px 15px;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+    footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #a06e4e;
+      border-top: 1px solid #ffd5b5;
+      padding-top: 1.5rem;
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        padding: 1.5rem;
+      }
+      .header-flex {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hobby-card {
+        width: 220px;
+      }
+      .flex-otros {
+        justify-content: center;
+      }
+      .mini-hobby {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- HEADER con foto y titulo/slogan usando flexbox -->
+  <header class="header-flex">
+    <div class="avatar">
+      <!-- foto perfil (placeholder) -->
+      <img src="images/me.jpg" alt="Foto de perfil aventurero" loading="lazy">
+    </div>
+    <div class="titulo-slogan">
+      <h1> Hector — Aventurero de lo Imposible </h1>
+      <div class="slogan">〝 Donde la imaginación vuela sin límites 〞</div>
+    </div>
+  </header>
+
+  <!-- Pequeño párrafo sobre mí (texto real + lorem) -->
+  <section class="bio">
+    <p>¡Hola! Soy un fanático de las experiencias extremas y los sueños épicos. Me fascina combinar la fantasía con la ciencia, y mis pasatiempos no conocen lo ordinario. Por las mañanas practico vuelo en dragón (simulador de realidad + lectura de mitología), por las tardes entreno como astronauta de la NASA para colonizar la Luna, y los fines de semana hago barbacoas termonucleares en volcanes activos. </p>
+    <p><strong>“Vivir intensamente”</strong> es mi lema. También disfruto el silencio de los trenes de juguete y el ritmo del jazz. Aquí te muestro mis hobbies favoritos usando <strong>FLEXBOX</strong> con align-items, flex-wrap y justify-content. ¡Bienvenid@ a mi rincón!</p>
+  </section>
+
+  <!-- DIV 1: los tres hobbies principales con IMÁGENES (SVG personalizadas) -->
+  <div class="hobbies-principales">
+    <div class="seccion-titulo">
+       Mis pasatiempos principales (imágenes + flex + align-items)
+    </div>
+    <div class="flex-hobbies">
+      <!-- hobby 1: Volar montado en un dragón -->
+      <div class="hobby-card">
+        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="150" fill="#fae6cd" rx="20" ry="20" />
+          <path d="M90,70 L60,50 L45,70 L55,85 L45,100 L60,115 L85,110 L100,95 L115,110 L140,115 L155,100 L145,85 L155,70 L140,50 L115,70 L100,80 Z" fill="#b5651e" stroke="#7a3e1a" stroke-width="2" />
+          <circle cx="70" cy="68" r="5" fill="#F4C542" />
+          <path d="M140 45 L165 30 L158 48 L170 55 L155 60 L140 55 Z" fill="#e0581a" />
+          <text x="60" y="135" font-size="10" fill="#5a3e28" font-weight="bold">🐉 Dragón alado</text>
+        </svg>
+        <h3>Volar en dragón</h3>
+        <p>Surcar los cielos con escamas de fuego, viento y libertad total.</p>
+      </div>
+      <!-- hobby 2: Viajar hacia la luna como astronauta NASA -->
+      <div class="hobby-card">
+        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="150" fill="#d9eaff" rx="20" />
+          <circle cx="100" cy="80" r="28" fill="#c0cfe0" stroke="#4a627a" stroke-width="2" />
+          <circle cx="94" cy="75" r="4" fill="#fff" />
+          <rect x="88" y="100" width="24" height="12" fill="#8ba3bc" rx="2" />
+          <path d="M70 120 L130 120 L125 135 L75 135 Z" fill="#687e9e" />
+          <text x="65" y="30" fill="#2f5575" font-size="12" font-weight="bold"> Astronauta NASA</text>
+          <circle cx="155" cy="45" r="14" fill="#f5e6b6" stroke="#ddb582" stroke-width="1.5" />
+          <text x="145" y="50" fill="#775a2e" font-size="9"></text>
+        </svg>
+        <h3>Viaje a la Luna</h3>
+        <p>Traje espacial, gravedad cero y pisar el satélite soñado.</p>
+      </div>
+      <!-- hobby 3: barbacoa en volcán en erupción -->
+      <div class="hobby-card">
+        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="150" fill="#ffd9b5" rx="20" />
+          <path d="M70 110 L130 110 L120 60 L80 60 Z" fill="#c9753a" stroke="#8b4513" stroke-width="2" />
+          <path d="M85 55 L115 55 L100 25 Z" fill="#f7581c" />
+          <circle cx="100" cy="45" r="10" fill="#ff831a" />
+          <rect x="85" y="85" width="30" height="10" fill="#ad5a2a" rx="3" />
+          <path d="M95 95 L105 95 L103 105 L97 105 Z" fill="#f05a28" />
+          <text x="57" y="135" fill="#863f18" font-weight="bold" font-size="10">🍖 Asador volcánico</text>
+        </svg>
+        <h3>🌋 BBQ en volcán activo</h3>
+        <p>Brazas de magma y costillas ahumadas al mejor estilo extremo.</p>
+      </div>
+    </div>
+    <!-- pequeño texto explicativo del align-items: los items estan centrados verticalmente -->
+    <p style="font-size:0.8rem; margin-top:12px; text-align:center; background:#f7e8da; display:inline-block; padding:4px 16px; border-radius:40px;">
+      <strong>align-items: center</strong> → los 3 hobbies se alinean verticalmente dentro del contenedor flex (min-height: 380px).
+    </p>
+  </div>
+
+  <!-- DIV 2: OTROS HOBBIES (texto centrado, flex-wrap + justify-content) -->
+  <div class="otros-hobbies">
+    <div class="seccion-titulo">
+       Otros pasatiempos (flex-wrap + justify-content)
+    </div>
+    <div class="flex-otros">
+      <div class="mini-hobby">Maquetas de trenes</div>
+      <div class="mini-hobby">Música Jazz & saxofón</div>
+      <div class="mini-hobby">Patinaje artístico</div>
+      <div class="mini-hobby">Astrofotografía nocturna</div>
+      <div class="mini-hobby">Ajedrez extremo</div>
+      <div class="mini-hobby">Escalada en cascadas</div>
+      <div class="mini-hobby">Ceremonia del té futurista</div>
+    </div>
+    <p style="margin-top:10px; font-size:0.85rem; color:#955e38; text-align:center;">
+      <strong>flex-wrap: wrap</strong> + <strong>justify-content: space-evenly</strong> → los elementos se envuelven y distribuyen equitativamente.
+    </p>
+  </div>
+
+  <!-- SECCIÓN DE PRUEBA DE BOX-SIZING: ejemplo content-box vs border-box -->
+  <div class="box-demo-section">
+    <h3>Demostración: box-sizing (content-box vs border-box)</h3>
+    <div class="demo-wrapper">
+      <div style="max-width: 360px;">
+        <div id="example1">
+          #example1 <br> content-box
+        </div>
+        <p style="font-size:12px; margin-top:4px;">width:300px + padding 30px + border 10px ➔ ancho TOTAL = 300+60+20 = <strong>380px</strong> (se desborda)</p>
+      </div>
+      <div style="max-width: 360px;">
+        <div id="example2">
+          #example2 <br> border-box
+        </div>
+        <p style="font-size:12px; margin-top:4px;">El padding y border se incluyen en el width: 300px → se mantiene <strong>300px total</strong>.</p>
+      </div>
+    </div>
+    <div class="box-note">
+      El <strong>selector universal *</strong> aplica <code>box-sizing: border-box</code> a TODO el documento para evitar sorpresas.
+      Pero #example1 lo sobreescribe con <code>content-box</code> para mostrar la diferencia. Observa cómo el primer bloque se ensancha más allá de 300px.
+    </div>
+  </div>
+
+  <footer>
+    Página "Sobre Mí" — Flexbox en acción: header flex, hobbies principales con align-items, otros hobbies con wrap + justify-content. ¡Mis pasatiempos épicos!  
+  </footer>
+</div>
+
+</body>
+</html>
