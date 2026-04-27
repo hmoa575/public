@@ -1,0 +1,37 @@
+Tablas Colores Css Audio Video Html Lección
+
+
+
+Resumen de la Lección ✏️
+1- Como funcionan las tablas, etiquetas principales.
+
+3- Como usar transform CSS con o sin hover
+
+Objetivos de aprendizaje 📓
+Al final de esta lección, podrás:
+
+Aprender las normas básicas para creaación y estilización de tablas
+Conocer las bases para usar CSS transform sobre tus elementos HTML
+La lección 🔑
+La información de esta lección está disponible en la presentación que se encuentra
+ a continuación.:
+
+ LAB | Tablas Multimedia Html Lab
+
+Instructions
+1- Añadir una tabla a tu web
+Prueba a añadir una tabla en tu web de cantantes o noticias.
+Por ejemplo, los albumes que se han sacado en cada década, o los grammy ganados, 
+o cualquier otra clasificación que se te ocurra.
+Recuerda que le puedes añadir una cabecera de tabla y que una celda puede ocupar más de una
+columna si lo necesitas.
+
+2- AÑADIR MULTIMEDIA EN GRUPO
+En tu listado de cantantes, añade un enlace a un VIDEO y un enlace a un AUDIO, 
+parecido a la imagen de muestra.
+¡Encuentra cómo añadir iconos en tu HTML!
+Ejemplo de inserción AUDIO y VIDEO en tu página:
+
+
+
+
