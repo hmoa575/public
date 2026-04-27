@@ -1,0 +1,44 @@
+Divs Semanticos Y Anclajes Lección
+
+Resumen de la Lección ✏️
+Denominación de los divs semanticos como header, section, article, aside, footer, etc. Cómo se usan en HTML y CSS. Qué son los anclajes (enlaces dentro de la página). Uso mediante id y el hastag (#)
+
+Sobre los divs, para dale color estilo y grosor al borde, usar: border: 2px solid blue; por ejemplo
+
+Y para redondear los bordes: border-radius: 5px; por ejemplo
+
+Objetivos de aprendizaje 📓
+Al final de esta lección, podrás:
+
+Ver para qué sirven los divs semánticos y cómo estilizarlos mediante CSS
+Realizar enlaces a diferentes secciones dentro de la propia página
+Saber cómo modificar los bordes de un div.
+La lección 🔑
+La información de esta lección está disponible en la presentación que se encuentra a continuación.:
+
+<div>
+Define una división o sección en un documento html 
+
+Se usa como contenedor de otros elementos html
+
+Facilita el uso de estilos CSS a partir de asignarle una clase o id
+
+
+Otras denominaciones de <div>
+(etiquetas semánticas)
+
+<main> </main> Se usa para definir el contenido principal del documento. Solamente puede existir uno por documento. 
+
+<header> </header> Se usan para definir la cabecera la página web. Suele contener el logotipo, menú de navegación, etc.
+
+<nav> </nav> Indica un menú de navegación general
+
+<section> </section> Define una sección del documento
+
+<article> </article> Define contenido independiente, normalmente hay varios dentro de cada sección.
+
+<aside> </aside> Dentro de estas etiquetas suele alojarse el contenido adicional de la web. Suele ser contenido relacionado con la web pero de menor importancia. Suele maquetarse a un lado de la página.
+
+<footer> </footer> Usadas para definir el pie de página. 
+
+
