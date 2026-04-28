@@ -1,0 +1,116 @@
+*{
+    margin: auto;
+    padding: 0;
+}
+
+
+body{
+    background-color: lightslategray;
+}
+
+
+/* navegador en POSITION FIXED para que se quede siempre ahí */
+/* el z-index 1 es para que quede por encima del resto de la página y se vea el efecto de sombreado */
+nav{
+    background-color: rgba(255, 228, 196);
+    width: 100vw;
+    height: 105px;
+    position: fixed;
+    top:0;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.238);
+    z-index: 1;
+    display: flex;
+}
+
+ul{
+    display: flex;
+    gap: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: xx-large;
+    color: brown;
+}
+
+li{
+    list-style-type: none;
+}
+
+li:hover{
+    background-color: brown;
+    color:white;
+}
+
+
+/*el section (paisaje) tiene un POSITION RELATIVE para que funcione el position absolute en el elemento de dentro */
+section{
+    position: relative; /* solo puesto para el position de la nave */
+    background-image: url(img/blade-runner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center;
+    height: 50vw;
+    margin-top:105px;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+h3{
+    color: white;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+article{
+    width: 80%;
+    column-count: 3 ;
+    column-gap: 30px;
+    text-align: justify;
+    hyphens: auto;
+    color: white;
+    margin: 30px auto;
+}
+
+
+/* el cartel mantiene la distancia al borde superior hasta que el div que lo contiene lo arrastra hacia arriba y le obliga a romper el POSITION STICKY */
+/* el z-index 2 es para que quede por encima del navegador cuando suba */
+.cartel{
+    height: 50%;
+    position: sticky;
+    top:400px;
+    z-index: 1;
+}
+
+
+/* la nave tiene una POSITION ABSOLUTE, que toma como referencia el div que lo contiene*/
+/* en el top y el right se usan % para que no se desplace por el responsive*/
+.nave{
+    transform: scale(.5) rotate(-20deg);
+    height: 30%;
+
+    position: absolute; /* solo depende de la pagina si su container no tiene posicionamiento */
+    top: 20%;
+    right: 30%;
+    
+    opacity: 90%;
+}
+
+
+hr{
+    width: 80%;
+}
+
+
+/* footer usa POSITION FIXED y bottom:0 para quedarse siempre abajo */
+footer{
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(203, 195, 195);
+    width: 100vw;
+    margin-top: 20px;
+    height: 35px;
+    text-align: center;
+    padding-top: 10px;
+    font-size: large;
+    color:rgb(28, 28, 249);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

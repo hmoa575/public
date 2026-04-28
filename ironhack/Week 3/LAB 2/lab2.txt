@@ -1,0 +1,49 @@
+Animaciones Hover Sobre Cards Lección
+
+
+
+Resumen de la Lección ✏️
+El sistema Flex-Box nos permite maquetar la posición y flujo de nuestros elementos en la página. Aquí están las instrucciones principales.
+
+Objetivos de aprendizaje 📓
+Al final de esta lección, podrás:
+
+Comprender los conceptos principales de Flex-Box: dirección de flujo (filas o columnas);
+Posicionamiento de elementos en horizontal y vertical;
+flex-wrap (salto o no hacia siguiente fila)
+La lección 🔑
+La información de esta lección está disponible en la presentación que se encuentra a continuación.:
+
+CARDS
+Crea un conjunto de tarjetas con tus personajes favoritos (reales o ficticios) con un estilo similar (una clase), y que contengan flex-wrap y efectos :hover,
+
+como por ejemplo: sombra (box-shadow), opacidad (opacity), rotar (rotate), escalar (scale), mover (translate), etc.
+
+Si quieres que se vea una animación más suave, asigna la propiedad transition.
+
+Recuerda que puedes añadir tantos divs como necesites para organizar mejor tu página o tarjeta.
+
+Cuidado con las unidades para cada caso.
+
+Cuidado con la dirección del flujo del flex (flex-direction).
+
+COMPOSICION POSITIONS CSS
+
+Realiza una composición de página con los diferentes tipos de posicionamiento: absolute, relative, fixed y sticky.
+
+Probar también la superposición de elementos con z-index.
+
+Propuesta (puede ser diferente, pero que incluya todos los tipos de posicionamientos):
+
+Tienes una imagen de fondo general: un paisaje o lo que sea.
+
+MENU: ¿qué tal sticky?
+FOOTER: ¿qué tal fixed?
+SLOGAN: ¿absolute, relative?
+ELEMENTO(S) UBICADO(S) EN EL FONDO: Ejemplo, la nave en el cielo. ¿Elemento absolute sobre fondo relative?
+ELEMENTO(S) SUPERPUESTOS: Probar z-index donde desees.
+Puedes realizar una composición lógica o ilógica: ej. poner en el paisaje de montaña un ejecutivo en vez de una vaca. O poner la vaca en Nueva York. ¡Tu creatividad al poder!
+IMPORTANTE A RECORDAR:
+
+relative es posición relativa a donde cae ese elemento naturalmente.
+absolute es posición respecto a la página, excepto si está dentro de otro elemento que tenga asignado un posicionamiento (normalmente, relative). En tal caso, es la posición absoluta de ese elemento respecto a las coordenadas de su contenedor.
