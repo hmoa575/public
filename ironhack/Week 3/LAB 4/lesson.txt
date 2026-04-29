@@ -1,0 +1,47 @@
+Animacion Con Keyframes Lección
+
+
+
+Resumen de la Lección ✏️
+Gracias a la regla @keyframes podemos crear animaciones de una duración y características determinadas, pudiendo indicar cómo cambia nuestro elemento animado en cada % de la animación.
+
+Existe una gran cantidad de propiedades para ir ajustando nuestra animación, pero hay que decir que la animación para ejecutarse necesita al menos 3 elementos:
+
+Nombre de la animación
+Duración de la animación
+Cantidad de veces que se ejecuta
+Ejemplo: animation: anuncio 3s 2; (animación de nombre "anuncio", dura 3 segundos, y se ejecuta 2 veces)
+
+Es posible usar transform: translate(x,y), pero si solo queremos desplazar el elemento, también es posible usar position: relative en el objeto y después en la animación usar simplemente top, bottom, left o right.
+
+Objetivos de aprendizaje 📓
+Al final de esta lección, podrás:
+
+Comprender cómo aplicar y usar los keyframes en los elementos de tu página
+Aplicar
+position: relative
+para poder usar directamente top, left, right y bottom, sin necesidad de usar transform
+Aplicar la animación a una imagen (que incluso podría ser un gif ya animado)
+Recursos adicionales 📋
+Si desea estudiar los conceptos antes de la clase o se beneficiaría de un repaso, por favor, utilice los recursos a continuación:
+
+https://www.w3schools.com/cssref/css3_pr_animation-keyframes.php
+Video animación sencilla pelota:
+https://www.youtube.com/watch?v=kkolJGTnRRs
+Video animaciones más elaboradas:
+https://www.youtube.com/watch?v=cXwZEZ-eseI
+Video animación de scroll por Midudev:
+https://www.youtube.com/watch?v=AbCYziNyjvk
+
+1- DE CUADRADO A CÍRCULO
+Tienes un cuadrado de un color, y cuando pasas el ratón por encima, se cambia a un círculo y de otro color.
+2- ANIMACIÓN PELOTA
+Con @keyframes: hacer que una pelota rebote verticalmente. Puede añadirse distorsión a la pelota o no (cuando choca contra el suelo se aplasta). Hacer un loop infinito.
+Recordar que hacen falta al menos: el nombre, la duración y la cantidad de veces de la animación:
+animation: iryvenir 2s 3;
+3- ANIMACIÓN ANUNCIO
+Con @keyframes:
+Crear un anuncio con al menos tres elementos: un logo, un slogan y una imagen (de fondo o no). Implica crear tres o más animaciones diferentes, una para cada elemento.
+También se le puede dar un delay para que no arranque al momento.
+Ejemplo: logo: concesionario PACO, slogan: “nos los quitan de las manos”, imagen: coches que cruzan.
+No descartar tema imagen o gif animado.
