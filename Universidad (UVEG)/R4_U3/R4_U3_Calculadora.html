@@ -11,7 +11,7 @@
 <body>
 <!--Botones para los números del 0 al 9.--> 
    <div class="calculadoraContenedor">
-    <h1>Calculadora básica</h1>   <!-- Título corregido según requisito (se respeta comentario "Calculadora básica") -->
+    <h1>R4_U3_Calculadora_Básica</h1>
 <!--Pantalla de la calculadora-->
 <input type="text" id="calculadoraPantalla" readonly aria-label="Pantalla de resultado" value="0">
 <!--Panel de los botones para los números del 0 al 9.-->
@@ -23,19 +23,17 @@
 <button class="numero" data-digit="4">4</button>
 <button class="numero" data-digit="5">5</button>
 <button class="numero" data-digit="6">6</button>
-<button class="operador" data-operator="*">x</button>   <!-- Corregido: se quitó el '<' doble -->
+<<button class="operador" data-operator="*">x</button>
 
 <button class="numero" data-digit="1">1</button>
 <button class="numero" data-digit="2">2</button>
 <button class="numero" data-digit="3">3</button>
-<button class="operador" data-operator="-">-</button>    <!-- Corregido: se quitó '<' extra -->
+<<button class="operador" data-operator="-">-</button>
 
 <button class="numero" data-digit="0">0</button>
 <button class="clear" id="botonLimpiar">C</button>
 <button class="resultadoIgual" id="resultadoIgual">=</button>
-<!-- AÑADIDO: Botón de suma (+) para completar las 4 operaciones básicas -->
-<button class="operador" data-operator="+">+</button>
-<div>UVEG - R4_U3_Calculadora_Básica</div>
+<div>UVEG</div>
 <!--Botones para las operaciones: suma, resta, multiplicación y división.
 •
 Un botón de "Resultado" o "=" para obtener el resultado de la operación.
@@ -74,12 +72,12 @@ let showValue = currentDisplay;
 //Si el numero es muy largo en la pantalla.
 if(showValue.length > 12){displayElement.value = showValue.slice(0,12)+"...";}
 else{displayElement.value = showValue}
-// CORREGIDO: comparación estricta (===) en lugar de asignación (=)
-if(currentDisplay === "Error"){displayElement.style.color = "#ff8a7a"; displayElement.style.fontWeight = "bold";}
+// Si da error.
+if(currentDisplay = "Error"){displayElement.style.color = "#ff8a7a"; displayElement.style.fontWeight = "bold";}
 else{displayElement.style.color = "#facc15"; displayElement.style.fontWeight = "500"}
     }
 
-//Reset (función renombrada para coincidir con las llamadas)
+//Reset
 function calculadoraReset(){
     currentDisplay = "0";
     firstOperand = null;
@@ -117,8 +115,7 @@ switch(operador){
     }
 
 }
-// CORREGIDO: función handleOperator ahora recibe el operador como parámetro 'op'
-function handleOperator(op) {
+function handleOperator() {
         // Si hay un error activo, solo se puede limpiar, ignorar otras operaciones
     if (currentDisplay === "Error") {
         return;
@@ -126,8 +123,7 @@ function handleOperator(op) {
 //****
         
 if (currentOperator !== null && !waitingForSecond) {
-    // CORREGIDO: usar 'calcula' en lugar de 'calculate'
-    let result = calcula(firstOperand, currentDisplay, currentOperator);
+    let result = calculate(firstOperand, currentDisplay, currentOperator);
     if (result === "Error") {
         currentDisplay = "Error";
         firstOperand = null;
@@ -148,7 +144,6 @@ if (currentOperator !== null && !waitingForSecond) {
             // actual como primer operando
             firstOperand = parseFloat(currentDisplay);
         }
-        // Asignamos el operador recibido
         currentOperator = op;
         // Se espera el segundo operando
         waitingForSecond = true;
@@ -190,8 +185,7 @@ if (currentOperator !== null && !waitingForSecond) {
        
         if (currentOperator !== null && !waitingForSecond && firstOperand !== null) {
             let secondValue = parseFloat(currentDisplay);
-            // CORREGIDO: usar 'calcula' en lugar de 'calculate'
-            let result = calcula(firstOperand, secondValue, currentOperator);
+            let result = calculate(firstOperand, secondValue, currentOperator);
             
             if (result === "Error") {
                 currentDisplay = "Error";
@@ -214,21 +208,23 @@ if (currentOperator !== null && !waitingForSecond) {
             updateDisplay();
         } 
         else {
-            // Si presiona igual sin operación completa, no hace nada
+            // Si presiona igual sin operación completa, no hace nada (o mantiene pantalla)
+            // pero opcional: si no hay operador, simplemente no pasa nada (comportamiento esperado)
+            // Además si está en medio de espera pero no se ingresó segundo número, no debe hacer nada.
             return;
         }
     }
 
     // Función específica para el botón Clear (reinicia toda la calculadora)
     function clearAll() {
-        calculadoraReset();   // CORREGIDO: llamada a la función correcta
+        resetCalculator();
     }
 
                                     // ----- EVENTOS (DOM) -----
 
     document.addEventListener("DOMContentLoaded", () => {
-        // Botones numéricos (0-9) con clase "numero" (CORREGIDO selector)
-        const numberBtns = document.querySelectorAll(".numero");
+        // Botones numéricos (0-9) con clase .number y atributo data-digit
+        const numberBtns = document.querySelectorAll(".number");
         numberBtns.forEach(btn => {
             btn.addEventListener("click", (e) => {
                 e.stopPropagation();
@@ -245,18 +241,17 @@ if (currentOperator !== null && !waitingForSecond) {
             });
         });
 
-        // Botones de operadores (+, -, *, /) con clase "operador" (CORREGIDO)
-        const operatorBtns = document.querySelectorAll(".operador");
+        // Botones de operadores (+, -, *, /) clase .operator
+        const operatorBtns = document.querySelectorAll(".operator");
         operatorBtns.forEach(btn => {
             btn.addEventListener("click", (e) => {
                 e.preventDefault();
-                // CORREGIDO: usar atributo 'data-operator' en lugar de 'data-op'
-                let op = btn.getAttribute("data-operator");
-                // Traducción de símbolos visuales a operadores reales (por si acaso)
+                let op = btn.getAttribute("data-op");
+                // Traducir los símbolos visuales a operadores reales
                 if (op === "÷") op = "/";
                 if (op === "×") op = "*";
                 if (op === "−") op = "-";
-                // Si no se define data-operator, usar texto interno como backup (compatibilidad)
+                // Si no se define data-op, usar texto interno como backup
                 if (!op) {
                     const raw = btn.innerText.trim();
                     if (raw === "÷") op = "/";
@@ -272,16 +267,16 @@ if (currentOperator !== null && !waitingForSecond) {
             });
         });
 
-        // Botón de igual (resultado) - CORREGIDO ID
-        const equalBtn = document.getElementById("resultadoIgual");
+        // Botón de igual (resultado)
+        const equalBtn = document.getElementById("equalBtn");
         if (equalBtn) {
             equalBtn.addEventListener("click", () => {
                 computeResult();
             });
         }
 
-        // Botón de limpiar (C) - CORREGIDO ID
-        const clearBtn = document.getElementById("botonLimpiar");
+        // Botón de limpiar (C)
+        const clearBtn = document.getElementById("clearBtn");
         if (clearBtn) {
             clearBtn.addEventListener("click", () => {
                 clearAll();
@@ -291,8 +286,8 @@ if (currentOperator !== null && !waitingForSecond) {
         // Extra: evitar cualquier comportamiento inesperado en el input de pantalla
         displayElement.addEventListener("focus", (e) => e.target.blur());
         
-        // Inicialización asegurada con la función correcta
-        calculadoraReset();
+        // Inicialización asegurada
+        resetCalculator();
     });
 </script>
 
@@ -312,6 +307,9 @@ Backgrounds: colores de fondo para botones y la sección de la calculadora en ge
 -->
 
 <style>
+/* =========================
+   Selector de elemento
+========================= */
 body{
   margin: 0;
   min-height: 100vh;
@@ -322,6 +320,7 @@ body{
   color: #e5e7eb;
 }
 
+/* Título */
 h1{
   margin: 0 0 14px 0;
   font-size: 20px;
@@ -331,10 +330,14 @@ h1{
   color: #f8fafc;
 }
 
+/* Texto suelto "UVEG" */
 div{
   box-sizing: border-box;
 }
 
+/* =========================
+   Selector de clase
+========================= */
 .calculadoraContenedor{
   width: min(380px, 92vw);
   padding: 16px;
@@ -344,6 +347,9 @@ div{
   box-shadow: 0 18px 40px rgba(0,0,0,0.35);
 }
 
+/* =========================
+   Selector de id
+========================= */
 #calculadoraPantalla{
   width: 100%;
   box-sizing: border-box;
@@ -359,6 +365,9 @@ div{
   outline: none;
 }
 
+/* =========================
+   Botones (selector de elemento)
+========================= */
 button{
   appearance: none;
   border: 1px solid #334155;           /* borde botones */
@@ -372,7 +381,7 @@ button{
   transition: transform 0.05s ease, background 0.15s ease, border-color 0.15s ease;
 }
 
-/*Efectos*/
+/* Efectos */
 button:hover{
   background: #273449;
   border-color: #475569;
@@ -381,26 +390,28 @@ button:active{
   transform: translateY(1px);
 }
 
-/* 
-(Grid aplicado al contenedor principal)
-*/
+/* =========================
+   Layout de botones
+   (tu HTML no tiene grid contenedor para botones,
+   así que lo resolvemos con grid dentro del contenedor)
+========================= */
 .calculadoraContenedor{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
 
-/*Título*/
+/* Título ocupa 4 columnas */
 .calculadoraContenedor > h1{
   grid-column: 1 / -1;
 }
 
-/*Pantalla*/
+/* Pantalla ocupa 4 columnas */
 .calculadoraContenedor > #calculadoraPantalla{
   grid-column: 1 / -1;
 }
 
-/*UVEG al final*/
+/* "UVEG" al final ocupa 4 columnas */
 .calculadoraContenedor > div:last-of-type{
   grid-column: 1 / -1;
   margin-top: 6px;
@@ -409,15 +420,18 @@ button:active{
   letter-spacing: 1.2px;
   color: #94a3b8;
 }
-/* 
+
+/* =========================
    Botones por clase
- */
+========================= */
 .numero{
   background: #111827;
 }
 .numero:hover{
   background: #1b2536;
 }
+
+/* Operadores */
 .operador{
   background: #24324a;
   color: #e2e8f0;
@@ -425,6 +439,8 @@ button:active{
 .operador:hover{
   background: #2b3b57;
 }
+
+/* Limpiar (C) */
 .clear{
   background: #3b1d2c;
   border-color: #7f1d1d;
@@ -433,6 +449,8 @@ button:active{
 .clear:hover{
   background: #4a2134;
 }
+
+/* Igual (=) */
 .resultadoIgual{
   background: #14532d;
   border-color: #166534;
@@ -441,9 +459,13 @@ button:active{
 .resultadoIgual:hover{
   background: #166534;
 }
+
+/* Hacer el "=" un poco más notorio */
 #resultadoIgual{
   font-size: 20px;
 }
+
+/* Responsive: en pantallas chicas, ajustar un poco */
 @media (max-width: 360px){
   #calculadoraPantalla{ font-size: 26px; }
   button{ font-size: 16px; padding: 11px 8px; }
