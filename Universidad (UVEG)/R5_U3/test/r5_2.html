@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>NewsWave | Noticias en Español (MX/ES/LATAM/US-ES)</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    :root{
+      --bg-gradient-start:#0a0f1c; --bg-gradient-end:#0f172f;
+      --card-bg:rgba(18,25,45,.75); --card-border:rgba(255,255,255,.08);
+      --glass-blur:blur(12px);
+      --accent-primary:#ffb347; --text-light:#f1f5f9; --text-muted:#a0afc5;
+      --shadow-card:0 20px 35px -12px rgba(0,0,0,.5);
+      --transition:all .3s cubic-bezier(.25,.46,.45,.94);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:radial-gradient(circle at 10% 20%,var(--bg-gradient-start),var(--bg-gradient-end));
+      color:var(--text-light);
+      padding:2rem 1.5rem; min-height:100vh; position:relative;
+    }
+    body::before{
+      content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+      background-image:
+        radial-gradient(circle at 25% 40%, rgba(255,180,70,0.08) 2%, transparent 2.5%),
+        radial-gradient(circle at 75% 85%, rgba(255,140,60,0.06) 1.5%, transparent 2%);
+      background-size:55px 55px, 40px 40px;
+    }
+    header{
+      position:relative; z-index:2;
+      background:rgba(10,15,28,.65); backdrop-filter:var(--glass-blur);
+      border-radius:2.5rem; padding:2rem; border:1px solid var(--card-border);
+      box-shadow:0 12px 30px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.05);
+      text-align:center; margin-bottom:1.2rem;
+    }
+    header h1{
+      font-size:2rem; font-weight:800;
+      background:linear-gradient(135deg,#FFD89B,#FFB347);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      display:inline-flex; align-items:center; gap:.7rem; flex-wrap:wrap; justify-content:center;
+    }
+    header p{color:var(--text-muted); margin-top:.6rem}
+    .controls{margin-top:1.1rem; display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap}
+    .select{
+      background:rgba(10,15,28,.55);
+      border:1px solid rgba(255,255,255,.12);
+      color:#e5e7eb; padding:.75rem 1rem; border-radius:999px;
+      outline:none; font-weight:650; min-width:270px;
+      backdrop-filter:blur(8px);
+    }
+    .refresh-btn{
+      background:linear-gradient(105deg, rgba(255,180,71,0.2), rgba(255,140,60,0.1));
+      border:1px solid rgba(255,180,71,0.5);
+      color:#ffdd99; font-weight:800;
+      padding:.8rem 1.6rem; border-radius:999px; cursor:pointer;
+      display:inline-flex; align-items:center; gap:.6rem;
+      transition:var(--transition);
+    }
+    .refresh-btn:hover{transform:translateY(-2px); border-color:#ffb347; color:#fff}
+    main{max-width:1400px; margin:0 auto; position:relative; z-index:2;}
+    .news-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(340px,1fr)); gap:2rem; margin-top:.8rem;}
+    .news-card{
+      background:var(--card-bg); border:1px solid var(--card-border);
+      border-radius:2rem; overflow:hidden; box-shadow:var(--shadow-card);
+      transition:var(--transition); display:flex; flex-direction:column;
+    }
+    .news-card:hover{transform:translateY(-6px) scale(1.01); border-color:rgba(255,180,71,.35);}
+    .news-image{width:100%; height:200px; object-fit:cover; background:#1e293b; filter:brightness(.95);}
+    .news-content{padding:1.6rem 1.5rem 1.8rem; flex:1;}
+    .news-title{
+      font-size:1.35rem; font-weight:750; margin-bottom:.85rem;
+      color:#fff2e0; cursor:pointer; transition:var(--transition); display:inline-block;
+    }
+    .news-title:hover{color:var(--accent-primary); transform:translateX(4px); text-shadow:0 0 6px rgba(255,180,71,.35);}
+    .news-description{
+      font-size:.92rem; color:#cbd5e6; margin-bottom:1.25rem;
+      display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+    }
+    .news-meta{
+      display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem;
+      font-size:.72rem; color:#8d9bb0; border-top:1px solid rgba(255,255,255,.1); padding-top:.9rem;
+    }
+    .source-wrapper{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;}
+    .news-source{
+      background:rgba(255,180,71,.12); padding:.3rem .9rem; border-radius:40px;
+      font-weight:650; font-size:.7rem; display:inline-flex; align-items:center; gap:.35rem;
+    }
+    .site-favicon{width:18px;height:18px;border-radius:4px;background:rgba(255,255,255,.1);padding:1px}
+    .link-preview{
+      display:inline-flex; align-items:center; gap:.3rem;
+      background:rgba(0,0,0,.3); border-radius:30px; padding:.2rem .6rem;
+      font-size:.7rem; color:#ffb347; text-decoration:none;
+    }
+    .link-preview:hover{background:rgba(255,180,71,.2); color:#fff}
+    .loading-state,.error-state,.empty-state{
+      grid-column:1/-1;
+      text-align:center; padding:3rem 2rem;
+      background:rgba(15,23,42,.65); backdrop-filter:blur(12px);
+      border-radius:2rem; border:1px solid rgba(255,255,255,.1);
+      margin-top:1.2rem;
+    }
+    .spinner{
+      width:56px;height:56px;border:3px solid rgba(255,180,71,.2);
+      border-top:3px solid #ffb347;border-radius:50%;
+      animation:spin .9s linear infinite; margin:0 auto 1.2rem;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    footer{position:relative; z-index:2; text-align:center; margin-top:3rem; font-size:.75rem; color:#6f7c9a; border-top:1px solid rgba(255,255,255,.08); padding-top:1.4rem;}
+    @media (max-width:680px){body{padding:1rem} header h1{font-size:1.6rem} .news-grid{gap:1.3rem} .select{min-width:220px}}
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><i class="fas fa-newspaper"></i> NewsWave · Español <i class="fas fa-bolt"></i></h1>
+    <p>Noticias en español: México, España, Latinoamérica y USA (en español) · Sin API Key</p>
+
+    <div class="controls">
+      <select id="regionSelect" class="select" aria-label="Selecciona región">
+        <option value="mx" selected>México</option>
+        <option value="es">España</option>
+        <option value="latam">Latinoamérica</option>
+        <option value="us_es">USA en Español</option>
+        <option value="mix">Mezcla (todo)</option>
+      </select>
+
+      <button class="refresh-btn" id="refreshNewsBtn">
+        <i class="fas fa-sync-alt"></i> Actualizar
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div id="newsContainer" class="news-grid">
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p><i class="fas fa-globe"></i> Conectando con fuentes...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Fuente: GDELT 2.1 (búsqueda de noticias) · <i class="fas fa-link"></i> abre el sitio original
+  </footer>
+
+  <script>
+    // ============================
+    // GDELT 2.1 - Noticias en español (sin API key)
+    // Docs: https://blog.gdeltproject.org/gdelt-2-1-api-debuts/
+    // ============================
+
+    const newsContainer = document.getElementById("newsContainer");
+    const regionSelect = document.getElementById("regionSelect");
+
+    function showLoadingState() {
+      newsContainer.innerHTML = `
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p><i class="fas fa-hourglass-half"></i> Cargando noticias en español...</p>
+        </div>
+      `;
+    }
+
+    function showErrorState(message) {
+      newsContainer.innerHTML = `
+        <div class="error-state">
+          <div style="font-size:2.4rem; margin-bottom:.6rem;"><i class="fas fa-exclamation-triangle"></i></div>
+          <h3 style="margin-bottom:.5rem;">Error de conexión</h3>
+          <p style="color:#cbd5e6; max-width:60ch; margin:0 auto;">${message}</p>
+          <button class="refresh-btn" id="retryBtn" style="margin-top: 1.3rem;">
+            <i class="fas fa-redo-alt"></i> Reintentar
+          </button>
+        </div>
+      `;
+      document.getElementById("retryBtn")?.addEventListener("click", fetchNews);
+    }
+
+    function showEmptyState() {
+      newsContainer.innerHTML = `
+        <div class="empty-state">
+          <div style="font-size:2.4rem; margin-bottom:.6rem; opacity:.85;"><i class="fas fa-newspaper"></i></div>
+          <h3 style="margin-bottom:.5rem;">Sin resultados</h3>
+          <p style="color:#cbd5e6;">Cambia de región o intenta más tarde.</p>
+          <button class="refresh-btn" id="emptyRetryBtn" style="margin-top: 1.3rem;">
+            <i class="fas fa-sync"></i> Actualizar
+          </button>
+        </div>
+      `;
+      document.getElementById("emptyRetryBtn")?.addEventListener("click", fetchNews);
+    }
+
+    async function fetchWithTimeout(url, ms = 12000) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), ms);
+      try {
+        return await fetch(url, { signal: controller.signal });
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function getDomainFromUrl(url) {
+      try { return new URL(url).hostname.replace("www.", ""); }
+      catch { return null; }
+    }
+
+    function generateThematicPlaceholder(title) {
+      const shortTitle = title && title.length > 50 ? title.slice(0, 47) + "..." : (title || "Noticia");
+      const encodedTitle = encodeURIComponent(shortTitle);
+      return `https://placehold.co/600x400/1E293B/FFB347?text=${encodedTitle}&font=roboto`;
+    }
+
+    function formatDateEs(dateStr) {
+      if (!dateStr) return "Reciente";
+      try {
+        const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return dateStr;
+        return d.toLocaleDateString("es-ES", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+      } catch { return dateStr; }
+    }
+
+    // Construye query por región, siempre en español
+    function buildQuery(region) {
+      // NOTA: GDELT soporta "sourcelang:spanish"
+      // y podemos sumar términos por país/región.
+      // Usamos términos para orientar a MX/ES/LATAM/US-ES.
+      const base = "sourcelang:spanish";
+
+      if (region === "mx") {
+        return `${base} (Mexico OR México OR CDMX OR 'Ciudad de México')`;
+      }
+      if (region === "es") {
+        return `${base} (España OR Madrid OR Barcelona OR "Gobierno de España")`;
+      }
+      if (region === "latam") {
+        return `${base} (Latinoamérica OR América Latina OR Argentina OR Colombia OR Chile OR Perú OR Brasil OR Venezuela OR Ecuador OR Uruguay OR Paraguay OR Bolivia OR Guatemala OR Honduras OR El Salvador OR Nicaragua OR Panamá OR Costa Rica OR República Dominicana)`;
+      }
+      if (region === "us_es") {
+        return `${base} ("Estados Unidos" OR EEUU OR USA OR "Casa Blanca" OR "Nueva York" OR "Los Ángeles" OR "Migración")`;
+      }
+      // mix
+      return `${base} (Mexico OR México OR España OR Latinoamérica OR "América Latina" OR "Estados Unidos" OR EEUU OR USA)`;
+    }
+
+    // Llamada a GDELT DOC 2.1
+    // docs: https://api.gdeltproject.org/api/v2/doc/doc?query=...&mode=ArtList&format=json
+    function buildGdeltUrl(region) {
+      const query = buildQuery(region);
+      const params = new URLSearchParams({
+        query,
+        mode: "ArtList",
+        format: "json",
+        maxrecords: "24",
+        sort: "HybridRel",
+        formatdatetime: "true"
+      });
+      return `https://api.gdeltproject.org/api/v2/doc/doc?${params.toString()}`;
+    }
+
+    function normalizeGdelt(articles) {
+      // GDELT: articles[] trae campos como title, url, sourceCountry, sourceCollection, seendate, domain, etc.
+      return articles.map(a => ({
+        title: a.title || "Sin título",
+        description: a.snippet || a.seendate || "Noticia en español.",
+        imageUrl: a.socialimage || generateThematicPlaceholder(a.title || "Noticia"),
+        source: a.sourceCountry ? `Fuente (${a.sourceCountry})` : (a.domain || "Fuente"),
+        date: a.seendate || "",
+        url: a.url || "#"
+      }));
+    }
+
+    function renderNews(items) {
+      if (!items || items.length === 0) {
+        showEmptyState();
+        return;
+      }
+
+      let html = "";
+      for (const item of items) {
+        const title = item.title || "Sin título";
+        const desc = item.description || "Descripción no disponible.";
+        const url = item.url || "#";
+        const source = item.source || "Fuente";
+        const domain = getDomainFromUrl(url);
+        const faviconUrl = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=32` : "";
+        const fallback = generateThematicPlaceholder(title);
+
+        html += `
+          <article class="news-card">
+            <img class="news-image"
+              src="${escapeHtml(item.imageUrl || fallback)}"
+              alt="Imagen de la noticia: ${escapeHtml(title)}"
+              loading="lazy"
+              onerror="this.onerror=null; this.src='${escapeHtml(fallback)}';">
+            <div class="news-content">
+              <h2 class="news-title" data-url="${escapeHtml(url)}">${escapeHtml(title)}</h2>
+              <p class="news-description">${escapeHtml(desc)}</p>
+              <div class="news-meta">
+                <div class="source-wrapper">
+                  <span class="news-source"><i class="fas fa-newspaper"></i> ${escapeHtml(source)}</span>
+                  ${faviconUrl ? `<img class="site-favicon" src="${faviconUrl}" alt="favicon" loading="lazy" onerror="this.style.display='none'">` : ""}
+                  <a class="link-preview" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" title="Ir al sitio original">
+                    <i class="fas fa-external-link-alt"></i> ${escapeHtml(domain || "enlace")}
+                  </a>
+                </div>
+                <span><i class="far fa-clock"></i> ${escapeHtml(formatDateEs(item.date))}</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
+      newsContainer.innerHTML = html;
+
+      document.querySelectorAll(".news-title").forEach(el => {
+        el.addEventListener("click", () => {
+          const url = el.getAttribute("data-url");
+          if (url && url !== "#") window.open(url, "_blank", "noopener,noreferrer");
+          else alert("El enlace completo no está disponible.");
+        });
+      });
+    }
+
+    async function fetchNews() {
+      showLoadingState();
+      const region = regionSelect.value;
+
+      try {
+        const url = buildGdeltUrl(region);
+        const res = await fetchWithTimeout(url, 12000);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const data = await res.json();
+        const articles = data && data.articles ? data.articles : [];
+
+        if (!Array.isArray(articles) || articles.length === 0) {
+          showEmptyState();
+          return;
+        }
+
+        renderNews(normalizeGdelt(articles));
+      } catch (err) {
+        console.error(err);
+        const msg =
+          (err.name === "AbortError")
+            ? "Tiempo de espera agotado. Reintenta."
+            : "Failed to fetch / CORS / red. Prueba con Live Server o revisa tu conexión.";
+        showErrorState(msg);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchNews();
+      document.getElementById("refreshNewsBtn").addEventListener("click", fetchNews);
+      regionSelect.addEventListener("change", fetchNews);
+    });
+  </script>
+</body>
+</html>
