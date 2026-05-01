@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Responsive" content="true">
+<!--Un título que diga "Calculadora básica". -->
+    <title>R4_U3_Calculadora_Básica</title>
+</head>
+<!--Parte HTML: b) Desarrollo de la Calculadora-->
+<body>
+<!--Botones para los números del 0 al 9.--> 
+   <div class="calculadoraContenedor">
+    <h1>Calculadora básica</h1>   
+<!--Pantalla de la calculadora-->
+<input type="text" id="calculadoraPantalla" readonly aria-label="Pantalla de resultado" value="0">
+<!--Panel de los botones para los números del 0 al 9.-->
+<button class="numero" data-digit="7">7</button>
+<button class="numero" data-digit="8">8</button>
+<button class="numero" data-digit="9">9</button>
+<button class="operador" data-operator="/">÷</button>
+
+<button class="numero" data-digit="4">4</button>
+<button class="numero" data-digit="5">5</button>
+<button class="numero" data-digit="6">6</button>
+<button class="operador" data-operator="*">x</button>
+
+<button class="numero" data-digit="1">1</button>
+<button class="numero" data-digit="2">2</button>
+<button class="numero" data-digit="3">3</button>
+<button class="operador" data-operator="-">-</button>
+
+<button class="numero" data-digit="0">0</button>
+<button class="clear" id="botonLimpiar">C</button>
+<button class="resultadoIgual" id="resultadoIgual">=</button>
+<button class="operador" data-operator="+">+</button>
+<div>UVEG - R4_U3_Calculadora_Básica</div>
+<!--Botones para las operaciones: suma, resta, multiplicación y división.
+•
+Un botón de "Resultado" o "=" para obtener el resultado de la operación.
+•
+Un botón de "Limpiar" o "C" para reiniciar la operación actual.
+•
+Una pantalla (puede ser un campo de texto o un div) donde se muestran las operaciones y el resultado.-->
+   </div>
+<!--
+c)
+Funcionalidad con JavaScript
+Programa la calculadora con las siguientes funcionalidades:
+•
+Al hacer clic en los botones numéricos, éstos deben aparecer en la pantalla.
+•
+Al seleccionar una operación, esta debe poder almacenarse y esperar al siguiente número.
+•
+Al presionar el botón de "Resultado", se debe realizar la operación y mostrar el resultado en la pantalla.
+•
+La opción de "Limpiar" debe reiniciar cualquier operación y limpiar la pantalla.-->
+
+<script>
+// Variables
+let currentDisplay = "0";
+let firstOperand = null;
+let waitingForSecond = false;
+let currentOperator = null;
+let errorFlag = false;
+let displayExpression = "0";
+
+//Elemento DOM de la pantalla
+const displayElement = document.getElementById("calculadoraPantalla");
+
+function updateDisplay(){ // Metodo que actualiza la interfaz de la pantalla
+let showValue = displayExpression;
+//Si el numero es muy largo en la pantalla.
+if(showValue.length > 18){displayElement.value = showValue.slice(0,18)+"...";}
+else{displayElement.value = showValue}
+if(currentDisplay === "Error"){displayElement.style.color = "#ff8a7a"; displayElement.style.fontWeight = "bold";}
+else{displayElement.style.color = "#facc15"; displayElement.style.fontWeight = "500"}
+    }
+
+//Reset 
+function calculadoraReset(){
+    currentDisplay = "0";
+    firstOperand = null;
+    waitingForSecond = false;
+    currentOperator = null;
+    errorFlag = false;
+    displayExpression = "0";
+    updateDisplay();
+}
+//Formato a la cifra de numeros
+function formatNumber(valor) {
+        if (valor === "Error") return "Error";
+        let num = parseFloat(valor);
+        if (isNaN(num)) return "0";
+        // Redondear
+        let rounded = Math.round(num * 100000000) / 100000000;
+        // Mostrar sin decimal si es numero entero.
+        if (Number.isInteger(rounded)) return rounded.toString();
+        // Legibilidad
+        let str = rounded.toFixed(8).replace(/\.?0+$/, '');
+        return str;
+    }
+
+//Base Matematica de la calculadora.
+function calcula(operandoA, operandoB, operador){
+    const a = parseFloat(operandoA);
+    const b = parseFloat(operandoB);
+    if(isNaN(a) || isNaN(b)) return "Error"; // Error sino son numeros.
+
+switch(operador){
+    case '+': return a+b;
+    case '-': return a-b;
+    case '*': return a*b;
+    case '/': if(b===0) return "Error"; return a/b;
+    default: return "Error";
+    }
+}
+
+function getSymbol(op) {
+    if (op === '/') return '÷';
+    if (op === '*') return '×';
+    return op;
+}
+
+function handleOperator(op) {
+    if (currentDisplay === "Error") return;
+    
+    if (currentOperator !== null && !waitingForSecond) {
+        let result = calcula(firstOperand, currentDisplay, currentOperator);
+        if (result === "Error") {
+            currentDisplay = "Error";
+            displayExpression = "Error";
+            firstOperand = null;
+            currentOperator = null;
+            waitingForSecond = false;
+            errorFlag = true;
+            updateDisplay();
+            return;
+        }
+        let formattedResult = formatNumber(result);
+        currentDisplay = formattedResult;
+        firstOperand = parseFloat(formattedResult);
+        displayExpression = formattedResult + getSymbol(op);
+        updateDisplay();
+    } 
+    else if (currentOperator === null && !waitingForSecond) {
+        firstOperand = parseFloat(currentDisplay);
+        displayExpression = currentDisplay + getSymbol(op);
+        updateDisplay();
+    }
+    else if (waitingForSecond) {
+        let parts = displayExpression.split(/([+\-*/÷×])/);
+        if (parts.length >= 3) {
+            parts[parts.length-2] = getSymbol(op);
+            displayExpression = parts.join('');
+        } else {
+            displayExpression = currentDisplay + getSymbol(op);
+        }
+        updateDisplay();
+    }
+    
+    currentOperator = op;
+    waitingForSecond = true;
+}
+
+function appendDigit(digit) {
+    if (currentDisplay === "Error") return;
+    
+    if (waitingForSecond) {
+        currentDisplay = digit;
+        waitingForSecond = false;
+        let parts = displayExpression.split(/([+\-*/÷×])/);
+        if (parts.length >= 3) {
+            parts[2] = digit;
+            displayExpression = parts.join('');
+        } else {
+            displayExpression = currentDisplay;
+        }
+        updateDisplay();
+    } else {
+        if (currentDisplay === "0") {
+            currentDisplay = digit;
+        } else {
+            if (currentDisplay.length < 18) {
+                currentDisplay += digit;
+            }
+        }
+        if (currentOperator === null) {
+            displayExpression = currentDisplay;
+        } else {
+            displayExpression = firstOperand + getSymbol(currentOperator) + currentDisplay;
+        }
+        updateDisplay();
+    }
+}
+
+function computeResult() {
+    if (currentDisplay === "Error") return;
+    
+    if (currentOperator !== null && !waitingForSecond && firstOperand !== null) {
+        let secondValue = parseFloat(currentDisplay);
+        let result = calcula(firstOperand, secondValue, currentOperator);
+        
+        if (result === "Error") {
+            currentDisplay = "Error";
+            displayExpression = "Error";
+            firstOperand = null;
+            currentOperator = null;
+            waitingForSecond = false;
+            errorFlag = true;
+            updateDisplay();
+            return;
+        }
+        let formatted = formatNumber(result);
+        currentDisplay = formatted;
+        displayExpression = formatted;
+        firstOperand = parseFloat(formatted);
+        currentOperator = null;
+        waitingForSecond = false;
+        updateDisplay();
+    }
+}
+
+function clearAll() {
+    calculadoraReset();  
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const numberBtns = document.querySelectorAll(".numero");
+    numberBtns.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const digit = btn.getAttribute("data-digit");
+            if (digit !== null) {
+                appendDigit(digit);
+            } else {
+                const text = btn.innerText.trim();
+                if (text.length === 1 && /[0-9]/.test(text)) {
+                    appendDigit(text);
+                }
+            }
+        });
+    });
+    const operatorBtns = document.querySelectorAll(".operador");
+    operatorBtns.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            let op = btn.getAttribute("data-operator");
+            if (op === "÷") op = "/";
+            if (op === "x") op = "*";
+            if (op === "+" || op === "-" || op === "*" || op === "/") {
+                handleOperator(op);
+            }
+        });
+    });
+    const equalBtn = document.getElementById("resultadoIgual");
+    if (equalBtn) {
+        equalBtn.addEventListener("click", () => {
+            computeResult();
+        });
+    }
+    const clearBtn = document.getElementById("botonLimpiar");
+    if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+            clearAll();
+        });
+    }
+    displayElement.addEventListener("focus", (e) => e.target.blur());
+    calculadoraReset();
+});
+</script>
+
+<!--
+d)
+Estilización
+•
+Personaliza la apariencia de tu calculadora utilizando CSS. Integra los siguientes aspectos:
+−
+Selectores de id, clase y elemento.
+−
+Fuentes: Tamaños, tipografías y colores de texto.
+−
+Bordes para botones y pantalla.
+−
+Backgrounds: colores de fondo para botones y la sección de la calculadora en general.
+-->
+
+<style>
+body{
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #0b1220, #111827);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: #e5e7eb;
+}
+
+h1{
+  margin: 0 0 14px 0;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.4px;
+  color: #f8fafc;
+}
+
+div{
+  box-sizing: border-box;
+}
+
+.calculadoraContenedor{
+  width: min(380px, 92vw);
+  padding: 16px;
+  border-radius: 16px;
+  background: #0f172a;                 
+  border: 1px solid #334155;           
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+#calculadoraPantalla{
+  width: 100%;
+  box-sizing: border-box;
+  margin: 6px 0 12px 0;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid #475569;          
+  background: #0b1220;                
+  color: #facc15;                     
+  font-size: 30px;                     
+  font-weight: 600;
+  text-align: right;
+  outline: none;
+}
+
+button{
+  appearance: none;
+  border: 1px solid #334155;          
+  background: #1f2937;                 
+  color: #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 10px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.05s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+
+button:hover{
+  background: #273449;
+  border-color: #475569;
+}
+button:active{
+  transform: translateY(1px);
+}
+
+/* 
+(Grid aplicado al contenedor principal)
+*/
+.calculadoraContenedor{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/*Título*/
+.calculadoraContenedor > h1{
+  grid-column: 1 / -1;
+}
+
+/*Pantalla*/
+.calculadoraContenedor > #calculadoraPantalla{
+  grid-column: 1 / -1;
+}
+
+/*UVEG al final*/
+.calculadoraContenedor > div:last-of-type{
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  color: #94a3b8;
+}
+/* 
+   Botones por clase
+ */
+.numero{
+  background: #111827;
+}
+.numero:hover{
+  background: #1b2536;
+}
+.operador{
+  background: #24324a;
+  color: #e2e8f0;
+}
+.operador:hover{
+  background: #2b3b57;
+}
+.clear{
+  background: #3b1d2c;
+  border-color: #7f1d1d;
+  color: #fee2e2;
+}
+.clear:hover{
+  background: #4a2134;
+}
+.resultadoIgual{
+  background: #14532d;
+  border-color: #166534;
+  color: #dcfce7;
+}
+.resultadoIgual:hover{
+  background: #166534;
+}
+#resultadoIgual{
+  font-size: 20px;
+}
+@media (max-width: 360px){
+  #calculadoraPantalla{ font-size: 26px; }
+  button{ font-size: 16px; padding: 11px 8px; }
+}
+</style>
+
+</body>
+</html>
