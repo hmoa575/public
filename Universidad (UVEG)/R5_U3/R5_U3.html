@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="responsive" content="true">
+  <title>Noticias en Español (MX/ES/US-ES)</title>
+
+  <style>
+    :root{
+      --bg-gradient-start:#0a0f1c; --bg-gradient-end:#0f172f;
+      --card-bg:rgba(18,25,45,.75); --card-border:rgba(255,255,255,.08);
+      --glass-blur:blur(12px);
+      --accent-primary:#ffb347; --text-light:#f1f5f9; --text-muted:#a0afc5;
+      --shadow-card:0 20px 35px -12px rgba(0,0,0,.5);
+      --transition:all .3s cubic-bezier(.25,.46,.45,.94);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:radial-gradient(circle at 10% 20%,var(--bg-gradient-start),var(--bg-gradient-end));
+      color:var(--text-light);
+      padding:2rem 1.5rem; min-height:100vh; position:relative;
+    }
+    body::before{
+      content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+      background-image:
+        radial-gradient(circle at 25% 40%, rgba(255,180,70,0.08) 2%, transparent 2.5%),
+        radial-gradient(circle at 75% 85%, rgba(255,140,60,0.06) 1.5%, transparent 2%);
+      background-size:55px 55px, 40px 40px;
+    }
+    header{
+      position:relative; z-index:2;
+      background:rgba(10,15,28,.65); backdrop-filter:var(--glass-blur);
+      border-radius:2.5rem; padding:2rem; border:1px solid var(--card-border);
+      box-shadow:0 12px 30px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.05);
+      text-align:center; margin-bottom:1.2rem;
+    }
+    header h1{
+      font-size:2rem; font-weight:800;
+      background:linear-gradient(135deg,#FFD89B,#FFB347);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      display:inline-flex; align-items:center; gap:.7rem; flex-wrap:wrap; justify-content:center;
+    }
+    header p{color:var(--text-muted); margin-top:.6rem}
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1.2rem;
+    }
+    .region-btn {
+      background: rgba(10,15,28,0.55);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #e5e7eb;
+      padding: 0.65rem 1.3rem;
+      border-radius: 999px;
+      font-weight: 650;
+      font-size: 0.9rem;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: var(--transition);
+      font-family: inherit;
+    }
+    .region-btn.active {
+      background: linear-gradient(105deg, rgba(255,180,71,0.25), rgba(255,140,60,0.2));
+      border-color: #ffb347;
+      color: #ffffff;
+      box-shadow: 0 0 8px rgba(255,180,71,0.4);
+    }
+    .region-btn:hover {
+      transform: translateY(-2px);
+      border-color: #ffb347;
+      color: #ffdd99;
+    }
+    .refresh-btn {
+      background: linear-gradient(105deg, rgba(255,180,71,0.2), rgba(255,140,60,0.1));
+      border: 1px solid rgba(255,180,71,0.5);
+      color: #ffdd99;
+      font-weight: 800;
+      padding: 0.7rem 1.6rem;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: var(--transition);
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+    .refresh-btn:hover {
+      transform: translateY(-2px);
+      border-color: #ffb347;
+      color: #fff;
+    }
+
+    /* RADIO */
+    .radio-panel{
+      position:relative; z-index:2;
+      max-width:1400px; margin:0 auto 1.2rem;
+      background:rgba(10,15,28,.55);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:2rem;
+      backdrop-filter:var(--glass-blur);
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
+      padding:1.15rem 1.2rem;
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      flex-wrap:wrap;
+    }
+    .radio-left{display:flex; align-items:center; gap:.85rem; flex-wrap:wrap;}
+    .radio-badge{
+      width:44px;height:44px;border-radius:14px;
+      background:linear-gradient(135deg, rgba(255,180,71,.26), rgba(255,140,60,.18));
+      border:1px solid rgba(255,180,71,.35);
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 0 18px rgba(255,180,71,.15);
+      color:#ffdd99;
+      flex-shrink:0;
+    }
+    .radio-meta{display:flex; flex-direction:column; gap:.15rem;}
+    .radio-meta strong{font-size:.95rem; color:#fff2e0;}
+    .radio-meta span{font-size:.78rem; color:var(--text-muted);}
+    .radio-controls{display:flex; align-items:center; gap:.6rem; flex-wrap:wrap;}
+    .radio-select{
+      background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.12);
+      color:#e5e7eb;
+      padding:.55rem .85rem;
+      border-radius:999px;
+      font-size:.85rem;
+      outline:none;
+      backdrop-filter:blur(8px);
+      max-width: 360px;
+      font-family: inherit;
+    }
+    .radio-select option{color:#111827;}
+    .radio-btn{
+      background:linear-gradient(105deg, rgba(255,180,71,0.2), rgba(255,140,60,0.1));
+      border:1px solid rgba(255,180,71,0.45);
+      color:#ffdd99;
+      font-weight:850;
+      padding:.6rem 1rem;
+      border-radius:999px;
+      cursor:pointer;
+      display:inline-flex; align-items:center; gap:.5rem;
+      transition:var(--transition);
+      font-size:.86rem;
+      font-family: inherit;
+    }
+    .radio-btn:hover{transform:translateY(-2px); border-color:#ffb347; color:#fff;}
+    .radio-btn.playing{
+      background:linear-gradient(105deg, rgba(255,180,71,0.35), rgba(255,140,60,0.22));
+      color:#fff;
+      box-shadow:0 0 10px rgba(255,180,71,.25);
+    }
+    .radio-vol{display:flex; align-items:center; gap:.5rem; color:var(--text-muted); font-size:.78rem;}
+    .radio-vol input[type=range]{width:110px}
+
+    .band{
+      position:relative; z-index:2;
+      max-width:1400px; margin:0 auto 1.2rem;
+      background:rgba(10,15,28,.55);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:2rem;
+      backdrop-filter:var(--glass-blur);
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
+      padding:1.05rem 1.2rem;
+      display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
+    }
+    .band-title{
+      font-size:.85rem; font-weight:850; color:#ffdd99;
+      display:flex; align-items:center; gap:.5rem;
+      flex-shrink:0;
+    }
+
+    .weather-cards{
+      display:flex; gap:.7rem; flex-wrap:wrap; flex:1;
+    }
+    .weather-card{
+      display:flex; align-items:center; gap:.55rem;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:1.2rem;
+      padding:.45rem .85rem;
+      min-width: 150px;
+    }
+    .wc-icon{font-size:1.35rem}
+    .wc-info{display:flex; flex-direction:column; gap:.05rem}
+    .wc-city{font-size:.72rem; font-weight:800; color:#fff2e0; white-space:nowrap}
+    .wc-temp{font-size:1.0rem; font-weight:900; color:#ffdd99; line-height:1.1}
+    .wc-cond{font-size:.65rem; color:var(--text-muted); white-space:nowrap}
+
+    
+    .ticker{
+      flex-basis:100%;
+      margin-top:.15rem;
+    }
+    .ticker-track{
+      overflow:hidden;
+      border-radius:999px;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .ticker-content{
+      display:flex;
+      width:max-content;
+      will-change:transform;
+      animation:scroll-left 42s linear infinite;
+    }
+    .ticker-content:hover{ animation-play-state:paused; }
+    .tk-run{
+      display:inline-flex;
+      align-items:center;
+      gap:.9rem;
+      padding:.55rem .85rem;
+    }
+    .tk-item{
+      display:inline-flex;
+      align-items:baseline;
+      gap:.45rem;
+      color:#e5e7eb;
+      font-size:.78rem;
+      white-space:nowrap;
+    }
+    .tk-label{color:#f1f5f9; font-weight:850;}
+    .tk-value{color:#ffdd99; font-weight:900;}
+    .tk-unit{color:var(--text-muted);}
+    .tk-sep{color:rgba(255,255,255,.35); padding:0 .2rem;}
+
+    @keyframes scroll-left{
+      from{transform:translateX(0);}
+      to{transform:translateX(-50%);}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .ticker-content{ animation:none; }
+    }
+
+    /*
+    Noticias
+     */
+    main{max-width:1400px; margin:0 auto; position:relative; z-index:2;}
+    .news-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(340px,1fr)); gap:2rem; margin-top:.8rem;}
+    .news-card{
+      background:var(--card-bg); border:1px solid var(--card-border);
+      border-radius:2rem; overflow:hidden; box-shadow:var(--shadow-card);
+      transition:var(--transition); display:flex; flex-direction:column;
+    }
+    .news-card:hover{transform:translateY(-6px) scale(1.01); border-color:rgba(255,180,71,.35);}
+    .news-image{width:100%; height:200px; object-fit:cover; background:#1e293b; filter:brightness(.95);}
+    .news-content{padding:1.6rem 1.5rem 1.8rem; flex:1;}
+    .news-title{
+      font-size:1.35rem; font-weight:750; margin-bottom:.85rem;
+      color:#fff2e0; cursor:pointer; transition:var(--transition); display:inline-block;
+    }
+    .news-title:hover{color:var(--accent-primary); transform:translateX(4px); text-shadow:0 0 6px rgba(255,180,71,.35);}
+    .news-description{
+      font-size:.92rem; color:#cbd5e6; margin-bottom:1.25rem;
+      display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+      line-clamp:3;
+    }
+    .news-meta{
+      display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem;
+      font-size:.72rem; color:#8d9bb0; border-top:1px solid rgba(255,255,255,.1); padding-top:.9rem;
+    }
+    .source-wrapper{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;}
+    .news-source{
+      background:rgba(255,180,71,.12); padding:.3rem .9rem; border-radius:40px;
+      font-weight:650; font-size:.7rem; display:inline-flex; align-items:center; gap:.35rem;
+    }
+    .site-favicon{width:18px;height:18px;border-radius:4px;background:rgba(255,255,255,.1);padding:1px}
+    .link-preview{
+      display:inline-flex; align-items:center; gap:.3rem;
+      background:rgba(0,0,0,.3); border-radius:30px; padding:.2rem .6rem;
+      font-size:.7rem; color:#ffb347; text-decoration:none;
+    }
+    .link-preview:hover{background:rgba(255,180,71,.2); color:#fff}
+    .loading-state,.error-state,.empty-state{
+      grid-column:1/-1;
+      text-align:center; padding:3rem 2rem;
+      background:rgba(15,23,42,.65); backdrop-filter:blur(12px);
+      border-radius:2rem; border:1px solid rgba(255,255,255,.1);
+      margin-top:1.2rem;
+    }
+    .spinner{
+      width:56px;height:56px;border:3px solid rgba(255,180,71,.2);
+      border-top:3px solid #ffb347;border-radius:50%;
+      animation:spin .9s linear infinite; margin:0 auto 1.2rem;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    footer{position:relative; z-index:2; text-align:center; margin-top:3rem; font-size:.75rem; color:#6f7c9a; border-top:1px solid rgba(255,255,255,.08); padding-top:1.4rem;}
+    @media (max-width:680px){
+      body{padding:1rem}
+      header h1{font-size:1.6rem}
+      .news-grid{gap:1.3rem}
+      .region-btn{padding:0.5rem 1rem; font-size:0.8rem}
+      .radio-vol{display:none}
+      .radio-select{max-width:100%}
+      .weather-card{min-width: 130px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><i class="fas fa-newspaper"></i> Noticias en Español - Reto 5 Unidad 3<i class="fas fa-bolt"></i></h1>
+    <p>Noticias en español: México, España y USA (en español)</p>
+
+    <div class="button-group" id="regionButtons">
+      <button data-region="mx" class="region-btn active">🇲🇽 México</button>
+      <button data-region="es" class="region-btn">🇪🇸 España</button>
+      <button data-region="us_es" class="region-btn">🇺🇸 USA en Español</button>
+      <button class="refresh-btn" id="refreshNewsBtn">
+        <i class="fas fa-sync-alt"></i> Actualizar
+      </button>
+    </div>
+  </header>
+
+  <section class="radio-panel" aria-label="Radio de noticias en vivo">
+    <div class="radio-left">
+      <div class="radio-badge"><i class="fas fa-broadcast-tower"></i></div>
+      <div class="radio-meta">
+        <strong id="radioStationLabel">Radio (Noticias en vivo)</strong>
+        <span id="radioStatus">Selecciona una estación y presiona ▶</span>
+      </div>
+    </div>
+
+   <!-- <div class="radio-controls">
+      <select class="radio-select" id="radioSelect" aria-label="Seleccionar estación de radio">
+        <option value="https://25763.live.streamtheworld.com/CADENASER.mp3">Cadena SER (ES)</option>
+        <option value="https://22843.live.streamtheworld.com/COPE.mp3">COPE (ES)</option>
+        <option value="https://playerservices.streamtheworld.com/api/livestream-redirect/FORMULA_SC">Radio Fórmula (MX)</option>
+        <option value="https://live.radiomx.com/wradio">W Radio (MX)</option>
+        <option value="https://live.radiomx.com/cnn">CNN en Español</option>
+        <option value="https://streaming.univision.com/audio/radio-formula/live">Univision Radio (US)</option>
+      </select>
+-->
+
+      <div class="radio-controls">
+  <select class="radio-select" id="radioSelect" aria-label="Seleccionar estación de radio">
+    <option value="https://stream.zeno.fm/0r0xa792kwzuv">TEST: Lofi Radio Universal</option>
+    <option value="https://25613.live.streamtheworld.com/WRADIO_MEXICO.mp3">W Radio (MX)</option>
+    <option value="https://shoutcast.radiofama.pl:8100/;stream">Radio Fama (Alternativa)</option>
+    <option value="https://securestream.pro/8024/stream">Deluxe Music Radio</option>
+    <option value="https://securestream.pro/8020/stream">Deluxe Lounge Radio</option>
+    <option value="https://securestream.pro/8022/stream">Deluxe Easy</option>
+    <option value="https://icecast.radiofrance.fr/franceinfo-midfi.mp3">France Info (Internacional)</option>
+    <option value="https://20853.live.streamtheworld.com/FORMULA_SC.mp3">Radio Fórmula (MX)</option>
+    <option value="https://20853.live.streamtheworld.com/CNN_ESPANOL.mp3">CNN en Español</option>
+    <option value="https://21253.live.streamtheworld.com/KLVEFM.mp3">Univision Radio - K-Love (US)</option>
+  </select>
+
+      <button class="radio-btn" id="radioPlayBtn" type="button">
+        <i class="fas fa-play" id="radioIcon"></i> <span id="radioBtnText">Escuchar</span>
+      </button>
+
+      <div class="radio-vol">
+        <i class="fas fa-volume-up"></i>
+        <input type="range" id="radioVolume" min="0" max="1" step="0.05" value="0.75" />
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="weatherBand" aria-label="Clima en vivo">
+    <div class="band-title"><i class="fas fa-cloud-sun"></i> Clima en vivo</div>
+    <div class="weather-cards" id="weatherCards">
+      <div class="weather-card">
+        <span class="wc-icon">⏳</span>
+        <div class="wc-info">
+          <span class="wc-city">Cargando…</span>
+          <span class="wc-temp">--°C</span>
+          <span class="wc-cond">—</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="fxBand" aria-label="Divisas y crypto en vivo">
+    <div class="band-title"><i class="fas fa-coins"></i> MXN · Divisas + Crypto</div>
+
+    <div class="ticker" aria-label="Ticker de divisas y crypto">
+      <div class="ticker-track">
+        <div class="ticker-content" id="fxTickerContent">
+          <div class="tk-run">
+            <span class="tk-item"><span class="tk-label">Cargando…</span></span>
+          </div>
+          <div class="tk-run" aria-hidden="true">
+            <span class="tk-item"><span class="tk-label">Cargando…</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div id="newsContainer" class="news-grid">
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p><i class="fas fa-globe"></i> Conectando con fuentes...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    COPYRIGHT
+  </footer>
+
+  <script>
+    
+    // RADIO (en vivo)
+  
+    const radioSelect = document.getElementById("radioSelect");
+    const radioPlayBtn = document.getElementById("radioPlayBtn");
+    const radioIcon = document.getElementById("radioIcon");
+    const radioBtnText = document.getElementById("radioBtnText");
+    const radioVolume = document.getElementById("radioVolume");
+    const radioStationLabel = document.getElementById("radioStationLabel");
+    const radioStatus = document.getElementById("radioStatus");
+
+    const audio = document.createElement("audio");
+    audio.preload = "none";
+    audio.volume = parseFloat(radioVolume.value || "0.75");
+    let isPlaying = false;
+
+    function updateRadioLabel() {
+      const opt = radioSelect.options[radioSelect.selectedIndex];
+      radioStationLabel.textContent = opt ? opt.textContent.trim() : "Radio";
+    }
+
+    async function playRadio() {
+      const src = radioSelect.value;
+      updateRadioLabel();
+      radioStatus.textContent = "Conectando…";
+
+      try {
+        audio.pause();
+        audio.src = src;
+        await audio.play();
+
+        isPlaying = true;
+        radioPlayBtn.classList.add("playing");
+        radioIcon.className = "fas fa-pause";
+        radioBtnText.textContent = "Pausar";
+        radioStatus.textContent = "Reproduciendo en vivo";
+      } catch (err) {
+        console.error("Radio error:", err);
+        radioStatus.textContent = "No se pudo reproducir (stream no compatible/bloqueado).";
+        isPlaying = false;
+        radioPlayBtn.classList.remove("playing");
+        radioIcon.className = "fas fa-play";
+        radioBtnText.textContent = "Escuchar";
+        alert("No se pudo reproducir esta estación en tu navegador. Prueba otra estación o usa Chrome/Edge.");
+      }
+    }
+
+    function pauseRadio() {
+      audio.pause();
+      audio.removeAttribute("src");
+      isPlaying = false;
+      radioPlayBtn.classList.remove("playing");
+      radioIcon.className = "fas fa-play";
+      radioBtnText.textContent = "Escuchar";
+      radioStatus.textContent = "Pausado";
+    }
+
+    radioPlayBtn.addEventListener("click", () => isPlaying ? pauseRadio() : playRadio());
+
+    radioSelect.addEventListener("change", () => {
+      updateRadioLabel();
+      radioStatus.textContent = "Lista. Presiona ▶";
+      if (isPlaying) playRadio();
+    });
+
+    radioVolume.addEventListener("input", () => { audio.volume = parseFloat(radioVolume.value); });
+
+    audio.addEventListener("error", () => {
+      console.error("audio.error:", audio.error);
+      radioStatus.textContent = "Error en el stream.";
+      pauseRadio();
+    });
+
+    updateRadioLabel();
+
+  
+    // WEATHER (Open-Meteo) - cards
+  
+    const WEATHER_CITIES = [
+      { name: "Ciudad de México", lat: 19.4326,  lon: -99.1332,  flag: "🇲🇽" },
+      { name: "Guadalajara",      lat: 20.6597,  lon: -103.3496, flag: "🇲🇽" },
+      { name: "Monterrey",        lat: 25.6866,  lon: -100.3161, flag: "🇲🇽" },
+      { name: "Cancún",           lat: 21.1619,  lon: -86.8515,  flag: "🇲🇽" },
+      { name: "Tijuana",          lat: 32.5149,  lon: -117.0382, flag: "🇲🇽" },
+      { name: "Puebla",           lat: 19.0414,  lon: -98.2063,  flag: "🇲🇽" },
+      { name: "Madrid",           lat: 40.4168,  lon: -3.7038,   flag: "🇪🇸" },
+      { name: "Barcelona",        lat: 41.3851,  lon: 2.1734,    flag: "🇪🇸" },
+      { name: "Miami",            lat: 25.7617,  lon: -80.1918,  flag: "🇺🇸" },
+      { name: "Nueva York",       lat: 40.7128,  lon: -74.0060,  flag: "🇺🇸" },
+      { name: "Los Ángeles",      lat: 34.0522,  lon: -118.2437, flag: "🇺🇸" },
+      { name: "Houston",          lat: 29.7604,  lon: -95.3698,  flag: "🇺🇸" },
+      { name: "Chicago",          lat: 41.8781,  lon: -87.6298,  flag: "🇺🇸" },
+      { name: "San Francisco",    lat: 37.7749,  lon: -122.4194, flag: "🇺🇸" },
+    ];
+
+    const WMO_MAP = {
+      0:["☀️","Despejado"],1:["🌤️","Poco nublado"],2:["⛅","Parcial"],3:["☁️","Nublado"],
+      45:["🌫️","Niebla"],48:["🌫️","Niebla"],51:["🌦️","Llovizna"],53:["🌦️","Llovizna"],
+      55:["🌧️","Llovizna intensa"],61:["🌧️","Lluvia"],63:["🌧️","Lluvia mod."],65:["🌧️","Lluvia intensa"],
+      71:["🌨️","Nieve leve"],73:["🌨️","Nieve"],75:["❄️","Nevada intensa"],
+      80:["🌦️","Chubascos"],81:["🌧️","Chubascos mod."],82:["⛈️","Tormenta"],
+      95:["⛈️","Tormenta"],96:["⛈️","Granizo"],99:["⛈️","Granizo fuerte"],
+    };
+
+    async function fetchWeather() {
+      const cardsEl = document.getElementById("weatherCards");
+      const lats = WEATHER_CITIES.map(c => c.lat).join(",");
+      const lons = WEATHER_CITIES.map(c => c.lon).join(",");
+      const url  = `https://api.open-meteo.com/v1/forecast?latitude=${lats}&longitude=${lons}&current_weather=true&temperature_unit=celsius&timezone=auto`;
+
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const raw = await res.json();
+        const results = Array.isArray(raw) ? raw : [raw];
+
+        let html = "";
+        results.forEach((data, i) => {
+          const city = WEATHER_CITIES[i];
+          const cw = data.current_weather;
+          const code = cw?.weathercode ?? 0;
+          const temp = cw?.temperature ?? "--";
+          const wind = cw?.windspeed ?? "--";
+          const [icon, cond] = WMO_MAP[code] || ["🌡️","Desconocido"];
+
+          html += `
+            <div class="weather-card" title="Viento: ${wind} km/h">
+              <span class="wc-icon">${icon}</span>
+              <div class="wc-info">
+                <span class="wc-city">${city.flag} ${city.name}</span>
+                <span class="wc-temp">${temp}°C</span>
+                <span class="wc-cond">${cond}</span>
+              </div>
+            </div>`;
+        });
+
+        cardsEl.innerHTML = html;
+      } catch (err) {
+        console.error("Weather error:", err);
+        cardsEl.innerHTML = `
+          <div class="weather-card">
+            <span class="wc-icon">⚠️</span>
+            <div class="wc-info">
+              <span class="wc-city">Clima</span>
+              <span class="wc-temp">—</span>
+              <span class="wc-cond">No disponible</span>
+            </div>
+          </div>`;
+      }
+    }
+
+    
+    // FX + CRYPTO TICKER
+    
+    const FX_SYMBOLS = [
+      { code: "USD" }, { code: "EUR" }, { code: "GBP" }, { code: "JPY" }, { code: "CHF" }, { code: "CAD" },
+    ];
+
+    const CRYPTO_SYMBOLS = [
+      { id: "bitcoin",  label: "BTC" },
+      { id: "ethereum", label: "ETH" },
+      { id: "tether",   label: "USDT" },
+      { id: "solana",   label: "SOL" },
+    ];
+
+    function fmt(n, digits = 4) {
+      if (n === null || n === undefined || Number.isNaN(n)) return "--";
+      return Number(n).toLocaleString("en-US", { maximumFractionDigits: digits });
+    }
+
+    function buildTickerItems({ oneMxnTo, oneFxToMxn, cryptoUsd }) {
+      const parts = [];
+
+      for (const { code } of FX_SYMBOLS) {
+        const val = oneMxnTo?.[code] ?? null;
+        parts.push(`
+          <span class="tk-item" title="1 MXN en ${code}">
+            <span class="tk-label">MXN→${code}</span>
+            <span class="tk-value">${fmt(val, code === "JPY" ? 3 : 4)}</span>
+            <span class="tk-unit">${code}</span>
+          </span>
+        `);
+      }
+
+      for (const { code } of FX_SYMBOLS) {
+        const mxn = oneFxToMxn?.[code] ?? null;
+        parts.push(`
+          <span class="tk-item" title="1 ${code} en MXN">
+            <span class="tk-label">${code}→MXN</span>
+            <span class="tk-value">${fmt(mxn, 4)}</span>
+            <span class="tk-unit">MXN</span>
+          </span>
+        `);
+      }
+
+      for (const { id, label } of CRYPTO_SYMBOLS) {
+        const usd = cryptoUsd?.[id]?.usd ?? null;
+        parts.push(`
+          <span class="tk-item" title="${label} en USD">
+            <span class="tk-label">${label}</span>
+            <span class="tk-value">$${fmt(usd, 2)}</span>
+            <span class="tk-unit">USD</span>
+          </span>
+        `);
+      }
+
+      return parts.join(`<span class="tk-sep">•</span>`);
+    }
+
+    async function fetchFxAndCrypto() {
+      const ticker = document.getElementById("fxTickerContent");
+      if (!ticker) return;
+
+      try {
+        const symbols = FX_SYMBOLS.map(s => s.code).join(",");
+        const fxUrl = `https://api.exchangerate.host/latest?base=MXN&symbols=${encodeURIComponent(symbols)}`;
+        const fxRes = await fetch(fxUrl);
+        if (!fxRes.ok) throw new Error(`FX HTTP ${fxRes.status}`);
+        const fxData = await fxRes.json();
+        const rates = fxData?.rates || {};
+
+        const oneMxnTo = {};
+        const oneFxToMxn = {};
+        for (const { code } of FX_SYMBOLS) {
+          const v = rates?.[code];
+          oneMxnTo[code] = (typeof v === "number") ? v : null;
+          oneFxToMxn[code] = (typeof v === "number" && v !== 0) ? (1 / v) : null;
+        }
+
+        const ids = CRYPTO_SYMBOLS.map(c => c.id).join(",");
+        const cgUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(ids)}&vs_currencies=usd`;
+        const cgRes = await fetch(cgUrl);
+        if (!cgRes.ok) throw new Error(`Crypto HTTP ${cgRes.status}`);
+        const cryptoUsd = await cgRes.json();
+
+        const once = buildTickerItems({ oneMxnTo, oneFxToMxn, cryptoUsd });
+        ticker.innerHTML = `
+          <div class="tk-run">${once}</div>
+          <div class="tk-run" aria-hidden="true">${once}</div>
+        `;
+      } catch (e) {
+        console.error("FX/Crypto ticker error:", e);
+        ticker.innerHTML = `
+          <div class="tk-run"><span class="tk-item"><span class="tk-label">No se pudieron cargar divisas/crypto</span></span></div>
+          <div class="tk-run" aria-hidden="true"><span class="tk-item"><span class="tk-label">No se pudieron cargar divisas/crypto</span></span></div>
+        `;
+      }
+    }
+
+   
+    // NOTICIAS (GDELT)
+  
+    const newsContainer = document.getElementById("newsContainer");
+    let currentRegion = "mx";
+
+    function setActiveRegionButton(region) {
+      document.querySelectorAll(".region-btn").forEach(btn => {
+        if (btn.dataset.region === region) btn.classList.add("active");
+        else btn.classList.remove("active");
+      });
+    }
+
+    function showLoadingState() {
+      newsContainer.innerHTML = `
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p><i class="fas fa-hourglass-half"></i> Cargando noticias en español...</p>
+        </div>
+      `;
+    }
+
+    function showErrorState(message) {
+      newsContainer.innerHTML = `
+        <div class="error-state">
+          <div style="font-size:2.4rem; margin-bottom:.6rem;"><i class="fas fa-exclamation-triangle"></i></div>
+          <h3 style="margin-bottom:.5rem;">Error de conexión</h3>
+          <p style="color:#cbd5e6; max-width:60ch; margin:0 auto;">${message}</p>
+          <button class="refresh-btn" id="retryBtn" style="margin-top: 1.3rem;">
+            <i class="fas fa-redo-alt"></i> Reintentar
+          </button>
+        </div>
+      `;
+      document.getElementById("retryBtn")?.addEventListener("click", () => fetchNews());
+    }
+
+    function showEmptyState() {
+      newsContainer.innerHTML = `
+        <div class="empty-state">
+          <div style="font-size:2.4rem; margin-bottom:.6rem; opacity:.85;"><i class="fas fa-newspaper"></i></div>
+          <h3 style="margin-bottom:.5rem;">Sin resultados</h3>
+          <p style="color:#cbd5e6;">Cambia de región o intenta más tarde.</p>
+          <button class="refresh-btn" id="emptyRetryBtn" style="margin-top: 1.3rem;">
+            <i class="fas fa-sync"></i> Actualizar
+          </button>
+        </div>
+      `;
+      document.getElementById("emptyRetryBtn")?.addEventListener("click", () => fetchNews());
+    }
+
+    async function fetchWithTimeout(url, ms = 12000) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), ms);
+      try {
+        return await fetch(url, { signal: controller.signal });
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function getDomainFromUrl(url) {
+      try { return new URL(url).hostname.replace("www.", ""); }
+      catch { return null; }
+    }
+
+    function generateThematicPlaceholder(title) {
+      const shortTitle = title && title.length > 50 ? title.slice(0, 47) + "..." : (title || "Noticia");
+      const encodedTitle = encodeURIComponent(shortTitle);
+      return `https://placehold.co/600x400/1E293B/FFB347?text=${encodedTitle}&font=roboto`;
+    }
+
+    function formatDateEs(dateStr) {
+      if (!dateStr) return "Reciente";
+      try {
+        const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return dateStr;
+        return d.toLocaleDateString("es-ES", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+      } catch { return dateStr; }
+    }
+
+    function buildQuery(region) {
+      const base = "sourcelang:spanish";
+      if (region === "mx") return `${base} (Mexico OR México OR CDMX OR 'Ciudad de México')`;
+      if (region === "es") return `${base} (España OR Madrid OR Barcelona OR "Gobierno de España")`;
+      return `${base} ("Estados Unidos" OR EEUU OR USA OR "Casa Blanca" OR "Nueva York" OR "Los Ángeles" OR "Migración")`;
+    }
+
+    function buildGdeltUrl(region) {
+      const query = buildQuery(region);
+      const params = new URLSearchParams({
+        query,
+        mode: "ArtList",
+        format: "json",
+        maxrecords: "24",
+        sort: "HybridRel",
+        formatdatetime: "true"
+      });
+      return `https://api.gdeltproject.org/api/v2/doc/doc?${params.toString()}`;
+    }
+
+    function normalizeGdelt(articles) {
+      return articles.map(a => ({
+        title: a.title || "Sin título",
+        description: a.snippet || a.seendate || "Noticia en español.",
+        imageUrl: a.socialimage || generateThematicPlaceholder(a.title || "Noticia"),
+        source: a.sourceCountry ? `Fuente (${a.sourceCountry})` : (a.domain || "Fuente"),
+        date: a.seendate || "",
+        url: a.url || "#"
+      }));
+    }
+
+    function renderNews(items) {
+      if (!items || items.length === 0) { showEmptyState(); return; }
+
+      let html = "";
+      for (const item of items) {
+        const title = item.title || "Sin título";
+        const desc = item.description || "Descripción no disponible.";
+        const url = item.url || "#";
+        const source = item.source || "Fuente";
+        const domain = getDomainFromUrl(url);
+        const faviconUrl = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=32` : "";
+        const fallback = generateThematicPlaceholder(title);
+
+        html += `
+          <article class="news-card">
+            <img class="news-image"
+              src="${escapeHtml(item.imageUrl || fallback)}"
+              alt="Imagen de la noticia: ${escapeHtml(title)}"
+              loading="lazy"
+              onerror="this.onerror=null; this.src='${escapeHtml(fallback)}';">
+            <div class="news-content">
+              <h2 class="news-title" data-url="${escapeHtml(url)}">${escapeHtml(title)}</h2>
+              <p class="news-description">${escapeHtml(desc)}</p>
+              <div class="news-meta">
+                <div class="source-wrapper">
+                  <span class="news-source"><i class="fas fa-newspaper"></i> ${escapeHtml(source)}</span>
+                  ${faviconUrl ? `<img class="site-favicon" src="${faviconUrl}" alt="favicon" loading="lazy" onerror="this.style.display='none'">` : ""}
+                  <a class="link-preview" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" title="Ir al sitio original">
+                    <i class="fas fa-external-link-alt"></i> ${escapeHtml(domain || "enlace")}
+                  </a>
+                </div>
+                <span><i class="far fa-clock"></i> ${escapeHtml(formatDateEs(item.date))}</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
+      newsContainer.innerHTML = html;
+
+      document.querySelectorAll(".news-title").forEach(el => {
+        el.addEventListener("click", () => {
+          const url = el.getAttribute("data-url");
+          if (url && url !== "#") window.open(url, "_blank", "noopener,noreferrer");
+          else alert("El enlace completo no está disponible.");
+        });
+      });
+    }
+
+    async function fetchNews() {
+      showLoadingState();
+      try {
+        const url = buildGdeltUrl(currentRegion);
+        const res = await fetchWithTimeout(url, 12000);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const data = await res.json();
+        const articles = data && data.articles ? data.articles : [];
+
+        if (!Array.isArray(articles) || articles.length === 0) { showEmptyState(); return; }
+        renderNews(normalizeGdelt(articles));
+      } catch (err) {
+        console.error(err);
+        const msg =
+          (err.name === "AbortError")
+            ? "Tiempo de espera agotado. Reintenta."
+            : "Error de conexión / CORS. Prueba con Live Server o revisa tu conexión.";
+        showErrorState(msg);
+      }
+    }
+
+    function changeRegion(region) {
+      if (region === currentRegion) return;
+      currentRegion = region;
+      setActiveRegionButton(region);
+      fetchNews();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".region-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const region = btn.dataset.region;
+          if (region) changeRegion(region);
+        });
+      });
+
+      document.getElementById("refreshNewsBtn").addEventListener("click", fetchNews);
+
+      fetchNews();
+      fetchWeather();
+      fetchFxAndCrypto();
+
+      setInterval(fetchWeather, 10 * 60 * 1000);
+      setInterval(fetchFxAndCrypto, 5 * 60 * 1000);
+    });
+  </script>
+</body>
+</html>
