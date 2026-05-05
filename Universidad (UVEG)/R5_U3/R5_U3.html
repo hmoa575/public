@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="responsive" content="true">
   <title>Noticias en Español (MX/ES/US-ES)</title>
-
+  <!-- ===== REQUERIMIENTO 1: Estructura HTML básica ===== -->
+  <!-- Se establece un encabezado (<header>), un cuerpo principal (<main>) 
+       y un área específica (<div id="newsContainer">) donde se mostrarán las noticias. -->
   <style>
     :root{
       --bg-gradient-start:#0a0f1c; --bg-gradient-end:#0f172f;
@@ -303,6 +305,7 @@
 </head>
 
 <body>
+  <!-- ===== REQUERIMIENTO 1 (continuación): Encabezado visible ===== -->
   <header>
     <h1><i class="fas fa-newspaper"></i> Noticias en Español - Reto 5 Unidad 3<i class="fas fa-bolt"></i></h1>
     <p>Noticias en español: México, España y USA (en español)</p>
@@ -311,6 +314,7 @@
       <button data-region="mx" class="region-btn active">🇲🇽 México</button>
       <button data-region="es" class="region-btn">🇪🇸 España</button>
       <button data-region="us_es" class="region-btn">🇺🇸 USA en Español</button>
+      <!-- ===== REQUERIMIENTO 5: Botón para refrescar noticias sin recargar página ===== -->
       <button class="refresh-btn" id="refreshNewsBtn">
         <i class="fas fa-sync-alt"></i> Actualizar
       </button>
@@ -326,30 +330,18 @@
       </div>
     </div>
 
-   <!-- <div class="radio-controls">
-      <select class="radio-select" id="radioSelect" aria-label="Seleccionar estación de radio">
-        <option value="https://25763.live.streamtheworld.com/CADENASER.mp3">Cadena SER (ES)</option>
-        <option value="https://22843.live.streamtheworld.com/COPE.mp3">COPE (ES)</option>
-        <option value="https://playerservices.streamtheworld.com/api/livestream-redirect/FORMULA_SC">Radio Fórmula (MX)</option>
-        <option value="https://live.radiomx.com/wradio">W Radio (MX)</option>
-        <option value="https://live.radiomx.com/cnn">CNN en Español</option>
-        <option value="https://streaming.univision.com/audio/radio-formula/live">Univision Radio (US)</option>
-      </select>
--->
-
       <div class="radio-controls">
   <select class="radio-select" id="radioSelect" aria-label="Seleccionar estación de radio">
     <option value="https://stream.zeno.fm/0r0xa792kwzuv">TEST: Lofi Radio Universal</option>
     <option value="https://25613.live.streamtheworld.com/WRADIO_MEXICO.mp3">W Radio (MX)</option>
     <option value="https://shoutcast.radiofama.pl:8100/;stream">Radio Fama (Alternativa)</option>
-    <option value="https://securestream.pro/8024/stream">Deluxe Music Radio</option>
-    <option value="https://securestream.pro/8020/stream">Deluxe Lounge Radio</option>
-    <option value="https://securestream.pro/8022/stream">Deluxe Easy</option>
     <option value="https://icecast.radiofrance.fr/franceinfo-midfi.mp3">France Info (Internacional)</option>
     <option value="https://20853.live.streamtheworld.com/FORMULA_SC.mp3">Radio Fórmula (MX)</option>
     <option value="https://20853.live.streamtheworld.com/CNN_ESPANOL.mp3">CNN en Español</option>
     <option value="https://21253.live.streamtheworld.com/KLVEFM.mp3">Univision Radio - K-Love (US)</option>
   </select>
+
+  
 
       <button class="radio-btn" id="radioPlayBtn" type="button">
         <i class="fas fa-play" id="radioIcon"></i> <span id="radioBtnText">Escuchar</span>
@@ -392,7 +384,7 @@
       </div>
     </div>
   </section>
-
+ <!-- ===== REQUERIMIENTO 1 (continuación): Cuerpo principal y área específica para noticias ===== -->
   <main>
     <div id="newsContainer" class="news-grid">
       <div class="loading-state">
@@ -656,7 +648,7 @@
       }
     }
 
-   
+    // Aquí se implementan los requerimientos 2, 3 y 4
     // NOTICIAS (GDELT)
   
     const newsContainer = document.getElementById("newsContainer");
@@ -677,7 +669,7 @@
         </div>
       `;
     }
-
+// ===== REQUERIMIENTO 4: Manejo de errores (API no disponible o sin noticias) =====
     function showErrorState(message) {
       newsContainer.innerHTML = `
         <div class="error-state">
@@ -705,6 +697,8 @@
       `;
       document.getElementById("emptyRetryBtn")?.addEventListener("click", () => fetchNews());
     }
+
+ // Función auxiliar con timeout para la petición fetch
 
     async function fetchWithTimeout(url, ms = 12000) {
       const controller = new AbortController();
@@ -752,6 +746,7 @@
       if (region === "es") return `${base} (España OR Madrid OR Barcelona OR "Gobierno de España")`;
       return `${base} ("Estados Unidos" OR EEUU OR USA OR "Casa Blanca" OR "Nueva York" OR "Los Ángeles" OR "Migración")`;
     }
+// ===== REQUERIMIENTO 2: Función que construye la URL de la API (GDELT, proveedor gratuito) =====
 
     function buildGdeltUrl(region) {
       const query = buildQuery(region);
@@ -776,6 +771,7 @@
         url: a.url || "#"
       }));
     }
+        // ===== REQUERIMIENTO 3: Procesar la respuesta y presentar las noticias =====
 
     function renderNews(items) {
       if (!items || items.length === 0) { showEmptyState(); return; }
@@ -826,6 +822,8 @@
       });
     }
 
+    // ===== REQUERIMIENTO 2 (continuación): Función que usa fetch para obtener datos de la API =====
+
     async function fetchNews() {
       showLoadingState();
       try {
@@ -848,11 +846,14 @@
       }
     }
 
+     // ===== REQUERIMIENTO 5 (continuación): Opción para refrescar noticias sin recargar página =====
+    // El botón con id="refreshNewsBtn" ya está en el HTML y tiene este event listener
+
     function changeRegion(region) {
       if (region === currentRegion) return;
       currentRegion = region;
       setActiveRegionButton(region);
-      fetchNews();
+      fetchNews(); // Actualiza las noticias al cambiar de región
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -863,9 +864,11 @@
         });
       });
 
+       // El botón "Actualizar" llama a fetchNews directamente, refrescando las noticias
+
       document.getElementById("refreshNewsBtn").addEventListener("click", fetchNews);
 
-      fetchNews();
+      fetchNews(); // Carga inicial
       fetchWeather();
       fetchFxAndCrypto();
 
