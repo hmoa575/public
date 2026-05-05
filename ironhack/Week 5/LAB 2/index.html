@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pizzería Cosmos | Pedido</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <header class="siteHeader">
+    <h1>Pizzería Cosmos</h1>
+    <p>Haz tu pedido en 1 minuto</p>
+  </header>
+
+  <main class="page">
+    <form class="orderForm" action="recibido.html" method="get">
+      <section class="card">
+        <h2>Datos del cliente</h2>
+
+        <div class="grid2">
+          <div class="field">
+            <label for="tratamiento">Tratamiento</label>
+            <select id="tratamiento" name="tratamiento" required>
+              <option value="" selected disabled>Elige una opción</option>
+              <option value="Sr">Sr</option>
+              <option value="Sra">Sra</option>
+              <option value="NB">NB</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required />
+          </div>
+
+          <div class="field">
+            <label for="telefono">Teléfono</label>
+            <input
+              id="telefono"
+              name="telefono"
+              type="tel"
+              placeholder="+34 600 000 000"
+              required
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Tu pizza</h2>
+
+        <div class="grid2">
+          <div class="field">
+            <label for="pizza">Tipo de pizza</label>
+            <select id="pizza" name="pizza" required>
+              <option value="" selected disabled>Selecciona tu pizza</option>
+              <option value="margarita">Margarita</option>
+              <option value="pepperoni">Pepperoni</option>
+              <option value="cuatro_quesos">Cuatro quesos</option>
+              <option value="bbq_pollo">BBQ Pollo</option>
+              <option value="vegetariana">Vegetariana</option>
+              <option value="hawaiana">Hawaiana</option>
+              <option value="carbonara">Carbonara</option>
+            </select>
+          </div>
+
+          <fieldset class="field fieldset">
+            <legend>Entrega</legend>
+
+            <label class="choice">
+              <input type="radio" name="entrega" value="casa" required />
+              <span>Enviar a casa</span>
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="entrega" value="recoger" />
+              <span>Vengo a buscar</span>
+            </label>
+          </fieldset>
+        </div>
+
+        <fieldset class="field fieldset">
+          <legend>Ingredientes extra</legend>
+
+          <div class="checks">
+            <label class="choice">
+              <input type="checkbox" name="extras" value="extra_queso" />
+              <span>Extra queso</span>
+            </label>
+
+            <label class="choice">
+              <input type="checkbox" name="extras" value="aceitunas" />
+              <span>Aceitunas</span>
+            </label>
+
+            <label class="choice">
+              <input type="checkbox" name="extras" value="champi" />
+              <span>Champiñones</span>
+            </label>
+
+            <label class="choice">
+              <input type="checkbox" name="extras" value="jalapenos" />
+              <span>Jalapeños</span>
+            </label>
+
+            <label class="choice">
+              <input type="checkbox" name="extras" value="bacon" />
+              <span>Bacon</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="comentario">Comentario para el cliente</label>
+          <textarea
+            id="comentario"
+            name="comentario"
+            rows="4"
+            placeholder="Ej: sin cebolla, llamar al llegar, etc."
+          ></textarea>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button class="btn" type="submit">Enviar pedido</button>
+        <button class="btn secondary" type="reset">Borrar</button>
+      </div>
+
+      <p class="hint">
+        Al enviar, revisa la barra del navegador: verás <strong>pares clave=valor</strong> en la URL porque se envía por GET.
+      </p>
+    </form>
+  </main>
+
+  <footer class="siteFooter">
+    <p>© 2026 Pizzería Cosmos</p>
+  </footer>
+</body>
+</html>

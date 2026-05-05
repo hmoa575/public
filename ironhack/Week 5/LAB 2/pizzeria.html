@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Pizzería Mamma Mia · Personaliza tu pedido</title>
+  <style>
+    /* ========== RESET & BASE ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Roboto', sans-serif;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBmaWxsPSIjRkZFRDhDIiBmaWxsLW9wYWNpdHk9IjAuMTUiIGQ9Ik0wIDBoNDB2NDBIMHoiLz48cGF0aCBkPSJNMjAgMTBhMTAgMTAgMCAwIDEgMCAyMCAxMCAxMCAwIDAgMSAwLTIweiIgc3Ryb2tlPSIjZTk5YzVjIiBzdHJva2Utd2lkdGg9IjEuMiIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjQiIGZpbGw9IiNlOTljNWMiLz48L3N2Zz4=');
+      background-color: #fff7ef;
+      background-repeat: repeat;
+      background-size: 40px 40px;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Tarjeta principal del formulario */
+    .form-card {
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+      background: #ffffffea;
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(241, 181, 88, 0.5);
+    }
+
+    /* Cabecera decorativa */
+    .pizza-header {
+      background: linear-gradient(135deg, #c1561b, #9a3f0a);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      color: white;
+      border-bottom: 5px solid #ffc285;
+    }
+
+    .pizza-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pizza-header p {
+      font-size: 1rem;
+      opacity: 0.92;
+      margin-top: 8px;
+      font-weight: 400;
+    }
+
+    /* Formulario */
+    .order-form {
+      padding: 2rem 2rem 1.8rem;
+    }
+
+    fieldset {
+      border: none;
+      margin-bottom: 2rem;
+      background: #fefaf5;
+      border-radius: 28px;
+      padding: 1.2rem 1.5rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03), inset 0 1px 0 #fff8f0;
+    }
+
+    legend {
+      font-weight: 700;
+      font-size: 1.25rem;
+      background: white;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      color: #b44912;
+      border-left: 6px solid #e98232;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: 1rem;
+      display: inline-block;
+      width: auto;
+    }
+
+    /* filas flexibles */
+    .row-2cols {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      flex: 1;
+      min-width: 170px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #5a2e12;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      background: white;
+      border: 1.5px solid #f3d5b5;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      outline: none;
+      color: #2c1c0e;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #e67e22;
+      box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+      background: #fffef9;
+    }
+
+    /* Grupo para checkboxes y radios (estilo horizontal elegante) */
+    .options-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      background: #fff4ea;
+      padding: 0.8rem 1.2rem;
+      border-radius: 48px;
+      margin-top: 0.25rem;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .option input {
+      width: 1.2rem;
+      height: 1.2rem;
+      margin: 0;
+      accent-color: #e67e22;
+      cursor: pointer;
+    }
+
+    .option label {
+      margin: 0;
+      text-transform: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: normal;
+      cursor: pointer;
+    }
+
+    /* textarea */
+    textarea {
+      resize: vertical;
+      min-height: 95px;
+      border-radius: 28px;
+    }
+
+    /* botón principal */
+    .submit-wrapper {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .btn-order {
+      background: #e67e22;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 8px 0 #9b4a12;
+      width: 100%;
+      max-width: 320px;
+      letter-spacing: 1px;
+      display: inline-block;
+    }
+
+    .btn-order:hover {
+      background: #cc6d1a;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 0 #9b4a12;
+    }
+
+    .btn-order:active {
+      transform: translateY(4px);
+      box-shadow: 0 4px 0 #9b4a12;
+    }
+
+    /* Panel informativo (solo visual, sin JS, muestra cómo se enviarían los datos al hacer submit) */
+    .info-note {
+      background: #2c241e;
+      margin: 1.2rem 2rem 1.8rem 2rem;
+      border-radius: 28px;
+      padding: 1rem 1.5rem;
+      color: #ffdeae;
+      font-family: 'Courier New', 'Fira Code', monospace;
+      border-left: 6px solid #ffaa55;
+    }
+
+    .info-note h3 {
+      font-size: 1rem;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+      font-weight: 700;
+      color: #ffcd91;
+    }
+
+    .demo-params {
+      background: #1f1913;
+      padding: 12px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-family: monospace;
+      overflow-x: auto;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    hr {
+      margin: 0 2rem;
+      border: none;
+      height: 2px;
+      background: linear-gradient(to right, #f7bc6d, #ffdec2, #f7bc6d);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0 1.8rem;
+      font-size: 0.75rem;
+      color: #b46f3a;
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding: 1rem;
+      }
+      .order-form {
+        padding: 1.2rem;
+      }
+      fieldset {
+        padding: 1rem;
+      }
+      .options-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        border-radius: 28px;
+      }
+      .info-note {
+        margin: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-card">
+  <div class="pizza-header">
+    <h1>
+        PIZZERÍA MAMMA MIA
+      <span style="font-size: 1.6rem;">🇮🇹</span>
+    </h1>
+    <p>Elige tu pizza favorita, agrega ingredientes extra y selecciona cómo recibirla</p>
+  </div>
+
+  <!-- 
+    FORMULARIO CON MÉTODO GET 
+    - action vacío envía a la misma página.
+    - Cada campo tendrá name correcto para pares clave-valor.
+    - autocomplete="off" en inputs relevantes.
+    - Se incluyen: select (tratamiento + nombre), teléfono, select pizza (6+ opciones),
+      checkboxes (4 extras), radio (delivery/pickup), textarea.
+  -->
+  <form class="order-form" method="GET" action="">
+    <!-- 1. DATOS PERSONALES: desplegable Sr/Sra/NB + nombre + teléfono -->
+    <fieldset>
+      <legend>Tus datos</legend>
+      <div class="row-2cols">
+        <div class="form-group">
+          <label>Tratamiento</label>
+          <select name="tratamiento" required>
+            <option value="Sr.">Sr.</option>
+            <option value="Sra.">Sra.</option>
+            <option value="NB">NB / No binario</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" name="nombre" placeholder="Ej: Laura Gómez" autocomplete="off" required>
+        </div>
+        <div class="form-group">
+          <label>Teléfono / móvil</label>
+          <input type="tel" name="telefono" placeholder="+34 612 345 678" autocomplete="off" required>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 2. TIPO DE PIZZA (menú desplegable con al menos 6 opciones) -->
+    <fieldset>
+      <legend>Elige tu pizza base</legend>
+      <div class="form-group">
+        <label>Nuestras especialidades</label>
+        <select name="pizza" required>
+          <option value="margherita">Margherita (tomate, mozzarella, albahaca)</option>
+          <option value="pepperoni">Pepperoni (pepperoni, mozzarella, orégano)</option>
+          <option value="hawaiian">Hawaiana (piña, jamón, mozzarella)</option>
+          <option value="vegetariana">Vegetariana (pimientos, champiñones, aceitunas)</option>
+          <option value="cuatro_quesos">4 quesos (mozzarella, gorgonzola, parmesano, fontina)</option>
+          <option value="barbacoa">Barbacoa (pollo, bacon, salsa barbacoa, cebolla)</option>
+          <option value="carbonara">Carbonara (queso, panceta, cebolla, pimienta)</option>
+        </select>
+        <small style="color:#b45a2a; display: block; margin-top: 5px;">7 variedades artesanales</small>
+      </div>
+    </fieldset>
+
+    <!-- 3. INGREDIENTES EXTRAS (checkboxes: mínimo 4) -->
+    <fieldset>
+      <legend>Ingredientes extra (+0,50€ c/u)</legend>
+      <div class="options-flex">
+        <div class="option">
+          <input type="checkbox" name="extras" value="queso_extra" id="extra_cheese">
+          <label for="extra_cheese">Queso extra fundido</label>
+        </div>
+        <div class="option">
+          <input type="checkbox" name="extras" value="pepperoni_extra" id="extra_pep">
+          <label for="extra_pep">Pepperoni extra</label>
+        </div>
+        <div class="option">
+          <input type="checkbox" name="extras" value="champinones" id="extra_mush">
+          <label for="extra_mush">Champiñones frescos</label>
+        </div>
+        <div class="option">
+          <input type="checkbox" name="extras" value="aceitunas" id="extra_oli">
+          <label for="extra_oli">Aceitunas negras</label>
+        </div>
+        <div class="option">
+          <input type="checkbox" name="extras" value="bacon_crujiente" id="extra_bacon">
+          <label for="extra_bacon">Bacon crujiente</label>
+        </div>
+      </div>
+      <small style="display: block; margin-top: 12px; color:#b4581c;">Puedes elegir varias opciones (se enviarán como múltiples valores con el mismo name "extras")</small>
+    </fieldset>
+
+    <!-- 4. RADIO BUTTON: enviar a casa / venir a buscar (solo una opción) -->
+    <fieldset>
+      <legend>Método de recogida / entrega</legend>
+      <div class="options-flex">
+        <div class="option">
+          <input type="radio" name="entrega" value="delivery" id="delivery_home" checked>
+          <label for="delivery_home">Enviar a casa (Delivery)</label>
+        </div>
+        <div class="option">
+          <input type="radio" name="entrega" value="pickup" id="pickup_shop">
+          <label for="pickup_shop">Venir a buscar (Take away)</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 5. COMENTARIO ADICIONAL (textarea) -->
+    <fieldset>
+      <legend>Instrucciones especiales</legend>
+      <textarea name="comentario" placeholder="Ej: sin cebolla, masa fina, alérgeno o punto de cocción..."></textarea>
+    </fieldset>
+
+    <!-- Botón de envío GET -->
+    <div class="submit-wrapper">
+      <button type="submit" class="btn-order">REALIZAR PEDIDO (GET)</button>
+    </div>
+  </form>
+
+  <!-- Sección demostrativa: explica cómo se envían los datos por GET y qué pares clave-valor se generan (sin JS, solo información estática + preview generada naturalmente por el navegador tras submit) -->
+  <div class="info-note">
+    <h3>VERIFICACIÓN GET · PARES CLAVE-VALOR</h3>
+    <div class="demo-params">
+      Al enviar el formulario, los datos aparecerán en la barra de direcciones (URL).<br>
+      Ejemplo de estructura (después de hacer clic en "REALIZAR PEDIDO"):<br>
+      <code style="background:#00000044; display: inline-block; padding: 6px 8px; border-radius: 14px; margin-top: 8px;">
+        ?tratamiento=Sra.&nombre=Ana&telefono=611223344&pizza=margherita&extras=queso_extra&extras=champinones&entrega=delivery&comentario=sin+cebolla
+      </code>
+      <br><br>
+      <strong>Registro de nombres y valores:</strong><br>
+      • <strong>tratamiento</strong> → Sr. / Sra. / NB <br>
+      • <strong>nombre</strong> → texto libre <br>
+      • <strong>telefono</strong> → número de contacto <br>
+      • <strong>pizza</strong> → tipo elegido (valor: margherita, pepperoni, etc.) <br>
+      • <strong>extras</strong> → cada checkbox marcado genera una clave "extras" con su respectivo valor <br>
+      • <strong>entrega</strong> → delivery / pickup <br>
+      • <strong>comentario</strong> → texto del área <br>
+      Los campos <code>autocomplete="off"</code> evitan sugerencias previas.
+    </div>
+  </div>
+  <hr>
+  <footer>
+    Todos los ingredientes son frescos · El envío por GET muestra todos los parámetros en la URL para depuración.
+  </footer>
+</div>
+
+<!-- 
+  - El formulario usa method="GET" y acción vacía, por lo que al enviar se recarga la página con los parámetros en la URL.
+  - Se verifica que los pares clave-valor aparecen en la barra de direcciones.
+  - Se aplicaron estilos: sombras, bordes redondeados, fondo con patrón sutil, colores cálidos, hover en botones.
+  - Checkboxes y radio buttons mantienen estilizado mediante accent-color para consistencia cross-browser sin JS.
+-->
+</body>
+</html>
