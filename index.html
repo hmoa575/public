@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio | Hector Dev</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== HEADER / NAV ===================== -->
+  <header class="siteHeader">
+    <div class="headerInner">
+      <span class="logo">Hector<span class="logoAccent">Dev</span></span>
+      <nav class="siteNav" aria-label="Navegación principal">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="inicio">
+    <div class="heroContent">
+      <h1 class="heroTitle">Hola, soy <span class="heroAccent">Hector</span></h1>
+      <p class="heroSub">Desarrollador web en formación · Ironhack Bootcamp</p>
+      <a href="#proyectos" class="heroCta">Ver mis proyectos</a>
+    </div>
+  </section>
+
+  <!-- ===================== SOBRE MÍ ===================== -->
+  <section class="section" id="sobre-mi">
+    <div class="sectionInner">
+      <h2 class="sectionTitle">Sobre mí</h2>
+      <p class="aboutText">
+        Soy un apasionado del desarrollo web, actualmente en el bootcamp de Ironhack.
+        Me encanta crear interfaces limpias, accesibles y con buenas prácticas.
+        Cuando no programo, vuelo en dragón, viajo a la Luna o hago barbacoas volcánicas. 🌋
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== PROYECTOS (CARRUSEL) ===================== -->
+  <section class="section" id="proyectos">
+    <div class="sectionInner">
+      <h2 class="sectionTitle">Proyectos</h2>
+
+      <div class="carouselWrapper">
+
+        <!-- ── PISTA DEL CARRUSEL ── -->
+        <div class="carousel">
+
+          <!-- ══════════ SLIDE 1: AstroBot IA ══════════ -->
+          <article class="slide" id="slide-1">
+            <!-- Flechas de navegación de ESTE slide -->
+            <a class="slideArrow slideArrow--prev" href="#slide-6" aria-label="Proyecto anterior">&#8249;</a>
+            <a class="slideArrow slideArrow--next" href="#slide-2" aria-label="Siguiente proyecto">&#8250;</a>
+
+            <div class="slideIframe">
+              <iframe
+                src="https://hmoa575.github.io/public/ironhack/Week%203/LAB%201/index.html"
+                title="AstroBot IA — proyecto web"
+                loading="lazy"
+              ></iframe>
+              <!-- Overlay semitransparente para evitar scroll accidental dentro del iframe -->
+              <div class="iframeOverlay" aria-hidden="true"></div>
+            </div>
+
+            <div class="slideInfo">
+              <div class="slideInfoLeft">
+                <h3 class="slideName">AstroBot IA</h3>
+                <p class="slideDesc">Página "Sobre mí" con Flexbox, hobbies épicos y demostración de box-sizing.</p>
+                <div class="slideTags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">Flexbox</span>
+                </div>
+              </div>
+              <div class="slideLinks">
+                <a
+                  class="slideBtn slideBtn--web"
+                  href="https://hmoa575.github.io/public/ironhack/Week%203/LAB%201/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Ver web</a>
+                <a
+                  class="slideBtn slideBtn--code"
+                  href="https://github.com/hmoa575/public/tree/main/ironhack/Week%203/LAB%201"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Código</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ══════════ SLIDE 2: Noticias Hoy ══════════ -->
+          <article class="slide" id="slide-2">
+            <a class="slideArrow slideArrow--prev" href="#slide-1" aria-label="Proyecto anterior">&#8249;</a>
+            <a class="slideArrow slideArrow--next" href="#slide-3" aria-label="Siguiente proyecto">&#8250;</a>
+
+            <div class="slideIframe slideIframe--placeholder">
+              <div class="iframePlaceholder">
+                <span class="placeholderIcon">📰</span>
+                <span class="placeholderLabel">Próximamente</span>
+              </div>
+            </div>
+
+            <div class="slideInfo">
+              <div class="slideInfoLeft">
+                <h3 class="slideName">Noticias Hoy</h3>
+                <p class="slideDesc">Portal de noticias con diseño de cuadrícula y tarjetas responsivas.</p>
+                <div class="slideTags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS Grid</span>
+                </div>
+              </div>
+              <div class="slideLinks">
+                <a class="slideBtn slideBtn--web slideBtn--disabled" href="#proyectos" aria-disabled="true">Ver web</a>
+                <a class="slideBtn slideBtn--code slideBtn--disabled" href="#proyectos" aria-disabled="true">Código</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ══════════ SLIDE 3: Ellie Goulding Fan Page ══════════ -->
+          <article class="slide" id="slide-3">
+            <a class="slideArrow slideArrow--prev" href="#slide-2" aria-label="Proyecto anterior">&#8249;</a>
+            <a class="slideArrow slideArrow--next" href="#slide-4" aria-label="Siguiente proyecto">&#8250;</a>
+
+            <div class="slideIframe slideIframe--placeholder">
+              <div class="iframePlaceholder">
+                <span class="placeholderIcon">🎤</span>
+                <span class="placeholderLabel">Próximamente</span>
+              </div>
+            </div>
+
+            <div class="slideInfo">
+              <div class="slideInfoLeft">
+                <h3 class="slideName">Ellie Goulding Fan Page</h3>
+                <p class="slideDesc">Fan page con galería de imágenes, discografía y sección de noticias.</p>
+                <div class="slideTags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                </div>
+              </div>
+              <div class="slideLinks">
+                <a class="slideBtn slideBtn--web slideBtn--disabled" href="#proyectos" aria-disabled="true">Ver web</a>
+                <a class="slideBtn slideBtn--code slideBtn--disabled" href="#proyectos" aria-disabled="true">Código</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ══════════ SLIDE 4: Pizzería Cosmos ══════════ -->
+          <article class="slide" id="slide-4">
+            <a class="slideArrow slideArrow--prev" href="#slide-3" aria-label="Proyecto anterior">&#8249;</a>
+            <a class="slideArrow slideArrow--next" href="#slide-5" aria-label="Siguiente proyecto">&#8250;</a>
+
+            <div class="slideIframe slideIframe--placeholder">
+              <div class="iframePlaceholder">
+                <span class="placeholderIcon">🍕</span>
+                <span class="placeholderLabel">Próximamente</span>
+              </div>
+            </div>
+
+            <div class="slideInfo">
+              <div class="slideInfoLeft">
+                <h3 class="slideName">Pizzería Cosmos</h3>
+                <p class="slideDesc">Formulario de pedido online con validaciones y diseño oscuro espacial.</p>
+                <div class="slideTags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">Formularios</span>
+                </div>
+              </div>
+              <div class="slideLinks">
+                <a class="slideBtn slideBtn--web slideBtn--disabled" href="#proyectos" aria-disabled="true">Ver web</a>
+                <a class="slideBtn slideBtn--code slideBtn--disabled" href="#proyectos" aria-disabled="true">Código</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ══════════ SLIDE 5: Caballeros del Zodiaco ══════════ -->
+          <article class="slide" id="slide-5">
+            <a class="slideArrow slideArrow--prev" href="#slide-4" aria-label="Proyecto anterior">&#8249;</a>
+            <a class="slideArrow slideArrow--next" href="#slide-6" aria-label="Siguiente proyecto">&#8250;</a>
+
+            <div class="slideIframe slideIframe--placeholder">
+              <div class="iframePlaceholder">
+                <span class="placeholderIcon">⚔️</span>
+                <span class="placeholderLabel">Próximamente</span>
+              </div>
+            </div>
+
+            <div class="slideInfo">
+              <div class="slideInfoLeft">
+                <h3 class="slideName">Caballeros del Zodiaco</h3>
+                <p class="slideDesc">Cards con hover animado y layout flex para los personajes clásicos.</p>
+                <div class="slideTags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">Animaciones</span>
+                </div>
+              </div>
+              <div class="slideLinks">
+                <a class="slideBtn slideBtn--web slideBtn--disabled" href="#proyectos" aria-disabled="true">Ver web</a>
+                <a class="slideBtn slideBtn--code slideBtn--disabled" href="#proyectos" aria-disabled="true">Código</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ══════════ SLIDE 6: Sobre mí ══════════ -->
+          <article class="slide" id="slide-6">
+            <a class="slideArrow slideArrow--prev" href="#slide-5" aria-label="Proyecto anterior">&#8249;</a>
+            <a class="slideArrow slideArrow--next" href="#slide-1" aria-label="Siguiente proyecto">&#8250;</a>
+
+            <div class="slideIframe slideIframe--placeholder">
+              <div class="iframePlaceholder">
+                <span class="placeholderIcon">🙋</span>
+                <span class="placeholderLabel">Próximamente</span>
+              </div>
+            </div>
+
+            <div class="slideInfo">
+              <div class="slideInfoLeft">
+                <h3 class="slideName">Sobre mí</h3>
+                <p class="slideDesc">Página personal con hobbies, skills y una demo de box-sizing en acción.</p>
+                <div class="slideTags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">Flexbox</span>
+                </div>
+              </div>
+              <div class="slideLinks">
+                <a class="slideBtn slideBtn--web slideBtn--disabled" href="#proyectos" aria-disabled="true">Ver web</a>
+                <a class="slideBtn slideBtn--code slideBtn--disabled" href="#proyectos" aria-disabled="true">Código</a>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /.carousel -->
+
+        <!-- ── DOTS (indicadores de posición) ── -->
+        <div class="carDots" role="tablist" aria-label="Navegación de proyectos">
+          <a class="dot" href="#slide-1" role="tab" aria-label="Proyecto 1: AstroBot IA"></a>
+          <a class="dot" href="#slide-2" role="tab" aria-label="Proyecto 2: Noticias Hoy"></a>
+          <a class="dot" href="#slide-3" role="tab" aria-label="Proyecto 3: Ellie Goulding Fan Page"></a>
+          <a class="dot" href="#slide-4" role="tab" aria-label="Proyecto 4: Pizzería Cosmos"></a>
+          <a class="dot" href="#slide-5" role="tab" aria-label="Proyecto 5: Caballeros del Zodiaco"></a>
+          <a class="dot" href="#slide-6" role="tab" aria-label="Proyecto 6: Sobre mí"></a>
+        </div>
+
+      </div><!-- /.carouselWrapper -->
+
+    </div><!-- /.sectionInner -->
+  </section>
+
+  <!-- ===================== CONTACTO ===================== -->
+  <section class="section" id="contacto">
+    <div class="sectionInner">
+      <h2 class="sectionTitle">Contacto</h2>
+      <p class="aboutText">¿Quieres colaborar o simplemente saludar? Encuéntrame en:</p>
+      <div class="contactLinks">
+        <a
+          class="contactLink"
+          href="https://github.com/hmoa575"
+          target="_blank"
+          rel="noopener noreferrer"
+        >GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="siteFooter">
+    <p>© 2026 Hector Dev · Portafolio</p>
+  </footer>
+
+</body>
+</html>
