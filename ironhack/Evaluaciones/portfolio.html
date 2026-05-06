@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="portfolio.css" />
+</head>
+<body>
+
+  <div class="bgOrbs" aria-hidden="true">
+    <span class="orb orb1"></span>
+    <span class="orb orb2"></span>
+    <span class="orb orb3"></span>
+  </div>
+
+  <header class="siteHeader">
+    <div class="headerInner">
+      <div class="brand">
+        <div class="brandDot" aria-hidden="true"></div>
+        <span class="brandName">Héctor Dev</span>
+      </div>
+      <nav class="siteNav" aria-label="Menú principal">
+        <a href="#proyectos">Proyectos</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="heroContent">
+        <p class="heroTag">
+          <i class="fa-solid fa-code"></i> Frontend Developer
+        </p>
+        <h1 class="heroTitle">Hola, soy<br /><span class="accent">Héctor</span></h1>
+        <p class="heroSub">
+          Estudiante de desarrollo web. Aquí encontrarás mis proyectos de HTML, CSS y JavaScript.
+        </p>
+        <div class="heroActions">
+          <a class="btn" href="#proyectos">Ver proyectos</a>
+          <a class="btn secondary" href="#contacto">Contactar</a>
+        </div>
+      </div>
+
+      <div class="heroVisual" aria-hidden="true">
+        <div class="codeBlock">
+          <span class="codeLine"><span class="kw">const</span> <span class="fn">dev</span> = {</span>
+          <span class="codeLine">&nbsp;&nbsp;nombre: <span class="str">"Héctor"</span>,</span>
+          <span class="codeLine">&nbsp;&nbsp;skills: [<span class="str">"HTML"</span>, <span class="str">"CSS"</span>],</span>
+          <span class="codeLine">&nbsp;&nbsp;pasion: <span class="str">"aprender"</span></span>
+          <span class="codeLine">};</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proyectos">
+      <h2 class="sectionTitle">
+        <i class="fa-solid fa-folder-open"></i> Proyectos
+      </h2>
+
+      <div class="projectGrid">
+
+        <article class="projectCard">
+          <div class="projectImg" style="background: linear-gradient(135deg,#7c3aed,#06b6d4);">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div class="projectInfo">
+            <h3>AstroBot IA</h3>
+            <p>Página de producto para un robot de juguete con IA conversacional.</p>
+            <div class="projectTags">
+              <span>HTML</span><span>CSS</span><span>Flex</span>
+            </div>
+            <div class="projectLinks">
+              <a href="https://hmoa575.github.io/public/ironhack/Week%203/LAB%201/" target="_blank" rel="noopener noreferrer" class="projectBtn">
+                <i class="fa-solid fa-eye"></i> Ver web
+              </a>
+              <a href="https://github.com/hmoa575/public" target="_blank" rel="noopener noreferrer" class="projectBtn ghost">
+                <i class="fa-brands fa-github"></i> Código
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="projectCard">
+          <div class="projectImg" style="background: linear-gradient(135deg,#e11d48,#f97316);">
+            <i class="fa-solid fa-newspaper"></i>
+          </div>
+          <div class="projectInfo">
+            <h3>Noticias Hoy</h3>
+            <p>Portal de noticias con secciones: Nacional, Internacional, Cultura y Deportes.</p>
+            <div class="projectTags">
+              <span>HTML</span><span>CSS</span><span>Grid</span>
+            </div>
+            <div class="projectLinks">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="projectBtn">
+                <i class="fa-solid fa-eye"></i> Ver web
+              </a>
+              <a href="https://github.com/hmoa575/public" target="_blank" rel="noopener noreferrer" class="projectBtn ghost">
+                <i class="fa-brands fa-github"></i> Código
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="projectCard">
+          <div class="projectImg" style="background: linear-gradient(135deg,#0ea5e9,#6366f1);">
+            <i class="fa-solid fa-music"></i>
+          </div>
+          <div class="projectInfo">
+            <h3>Ellie Goulding Fan Page</h3>
+            <p>Página de cantante con discografía, tabla de hits y reproductores de video.</p>
+            <div class="projectTags">
+              <span>HTML</span><span>CSS</span><span>Tables</span>
+            </div>
+            <div class="projectLinks">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="projectBtn">
+                <i class="fa-solid fa-eye"></i> Ver web
+              </a>
+              <a href="https://github.com/hmoa575/public" target="_blank" rel="noopener noreferrer" class="projectBtn ghost">
+                <i class="fa-brands fa-github"></i> Código
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="projectCard">
+          <div class="projectImg" style="background: linear-gradient(135deg,#22c55e,#14b8a6);">
+            <i class="fa-solid fa-pizza-slice"></i>
+          </div>
+          <div class="projectInfo">
+            <h3>Pizzería Cosmos</h3>
+            <p>Formulario de pedido con selects, checkboxes, radio buttons y envío GET.</p>
+            <div class="projectTags">
+              <span>HTML</span><span>CSS</span><span>Forms</span>
+            </div>
+            <div class="projectLinks">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="projectBtn">
+                <i class="fa-solid fa-eye"></i> Ver web
+              </a>
+              <a href="https://github.com/hmoa575/public" target="_blank" rel="noopener noreferrer" class="projectBtn ghost">
+                <i class="fa-brands fa-github"></i> Código
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="projectCard">
+          <div class="projectImg" style="background: linear-gradient(135deg,#a855f7,#ec4899);">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="projectInfo">
+            <h3>Caballeros del Zodiaco</h3>
+            <p>Cards con hover animado mostrando personajes y sus ataques especiales.</p>
+            <div class="projectTags">
+              <span>HTML</span><span>CSS</span><span>Hover</span>
+            </div>
+            <div class="projectLinks">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="projectBtn">
+                <i class="fa-solid fa-eye"></i> Ver web
+              </a>
+              <a href="https://github.com/hmoa575/public" target="_blank" rel="noopener noreferrer" class="projectBtn ghost">
+                <i class="fa-brands fa-github"></i> Código
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="projectCard">
+          <div class="projectImg" style="background: linear-gradient(135deg,#f59e0b,#ef4444);">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="projectInfo">
+            <h3>Sobre mí</h3>
+            <p>Página personal con hobbies, flexbox, box-sizing y media queries.</p>
+            <div class="projectTags">
+              <span>HTML</span><span>CSS</span><span>Flex</span>
+            </div>
+            <div class="projectLinks">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="projectBtn">
+                <i class="fa-solid fa-eye"></i> Ver web
+              </a>
+              <a href="https://github.com/hmoa575/public" target="_blank" rel="noopener noreferrer" class="projectBtn ghost">
+                <i class="fa-brands fa-github"></i> Código
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="sobre-mi">
+      <h2 class="sectionTitle">
+        <i class="fa-solid fa-circle-user"></i> Sobre mí
+      </h2>
+      <div class="aboutBox">
+        <div class="aboutText">
+          <p>
+            Soy estudiante de desarrollo web, actualmente aprendiendo <strong>HTML</strong>, <strong>CSS</strong> y las bases del diseño frontend. Me apasiona crear interfaces limpias, bien estructuradas y fáciles de usar.
+          </p>
+          <p>
+            Este portafolio recoge los proyectos que voy desarrollando durante mi formación. Cada proyecto es un paso más en mi camino como desarrollador/a web.
+          </p>
+          <div class="skills">
+            <span><i class="fa-brands fa-html5"></i> HTML5</span>
+            <span><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+            <span><i class="fa-solid fa-table-columns"></i> Flexbox</span>
+            <span><i class="fa-solid fa-grid"></i> Grid</span>
+            <span><i class="fa-brands fa-github"></i> GitHub</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <h2 class="sectionTitle">
+        <i class="fa-solid fa-envelope"></i> Contacto
+      </h2>
+      <div class="contactBox">
+        <p class="contactSub">¿Tienes un proyecto en mente o quieres decir hola? Escríbeme.</p>
+        <form class="contactForm" action="recibido.html" method="get">
+          <div class="formGrid">
+            <div class="field">
+              <label for="cNombre">Nombre</label>
+              <input id="cNombre" name="nombre" type="text" placeholder="Tu nombre" required />
+            </div>
+            <div class="field">
+              <label for="cEmail">Email</label>
+              <input id="cEmail" name="email" type="email" placeholder="tucorreo@email.com" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="cAsunto">Asunto</label>
+            <input id="cAsunto" name="asunto" type="text" placeholder="¿De qué se trata?" required />
+          </div>
+          <div class="field">
+            <label for="cMensaje">Mensaje</label>
+            <textarea id="cMensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+          </div>
+          <button class="btn" type="submit">
+            <i class="fa-solid fa-paper-plane"></i> Enviar mensaje
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="siteFooter">
+    <div class="footerInner">
+      <p>© 2026 Héctor — Hecho con HTML & CSS</p>
+      <div class="socialLinks">
+        <a href="https://github.com/hmoa575" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="#" aria-label="Twitter / X">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
