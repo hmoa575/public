@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio1</title>
+  <style>
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 30px;
+    }
+
+    input {
+      display: block;
+      margin: 8px auto;
+      width: 100%;
+      padding: 8px;
+    }
+
+    button {
+      margin-top: 12px;
+      padding: 8px 20px;
+      cursor: pointer;
+    }
+
+    p {
+      margin-top: 14px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <h1>Resta de dos numeros</h1>
+
+    <label for="num1">Numero 1:</label>
+    <input type="number" id="num1" placeholder="Numero 1" />
+
+    <label for="num2">Numero 2:</label>
+    <input type="number" id="num2" placeholder="Numero 2" />
+
+    <button onclick="restar()">Calcular</button>
+
+    <p id="resultado"></p>
+
+    <hr />
+
+    <h1>Cuentame sobre ti</h1>
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" placeholder="Tu nombre" />
+
+    <label for="localidad">Localidad:</label>
+    <input type="text" id="localidad" placeholder="Tu ciudad" />
+
+    <label for="hobby">Hobby:</label>
+    <input type="text" id="hobby" placeholder="Tu hobby" />
+
+    <button onclick="mostrarFrase()">Generar Frase</button>
+
+    <p id="frase"></p>
+
+    <h1>Area de un circulo</h1>
+
+  <label for="radio">Radio:</label>
+  <input type="number" id="radio" step="any" placeholder="Ej: 22" />
+  <button onclick="calcularArea()">Calcular</button>
+
+  <p id="salida"></p>
+
+  <h1>Tienda de Ropa</h1>
+
+  <!--
+  Preguntas al usuario: Cuántas camisetas quiere comprar, cuantos pantalones y cuantos zapatos, y al final le das el total de la compra. El total también debe guardarse en una variable aparte.
+
+  -->
+  <h1>Tienda de Ropa</h1>
+
+    <label for="Qcamisetas">Cuantas camisetas quiere comprar? 12€ unidad</label>
+    <input type="number" id="Qcamisetas" name="Qcamisetas" placeholder="Numero de camisetas" />
+
+    <label for="Qpantalones">Cuantos pantalones quiere comprar? 25€ unidad</label>
+    <input type="number" id="Qpantalones" name="Qpantalones" placeholder="Numero de pantalones" />
+
+    <label for="Qzapatos">Cuantos zapatos quiere comprar? 40€ unidad</label>
+    <input type="number" id="Qzapatos" name="Qzapatos" placeholder="Numero de zapatos" />
+
+    <button onclick="mostrarTotal()">Mostrar total</button>
+    <p id="total"></p>
+  </div>
+
+  <script>
+    function restar() {
+      let num1 = Number(document.getElementById("num1").value);
+      let num2 = Number(document.getElementById("num2").value);
+      let resultado = num1 - num2;
+
+      document.getElementById("resultado").textContent = "El resultado es: " + resultado;
+      console.log("El resultado de la resta es: ", resultado);
+    }
+
+    function mostrarFrase() {
+      let nombre    = document.getElementById("nombre").value;
+      let localidad = document.getElementById("localidad").value;
+      let hobby     = document.getElementById("hobby").value;
+
+      let frase = "Te llamas " + nombre + ", vives en " + localidad + ", y te gusta " + hobby + ".";
+
+      document.getElementById("frase").textContent = frase;
+      console.log(frase);
+    }
+    function calcularArea() {
+      
+      let radio = Number(document.getElementById("radio").value);
+      let pi = 3.1416;                 
+      let area = pi * radio * radio; 
+
+    //resultado
+    document.getElementById("salida").textContent =
+        "El área de un círculo con radio " + radio + " es: " + area.toFixed(0);
+
+      console.log("radio:", radio, "pi:", pi, "area:", area);
+    }
+
+   /* Tienes un precio standard en euros de camisetas, uno de pantalones y uno de zapatos (tres variables)
+
+Preguntas al usuario: Cuántas camisetas quiere comprar, cuantos pantalones y cuantos zapatos, y al final le das el total de la compra. El total también debe guardarse en una variable aparte.
+
+EXTRA:
+decir el precio además de en euros en dólares */
+
+    function mostrarTotal() {
+      let precioCamiseta = 12;
+      let precioPantalon = 25;
+      let precioZapatos = 40;
+
+      let camisetas = Number(document.getElementById("Qcamisetas").value);
+      let pantalones = Number(document.getElementById("Qpantalones").value);
+      let zapatos = Number(document.getElementById("Qzapatos").value);
+
+      let totalEuros = (camisetas * precioCamiseta) +
+                       (pantalones * precioPantalon) +
+                       (zapatos * precioZapatos);
+
+      let cambioDolar = 1.10;
+      let totalDolares = totalEuros * cambioDolar;
+
+      document.getElementById("total").textContent =
+        "Total: " + totalEuros.toFixed(2) + " € Euros (" + totalDolares.toFixed(2) + " $ US Dollars)";
+
+      console.log("Total euros:", totalEuros, "Total dólares:", totalDolares);
+    }
+  </script>
+</body>
+</html>
