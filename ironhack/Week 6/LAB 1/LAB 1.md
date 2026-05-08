@@ -1,3 +1,20 @@
+
+
+# Javascript intro
+
+
+
+Resumen de la Lección
+
+Javascript es un lenguaje de programación pensado para ejecutarse en front-end, es decir en el navegador del cliente. Permite usar variables, condiciones, bucles, y todos los elementos característicos de un lenguaje de programación completo. Vemos cómo declarar y usar variables, y cómo introducir datos, así como mostrar contenido en pantalla o en consola.
+
+Presentación JAVASCRIPT:
+
+<a href="[https://docs.google.com/presentation/d/1jSl8VK9ogK8kTnIUUPSj9wy1R_XqHSnr/edit?usp=drive_link&amp;amp;ouid=110892750782689430380&amp;amp;rtpof=true&amp;amp;sd=true&#34;&#34;&gt;](https://docs.google.com/presentation/d/1jSl8VK9ogK8kTnIUUPSj9wy1R_XqHSnr/edit?usp=drive_link&ouid=110892750782689430380&rtpof=true&sd=true%22%22%3E) Contenido powerpoint javascript intro
+
+
+EJERCICIO
+
 1- Pide al usuario dos números. Muestra el resultado de la resta de ambos, en pantalla y/o en consola
 
 2- Pide al usuario que introduzca nombre, localidad donde vive y hobby. Que se muestre en una sola frase: "Te llamas XXX, vives en YYY, y te gusta ZZZ".
