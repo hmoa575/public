@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ejercicio1.css">
+    <title>LAB 2</title>
+</head>
+<body>
+    <header>
+        <h1>JavaScript 1 Ejercicio LAB 2</h1>
+    </header>
+
+
+    <p id="respuestaNombre"></p><br>
+
+    <button onclick="comprobarEdad()">Comprobar Edad</button><br>
+    <p id="clienteEdad"></p>
+
+    <button onclick="elegirColor()">Elegir Color</button><br>
+    <p id="colorElegido"></p>
+
+    <h2>La lampara no funciona</h2>
+    <button onclick="comprobarLampara()">Comprobar Lampara</button>
+    <p id="respuesta"></p>
+
+
+        <script>
+            function preguntarNombre(){
+            let respuestaNombre = prompt("Cual es tu nombre?");
+            console.log(respuestaNombre); // Solamente consola
+
+            document.getElementById("respuestaNombre").innerHTML ="Hola " + respuestaNombre;
+            }
+
+            window.onload = preguntarNombre();
+        
+            function comprobarEdad(){
+                let clienteEdad = parseInt(prompt("Cual es tu edad?")); // string → número
+                if(clienteEdad >= 18){
+                    document.getElementById("clienteEdad").innerHTML = "Tu edad es " + clienteEdad + ", puedes entrar a la Discoteca.";
+                } else{
+                    document.getElementById("clienteEdad").innerHTML = "Tu edad es " + clienteEdad + ", eres menor de edad y no puedes entrar a la Discoteca."
+                }
+            }
+                //Se le pide al usuario que escoja un color (azul, verde, rojo, amarillo y violeta)
+
+            function elegirColor(){
+                    let colorElegido = prompt("Elige un color (azul, verde, rojo, amarillo y violeta): ");
+                    switch (colorElegido){
+                        case "azul": document.getElementById("colorElegido").innerHTML = "Has elegido el color: " + colorElegido + " que es el color del mar.";
+                        break;
+                        case "verde": document.getElementById("colorElegido").innerHTML = "Has elegido el color: " + colorElegido + " que es el color de las plantas.";
+                        break;
+                        case "rojo": document.getElementById("colorElegido").innerHTML = "Has elegido el color: " + colorElegido + " que es el color de la sangre.";
+                        break;
+                        case "amarillo": document.getElementById("colorElegido").innerHTML = "Has elegido el color: " + colorElegido + " que en ingles es Yellow.";
+                        break;
+                        case "violeta": document.getElementById("colorElegido").innerHTML = "Has elegido el color: " + colorElegido + " que en ingles es Violet.";
+                        break;
+                        default: document.getElementById("colorElegido").innerHTML = "Color incorrecto. Elige de entre los siguientes: azul, verde, rojo, amarillo y violeta.";
+                    }
+                }
+            function comprobarLampara(){
+                let respuestaLampara = prompt("Esta enchufada?");
+                if(respuestaLampara == "No"){
+                    document.getElementById("respuesta").innerHTML = "Enchufarla";
+                } else{
+                    let respuestaFoco = prompt("Esta el foco quemado?");
+                    if(respuestaFoco == "Si"){
+                        document.getElementById("respuesta").innerHTML = "Reemplazar el foco.";
+                    }else{
+                        document.getElementById("respuesta").innerHTML = "Comprar una nueva lampara.";
+                    }
+                }
+            }
+
+        </script>
+
+
+</body>
+</html>
