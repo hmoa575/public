@@ -1,0 +1,104 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    padding: 20px;
+}
+
+/* ===== HEADER ===== */
+header {
+    background-color: #4a90d9;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+/* ===== TARJETAS EJERCICIOS ===== */
+.ejercicio1,
+.ejercicio2 {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin-bottom: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== TÍTULOS ===== */
+h1 {
+    font-size: 1.2rem;
+    color: #4a90d9;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* ===== LABELS E INPUTS ===== */
+label {
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    margin-top: 5px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+input[type="number"]:focus {
+    border-color: #4a90d9;
+}
+
+/* ===== BOTONES ===== */
+button {
+    background-color: #4a90d9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 5px;
+    margin-right: 8px;
+}
+
+button:hover {
+    background-color: #357abd;
+}
+
+/* ===== DIVS RESULTADO ===== */
+#resultado,
+#resultado2 {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #eaf3fb;
+    border-left: 4px solid #4a90d9;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    min-height: 20px;
+}

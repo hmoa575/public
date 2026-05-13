@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="responsive" content="true">
+    <link rel="stylesheet" href="lab2.css">
+    <title>Week 6 - Lab 2</title>
+</head>
+<body>
+        <header >Week 6 - Lab 2</header>
+
+        <div class="ejercicio1">
+            <h1>Ejercicio 1</h1>
+            <p>Funcion saludar: pide un tipo de saludo y un nombre</p>
+
+            <button onclick="recogerDatos()">Saludar</button>
+            <div id="resultado"></div>
+        </div>
+        <div class="ejercicio2">
+            <h1>Ejercicio 2</h1>
+            <p>Introduce dos numeros (enteros o decimales) y elige si quieres sumar o restar</p>
+            <label>Numero uno: <input type="number" id="num1" placeholder="0.00"></label><br><br>
+            <label>Numero dos: <input type="number" id="num2" placeholder="0.00"></label><br><br>
+            <button onclick="elegirOperacion('+')">Sumar (+)</button>
+            <button onclick="elegirOperacion('-')">Restar (-)</button>
+            <div id="resultado2"></div>
+        </div>
+        <script>
+            function saludar(saludo, nombre){
+                console.log(saludo + " " + nombre);
+                document.getElementById("resultado").innerHTML = saludo + " " + nombre;
+            }
+            function recogerDatos(){
+                let saludo = prompt("Que saludo deseas?: ");
+                let nombre = prompt("Cual es tu nombre?: ");
+                saludar(saludo, nombre);
+            }
+            function elegirOperacion(operacion){
+                let num1 = parseFloat(document.getElementById("num1").value);
+                let num2 = parseFloat(document.getElementById("num2").value);
+            
+            if (operacion === "+") {
+                sumar(num1, num2);
+            } else {
+                restar(num1, num2);
+            }
+        }
+
+        // Sin return: el resultado se muestra directamente dentro de la funcin
+        function sumar(a, b) {
+            let resultado = a + b;
+            document.getElementById("resultado2").innerHTML = 
+                `${a} + ${b} = <strong>${resultado}</strong>`;
+        }
+
+        function restar(a, b) {
+            let resultado = a - b;
+            document.getElementById("resultado2").innerHTML = 
+                `${a} - ${b} = <strong>${resultado}</strong>`;
+        }
+        </script>
+</body>
+</html>
