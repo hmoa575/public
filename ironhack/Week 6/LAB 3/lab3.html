@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="responsive" content="true">
+    <link rel="stylesheet" href="lab3.css">
+    <title>Week 6 - LAB 3</title>
+</head>
+<body id="pagina">
+    <header>Week 6 - LAB 3</header>
+    <!--
+    Tienes un prompt donde se pregunta la edad.
+* si es entre 0 y 35 años, poner un texto del tipo "eres un chaval!" y una imagen de alguien joven.
+* si es entre 36 y 65 años, poner texto del tipo "pero si estás en la crema de la vida!", y una imagen de alguien de mediana edad
+* si es de más de 65 años, texto del tipo "felicidades, la sabiduria viene con el tiempo", y una imagen de alguien más mayor
+
+Puedes cambiar además del texto y la imagen, el color de fondo de la página, el color de los textos, y hacer desaparecer el botón.
+    -->
+
+    <div class="ejercicio1">
+
+        <button id="btn" onclick="calcularEdad()">Cual es tu edad?</button>
+
+        <div id="mensaje"></div>
+        <div id="imagen"></div>
+    </div>
+    <script>
+        function calcularEdad(){
+        let edad = parseInt(prompt("Cual es tu edad?"));
+
+        // Validación
+            if(isNaN(edad) || edad < 0){
+                alert("Introduce un numero valido");
+                return
+            }
+        
+        //Hacer desaparecer el botón con display
+            document.getElementById("btn").style.display = "none";
+
+        //Hacer aparecer la imagen con display
+            document.getElementById("imagen").style.display = "block"
+
+            if (edad >= 0 && edad <= 35) {
+
+                // Texto
+                document.getElementById("mensaje").innerHTML = "¡Eres un chaval! Tienes toda la vida por delante.";
+
+                // Color del texto
+                document.getElementById("mensaje").style.color = "#1a6b1a";
+
+                // Color de fondo de la página
+                document.getElementById("pagina").style.backgroundColor = "#d4f7d4";
+
+                // Imagen con backgroundImage
+                document.getElementById("imagen").style.backgroundImage = "url(https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400)";
+
+            } else if (edad >= 36 && edad <= 65) {
+
+                document.getElementById("mensaje").innerHTML = "¡Pero si estás en la crema de la vida! En tu mejor momento.";
+                document.getElementById("mensaje").style.color = "#856404";
+                document.getElementById("pagina").style.backgroundColor = "#fff3cd";
+                document.getElementById("imagen").style.backgroundImage = "url(https://images.unsplash.com/photo-1573497491208-6b1acb260507?w=400)";
+
+            } else {
+
+                document.getElementById("mensaje").innerHTML = "Felicidades, la sabiduría viene con el tiempo. ";
+                document.getElementById("mensaje").style.color = "#1a3a6b";
+                document.getElementById("pagina").style.backgroundColor = "#d0e8ff";
+                document.getElementById("imagen").style.backgroundImage = "url(https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=400)";
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>

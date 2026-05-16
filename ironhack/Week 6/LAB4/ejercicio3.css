@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #111827, #1f2937, #374151);
+    min-height: 100vh;
+    color: white;
+    padding: 30px 20px;
+}
+
+header {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #fbbf24;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+#ejercicio3 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* FORMULARIO */
+#ticket {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 30px;
+    border-radius: 18px;
+    width: 320px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+}
+
+#ticket h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #60a5fa;
+    font-size: 1.5rem;
+}
+
+label {
+    font-size: 1rem;
+    color: #e5e7eb;
+    display: block;
+}
+
+input {
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+input:focus {
+    border: 2px solid #3b82f6;
+    background-color: white;
+}
+
+button {
+    width: 100%;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.03);
+    background: linear-gradient(135deg, #f87171, #ef4444);
+}
+
+/* TICKET IMPRESO */
+#ticketImpreso {
+    width: 350px;
+    min-height: 420px;
+    background: linear-gradient(180deg, #fff8dc, #f5deb3);
+    color: #111827;
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    position: relative;
+    border: 3px dashed #b45309;
+}
+
+#ticketImpreso::before,
+#ticketImpreso::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #1f2937;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#ticketImpreso::before {
+    left: -15px;
+}
+
+#ticketImpreso::after {
+    right: -15px;
+}
+
+#ticketDatos {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+#ticketDatos strong {
+    font-size: 1.3rem;
+    color: #b91c1c;
+}

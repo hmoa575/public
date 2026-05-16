@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    padding: 18px 30px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #38bdf8;
+}
+
+body > p {
+    max-width: 800px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+#ejercicio2 {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+button {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: linear-gradient(135deg, #4ade80, #22c55e);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+#ejercicio2 p {
+    margin: 12px 0;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.10);
+    font-size: 1rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+#numeros {
+    border-left: 5px solid #38bdf8;
+}
+
+#sumaNumeros {
+    border-left: 5px solid #facc15;
+    font-weight: bold;
+}
+
+#numeroVueltas {
+    border-left: 5px solid #a78bfa;
+}
+
+#mensajeError {
+    border-left: 5px solid #f87171;
+    font-weight: bold;
+}

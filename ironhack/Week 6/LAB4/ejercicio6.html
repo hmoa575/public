@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6 - Estaciones del Año</title>
+    <link rel="stylesheet" href="ejercicio6.css">
+</head>
+<body>
+    <header>Ejercicio 6 - Estaciones del Año</header>
+
+    <div id="contenedor">
+        <h1>Escribe una estación del año</h1>
+        <p>Pon una de estas opciones: <strong>primavera, verano, otoño, invierno</strong></p>
+
+        <input type="text" id="estacion" placeholder="Ej: verano">
+        <button onclick="comprobarEstacion()">Comprobar</button>
+
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function comprobarEstacion() {
+            let estacion = document.getElementById("estacion").value.toLowerCase();
+            let mensaje = "";
+
+            switch (estacion) {
+                case "primavera":
+                    mensaje = "La primavera la sangre altera.";
+                    break;
+                case "verano":
+                    mensaje = "En verano tomar el sol es sano.";
+                    break;
+                case "otoño":
+                    mensaje = "Otoño es frío en Logroño.";
+                    break;
+                case "invierno":
+                    mensaje = "En invierno el frío es un infierno.";
+                    break;
+                default:
+                    mensaje = "Eso no es una estación del año.";
+            }
+
+            document.getElementById("resultado").innerHTML = mensaje;
+        }
+    </script>
+</body>
+</html>

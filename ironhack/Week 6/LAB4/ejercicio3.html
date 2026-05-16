@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ejercicio3.css">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <header>3- RELLENAR TICKET DE CINE</header>
+    <div id="ejercicio3">
+        <!--Tienes una imagen de ticket de entrada para el cine,
+        vacío, y unos inputs para rellenar: se te pide el nombre,fecha y la butaca (fila y asiento). 
+        Y al darle botón 'enviar', que se muestren en la imagen del ticket de entrada las opciones elegidas por el usuario. 
+        Esto implica maquetar el ticket mediante divs y CSS 
+        (puedes usar también una imagen de fondo para el papel).-->
+
+        <div id="ticket">
+
+            <h3>Ticket</h3>
+            <label>Nombre: <br><input type="text" id="nombre" name="nombre"></label><br><br>
+            <label>Fecha: <br><input type="date" id="fecha" name="fecha"></label><br><br>
+            <label>Hora: <br><input type="time" id="hora" name="hora"></label><br><br>
+            <label>Fila: <br><input type="number" id="fila" name="fila"></label><br><br>
+            <label>Asiento: <br><input type="number" id="asiento" name="asiento"></label><br><br>
+
+            <button onclick="crearTicket()">Crear Ticket</button>
+        </div>
+        <div id="ticketImpreso">
+            <p id="ticketDatos"></p>
+        </div>
+    </div>
+
+    <script>
+        function crearTicket(){
+           let nombre = document.getElementById("nombre").value;
+           let fecha = document.getElementById("fecha").value;
+           let hora = document.getElementById("hora").value;
+           let fila = document.getElementById("fila").value;
+           let asiento = document.getElementById("asiento").value;
+
+            document.getElementById("ticketDatos").innerHTML =
+    "<strong>TICKET DE CINE</strong><br><br>" +
+    "Nombre: " + nombre + "<br>" +
+    "Fecha: " + fecha + "<br>" +
+    "Hora: " + hora + "<br>" +
+    "Fila: " + fila + "<br>" +
+    "Asiento: " + asiento;
+
+        }
+    </script>
+</body>
+</html>

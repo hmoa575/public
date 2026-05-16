@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5 - Predicciones Switch</title>
+    <link rel="stylesheet" href="ejercicio5.css">
+</head>
+<body>
+    <header>Tu Pitonisa de Confianza</header>
+
+    <div id="contenedor">
+        <h1>Predicciones del Zodiaco</h1>
+        <p>Escribe tu signo zodiacal y descubre cómo irá tu semana</p>
+
+        <input type="text" id="signo" placeholder="Ej: leo, capricornio, geminis">
+        <button onclick="mostrarPrediccion()">Ver predicción</button>
+
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function mostrarPrediccion() {
+            let signo = document.getElementById("signo").value.toLowerCase();
+            let mensaje = "";
+
+            switch (signo) {
+                case "aries":
+                    mensaje = "Aries: Esta semana tendrás mucha energía para empezar nuevos proyectos.";
+                    break;
+                case "tauro":
+                    mensaje = "Tauro: La paciencia será tu mejor aliada. Llegan buenas noticias económicas.";
+                    break;
+                case "geminis":
+                    mensaje = "Géminis: Tu creatividad estará al máximo. Buen momento para comunicar tus ideas.";
+                    break;
+                case "cancer":
+                    mensaje = "Cáncer: Semana ideal para cuidar de ti y pasar tiempo con tu familia.";
+                    break;
+                case "leo":
+                    mensaje = "Leo: Brillarás con fuerza. Alguien reconocerá tu esfuerzo muy pronto.";
+                    break;
+                case "virgo":
+                    mensaje = "Virgo: Organiza bien tus tareas, porque una oportunidad importante está cerca.";
+                    break;
+                case "libra":
+                    mensaje = "Libra: Encontrarás equilibrio en una situación que te preocupaba.";
+                    break;
+                case "escorpio":
+                    mensaje = "Escorpio: Tendrás una semana intensa, pero llena de aprendizajes positivos.";
+                    break;
+                case "sagitario":
+                    mensaje = "Sagitario: La aventura te llama. Atrévete a salir de tu rutina.";
+                    break;
+                case "capricornio":
+                    mensaje = "Capricornio: Tu esfuerzo constante dará frutos. Sigue adelante.";
+                    break;
+                case "acuario":
+                    mensaje = "Acuario: Una idea original te abrirá nuevas puertas esta semana.";
+                    break;
+                case "piscis":
+                    mensaje = "Piscis: Confía en tu intuición, porque te guiará por el mejor camino.";
+                    break;
+                default:
+                    mensaje = "Signo no válido. Escribe un signo zodiacal correcto.";
+            }
+
+            document.getElementById("resultado").innerHTML = mensaje;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ejercicio4.css">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    <header>🐾 Tarjeta de tu Mascota</header>
+
+    <div id="contenedor">
+        <div id="formulario">
+            <h3>-Rellena los datos de tu mascota-</h3>
+<label>Nombre de la mascota: <input type="text" id="nombre" name="nombre" placeholder="Ej.: Buffy"></label><br><br>
+<label>Especie: 
+    <select name="especie" id="especie">
+        <option value="perro">Perro</option>
+        <option value="gato">Gato</option>
+        <option value="conejo">Conejo</option>
+        <option value="pajaro">Pajaro</option>
+        <option value="pez">Pez</option>
+        <option value="hamster">Hamster</option>
+    </select>
+</label><br><br>
+<label>Raza:
+                <input type="text" id="raza" placeholder="Ej: Labrador">
+            </label><br><br>
+
+            <label>Edad (años):
+                <input type="number" id="edad" placeholder="Ej: 3" min="0">
+            </label><br><br>
+
+            <label>Color:
+                <input type="text" id="color" placeholder="Ej: Marrón y blanco">
+            </label><br><br>
+
+            <label>Peso (kg):
+                <input type="number" id="peso" placeholder="Ej: 5" min="0">
+            </label><br><br>
+
+            <label>Personalidad:
+                <select id="personalidad">
+                    <option value="muy jugueton">😄 Muy juguetón</option>
+                    <option value="tranquilo">😌 Tranquilo</option>
+                    <option value="timido">😳 Tímido</option>
+                    <option value="travieso">😈 Travieso</option>
+                    <option value="cariñoso">🥰 Cariñoso</option>
+                </select>
+            </label><br><br>
+
+            <label>Comida favorita:
+                <input type="text" id="comida" placeholder="Ej: Pollo">
+            </label><br><br>
+
+            <label>Dueño/a:
+                <input type="text" id="dueno" placeholder="Ej: María">
+            </label><br><br>
+
+            <button onclick="generarTarjeta()">Crear Tarjeta</button>
+        </div>
+    </div>
+    <div id="tarjta">
+       <div id="tarjetaContenido">
+                <p id="placeholder">Rellena el formulario y pulsa<br><strong>🐾 Generar Tarjeta</strong></p>
+            </div> 
+    </div>
+    <script>
+function generarTarjeta(){
+    let nombre      = document.getElementById("nombre").value;
+            let especie     = document.getElementById("especie").value;
+            let raza        = document.getElementById("raza").value;
+            let edad        = document.getElementById("edad").value;
+            let color       = document.getElementById("color").value;
+            let peso        = document.getElementById("peso").value;
+            let personalidad = document.getElementById("personalidad").value;
+            let comida      = document.getElementById("comida").value;
+            let dueno       = document.getElementById("dueno").value;
+
+// Validacion basica
+if (!nombre || !raza || !edad || !color || !peso || !comida || !dueno) {
+alert("Por favor, rellena todos los campos.");
+return;
+    }
+ // Icono segun especie
+            let icono;
+            switch (especie) {
+                case "Perro":   icono = "🐶"; break;
+                case "Gato":    icono = "🐱"; break;
+                case "Conejo":  icono = "🐰"; break;
+                case "Pajaro":  icono = "🐦"; break;
+                case "Pez":     icono = "🐟"; break;
+                case "Hamster": icono = "🐹"; break;
+                default:        icono = "🐾";
+            }
+// Texto final con huecos rellenados
+            let textoFinal =
+                `<div class="tarjetaTitulo">${icono} ${nombre} ${icono}</div>
+                
+                <div class="tarjetaLinea">
+                    <span class="etiqueta">Especie</span>
+                    <span class="valor">${especie}</span>
+                </div>
+                <div class="tarjetaLinea">
+                    <span class="etiqueta">Raza</span>
+                    <span class="valor">${raza}</span>
+                </div>
+                <div class="tarjetaLinea">
+                    <span class="etiqueta">Edad</span>
+                    <span class="valor">${edad} años</span>
+                </div>
+                <div class="tarjetaLinea">
+                    <span class="etiqueta">Color</span>
+                    <span class="valor">${color}</span>
+                </div>
+                <div class="tarjetaLinea">
+                    <span class="etiqueta">Peso</span>
+                    <span class="valor">${peso} kg</span>
+                </div>
+                <div class="tarjetaLinea">
+                    <span class="etiqueta">Personalidad</span>
+                    <span class="valor">${personalidad}</span>
+                </div>
+                <div class="tarjetaLinea">
+                    <span class="etiqueta">Comida favorita</span>
+                    <span class="valor">${comida}</span>
+                </div>
+
+                <div class="tarjetaDescripcion">
+                    "${nombre} es un/a ${especie} de raza ${raza}, de color ${color}
+                    y pesa ${peso} kg. Tiene ${edad} años y es ${personalidad}.
+                    Su comida favorita es el/la ${comida}."
+                </div>
+                <div class="tarjetaDueno">Dueño/a: <strong>${dueno}</strong></div>`;
+                
+                //Tarjeta final
+document.getElementById("tarjetaContenido").innerHTML = textoFinal;
+
+}
+
+    </script>
+</body>
+</html>

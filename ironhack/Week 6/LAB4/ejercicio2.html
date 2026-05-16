@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ejercicio2.css">
+    <title>Week 6 - LAB 4: Ejercicio 2</title>
+</head>
+<body>
+    <header>Week 6 - LAB 4: Ejercicio 2</header>
+    
+    <h1>2-- NUMEROS POSITIVOS/NEGATIVOS</h1>
+<p>En un bucle, pides números al usuario hasta que escriba un número negativo. 
+(Damos en este caso el 0 como número positivo)
+
+EXTRA: añadir ACUMULADOR que dé al final la suma total de todos los números
+introducidos EXTRA2: añadir CONTADOR que nos diga cuántas vueltas ha dado el
+ bucle while (cantidad de números introducidos por el usuario)</p>
+    
+    <div id="ejercicio2">
+    <button onclick="bucleNumeros()">Iniciar</button>
+
+    <p id="numeros"></p>
+    <p id="sumaNumeros"></p>
+    <p id="numeroVueltas"></p>
+    <p id="mensajeError"></p>
+
+    </div>
+    <script>
+        function bucleNumeros(){
+            let contador = 0;
+            let sumaNumeros = 0;
+            let numero = 0;
+
+            document.getElementById("numeros").innerHTML = "";
+            document.getElementById("sumaNumeros").innerHTML = "";
+            document.getElementById("numeroVueltas").innerHTML = "";
+            document.getElementById("mensajeError").innerHTML = "";
+
+            while(numero >= 0){
+            let entrada = prompt("Dime un numero: ");
+            
+            //comprobacion
+            if( entrada === null || entrada === ""){
+                //document.getElementById("mensajeError").innerHTML = "Introduce un numero valido.";
+                alert("Introduce un numero valido.");
+                return;
+            }
+            numero = parseInt(entrada);
+
+            if (isNaN(numero)) {
+                    alert("Introduce un numero valido.");
+                    return;
+                }
+            
+                if(numero >= 0){
+            document.getElementById("numeros").innerHTML += "Tu numero elegido es: " + numero + "<br>";
+
+            sumaNumeros += numero;
+            contador++;
+
+            document.getElementById("sumaNumeros").innerHTML = "La suma de todos los numeros es: " + sumaNumeros;
+
+            document.getElementById("numeroVueltas").innerHTML = "cantidad de numeros introducidos por el usuario: " + contador;
+            }
+        }
+            document.getElementById("mensajeError").innerHTML =
+                "Has introducido un numero negativo. Fin del bucle.";
+
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ejercicio1.css">
+    <title>Week 6 - LAB 4 Ejercicio 1</title>
+</head>
+<body>
+    <header>Week 6 - LAB 4 Ejercicio 1</header>
+<!--
+1-- SUMA DE NUMEROS ITERATIVA
+
+* Mediante prompt, te piden dos números y te muestra la suma
+* Te pregunta después: “¿quieres continuar (S/N)?”
+* Si es que sí, vuelves a preguntar los números y sumarlos
+* Si es que no, sales del bucle y te despides.    
+-->
+<button onclick="pedirNumeros()">Inicia</button>
+<p id="resultado"></p>
+<p id="despedida"></p>
+<script>
+        function pedirNumeros(){
+            let numero1 = parseFloat(prompt("Dime el primer numero: "));
+            let numero2 = parseFloat(prompt("Dime el segundo numero: "));
+            let sumaNumeros = parseFloat(numero1 + numero2);
+            document.getElementById("resultado").innerHTML += "La suma de ambos numeros es: " + sumaNumeros + "<br>";
+            continuar();
+        }
+        function continuar(){
+        let respuesta = prompt("Deseas continuar (Si/No)?: ").toLowerCase();
+        if(respuesta === "si"){
+        pedirNumeros();
+        } else {
+        document.getElementById("despedida").innerHTML = "Saliendo del bucle. Hasta pronto!"
+        }
+        }
+/*
+alert() → solo muestra mensaje
+prompt() → pide texto
+confirm() → devuelve true o false
+*/
+</script>
+</body>
+</html>
